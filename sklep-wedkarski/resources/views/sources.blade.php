@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pstrągarnia</title>
+
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sources.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script src="{{ asset('js/cart.js') }}"></script>
+</head>
+
+<body>
+<nav>
+        <a href="{{ url('/') }}">Strona główna</a>
+        <a href="{{ url('/shop') }}">Sklep</a>
+        <a href="{{ url('/blog') }}">Blog</a>
+        <div class="dropdown">
+            <button class="dropbtn">Niezbędnik
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="{{ url('/fishing_grounds') }}">Łowiska</a>
+                <a href="{{ url('/calendar') }}">Kalendarz</a>
+            </div>
+        </div>
+        <a href="{{ url('/newsletter') }}">Newsletter</a>
+        <a href="{{ url('/sources') }}">Źródła</a>
+        <a href="{{ url('/cart') }}">
+            <div id="cart_value"><i class="fas fa-shopping-cart"></i> (0zł)</div>
+        </a>
+    </nav>
+
+    <main>
+    <h2 class="sources_title">
+        Źródła
+    </h2>
+
+    <div id="sources">
+        <div class="source">
+            <img src="{{ asset('img/sea-fish-drawing.png') }}" alt="ryba">
+            <a href="https://pixy.org/download/147373/">pixy.org/download/147373</a> - Obrazek ryby
+        </div>
+
+        <div class="source">
+            <img src="{{ asset('img/sea-fish-drawing.png') }}" alt="ryba">
+            <a href="https://znajdzlowisko.pl">znajdzlowisko.pl</a> - Łowiska
+        </div>
+
+        <div class="source">
+            <img src="{{ asset('img/sea-fish-drawing.png') }}" alt="ryba">
+            <a href="https://sklepwedkarski.pl">sklepwedkarski.pl</a> - Sklep, zdjęcia produktów
+        </div>
+
+        <div class="source">
+            <img src="{{ asset('img/sea-fish-drawing.png') }}" alt="ryba">
+            <a href="https://przewodnicywedkarscy.pl">przewodnicywedkarscy.pl</a> - Blog, artykuły i zdjęcia
+        </div>
+
+        <div class="source">
+            <img src="{{ asset('img/sea-fish-drawing.png') }}" alt="ryba">
+            <a href="https://open-meteo.com">open-meteo.com</a> - Pogoda
+        </div>
+
+        <div class="source">
+            <img src="{{ asset('img/sea-fish-drawing.png') }}" alt="ryba">
+            <a href="https://leafletjs.com/">leafletjs.com</a> - Mapa
+        </div>
+
+        <div class="source">
+            <img src="{{ asset('img/sea-fish-drawing.png') }}" alt="ryba">
+            <a href="https://fontawesome.com">fontawesome.com</a> - Ikonki
+        </div>
+
+        <div class="source">
+            <img src="{{ asset('img/sea-fish-drawing.png') }}" alt="ryba">
+            <a href="http://jonraasch.com/blog/a-simple-jquery-slideshow">jonraasch.com/blog/a-simple-jquery-slideshow</a>
+            - Slider ze zdjęciami
+        </div>
+
+        <div class="source">
+            <img src="{{ asset('img/sea-fish-drawing.png') }}" alt="ryba">
+            <a href="https://lokeshdhakar.com/projects/lightbox2/">lokeshdhakar.com/projects/lightbox2</a>
+            - Galeria zdjęć
+        </div>
+    </div>
+</main>
+
+    <footer>
+        Autor strony: Adam Mazur
+    </footer>
+</body>
+
+</html>

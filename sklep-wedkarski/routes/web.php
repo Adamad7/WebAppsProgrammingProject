@@ -15,7 +15,35 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+Route::get('/blog', function () {
+    return view('blog');
+});
+
+Route::get('/calendar', function () {
+    return view('calendar');
+});
+
+Route::get('/cart', function () {
+    return view('cart');
+});
+
+Route::get('/fishing_grounds', function () {
+    return view('fishing_grounds');
+});
+
+Route::get('/newsletter', function () {
+    return view('newsletter');
+});
+
+Route::get('/shop', function () {
+    return view('shop');
+});
+
+Route::get('/sources', function () {
+    return view('sources');
 });
 
 Route::get('/dashboard', function () {
@@ -27,5 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 
 require __DIR__.'/auth.php';

@@ -1,0 +1,20 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/js/blog.js": "/js/blog.js",
+    "/js/bootstrap.js": "/js/bootstrap.js",
+    "/js/calendar.js": "/js/calendar.js",
+    "/js/cart.js": "/js/cart.js",
+    "/js/fishing_grounds.js": "/js/fishing_grounds.js",
+    "/js/lightbox.js": "/js/lightbox.js",
+    "/js/newsletter.js": "/js/newsletter.js",
+    "/js/shop.js": "/js/shop.js",
+    "/css/fishing_grounds.css": "/css/fishing_grounds.css",
+    "/css/cart.css": "/css/cart.css",
+    "/css/calendar.css": "/css/calendar.css",
+    "/css/blog.css": "/css/blog.css",
+    "/css/app.css": "/css/app.css",
+    "/css/style.css": "/css/style.css",
+    "/css/shop.css": "/css/shop.css",
+    "/css/newsletter.css": "/css/newsletter.css",
+    "/css/lightbox.css": "/css/lightbox.css"
+}

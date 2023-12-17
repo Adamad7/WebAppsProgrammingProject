@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pstrągarnia</title>
+
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/newsletter.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script src="{{ asset('js/cart.js') }}"></script>
+    <script src="{{ asset('js/newsletter.js') }}"></script>
+</head>
+
+<body>
+    <nav>
+        <a href="{{ url('/') }}">Strona główna</a>
+        <a href="{{ url('/shop') }}">Sklep</a>
+        <a href="{{ url('/blog') }}">Blog</a>
+        <div class="dropdown">
+            <button class="dropbtn">Niezbędnik
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="{{ url('/fishing_grounds') }}">Łowiska</a>
+                <a href="{{ url('/calendar') }}">Kalendarz</a>
+            </div>
+        </div>
+        <a href="{{ url('/newsletter') }}">Newsletter</a>
+        <a href="{{ url('/sources') }}">Źródła</a>
+        <a href="{{ url('/cart') }}">
+            <div id="cart_value"><i class="fas fa-shopping-cart"></i> (0zł)</div>
+        </a>
+    </nav>
+
+    <main>
+        <div id="newsletter_title">
+            <img src="{{ asset('img/sea-fish-drawing.png') }}" alt="ryba">
+            <h2>
+                Zapisz się do naszego newslettera!
+            </h2>
+            <img src="{{ asset('img/sea-fish-drawing.png') }}" alt="ryba">
+        </div>
+        <div id="newsletter_form">
+            <form action="mailto:s97676@pollub.edu.pl" method="post" onsubmit="return subscribe()">
+                <fieldset>
+                    <legend>E-mail</legend>
+                    <div class="form_elements">
+                        <input type="email" id="email" required
+                            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                            title="Wpisz poprawny adres email">
+                    </div>
+                    <div class="error_space" id="error_email"></div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Imię</legend>
+                    <div class="form_elements">
+                        <input type="text" id="name" required pattern="^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{1,30}$"
+                            title="Wpisz poprawne imię">
+                    </div>
+                    <div class="error_space" id="error_name"></div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Częstotliwość</legend>
+                    <div class="form_elements">
+                        <div>
+                            <input type="radio" name="frequency" id="freq_1" required>
+                            <label for="freq_1">Codziennie</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="frequency" id="freq_2">
+                            <label for="freq_2">2 razy w tygodniu</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="frequency" id="freq_3">
+                            <label for="freq_3">Raz w tygodniu</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="frequency" id="freq_4">
+                            <label for="freq_4">Raz na dwa tygodnie</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="frequency" id="freq_5">
+                            <label for="freq_5">Raz na miesiąc</label>
+                        </div>
+                    </div>
+
+                    <div class="error_space" id="error_frequency"></div>
+                </fieldset>
+
+
+                <fieldset>
+                    <legend>Tematy</legend>
+                    <div class="form_elements">
+                        <div>
+                            <input type="checkbox" class="subjects" id="trip_reports">
+                            <label for="trip_reports">Relacje z wypraw</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" class="subjects" id="shop_sales">
+                            <label for="shop_sales">Promocje w sklepie</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" class="subjects" id="guides">
+                            <label for="guides">Poradniki</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" class="subjects" id="events">
+                            <label for="events">Wydarzenia</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" class="subjects" id="news">
+                            <label for="news">Wiadomości</label>
+                        </div>
+                    </div>
+                    <div class="error_space" id="error_subjects"></div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Ulubiony typ wędkowania</legend>
+                    <div class="form_elements">
+                        <div>
+                            <input type="radio" name="fav_fishing_type" id="float" required>
+                            <label for="float">Spławik</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="fav_fishing_type" id="spinning">
+                            <label for="spinning">Spinning</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="fav_fishing_type" id="ground">
+                            <label for="ground">Gruntowe</label>
+                        </div>
+                    </div>
+                    <div class="error_space" id="error_fav_fishing_type"></div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Uwagi</legend>
+                    <textarea rows="4" id="comments"></textarea>
+                </fieldset>
+
+                <div id="rodo_section">
+                    <input type="checkbox" id="rodo" required
+                        title="Aby otrzymywać newsletter musisz wyrazić zgodę na przetwarzanie danych osobowych">
+                    <label for="rodo">
+                        Wyrażam zgodę na przetwarzanie moich danych osobowych w celu
+                        otrzymywania newslettera
+                    </label>
+                </div>
+
+                <input type="submit" value="Zapisz mnie!" id="submit_button">
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        Autor strony: Adam Mazur
+    </footer>
+</body>
+
+</html>
