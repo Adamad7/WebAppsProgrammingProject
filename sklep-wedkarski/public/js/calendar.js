@@ -3,48 +3,48 @@ var __webpack_exports__ = {};
 /*!**********************************!*\
   !*** ./resources/js/calendar.js ***!
   \**********************************/
-var months = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'];
-var dayNames = ['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'Sb', 'Nd'];
+var months = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
+var dayNames = ["Pn", "Wt", "Śr", "Cz", "Pt", "Sb", "Nd"];
 var events = [{
   year: 2023,
   month: 4,
   day: 10,
-  time: '10:30',
+  time: "10:30",
   location: "Warszawa",
   descritpion: "Zjazd miłośników szczupaków"
 }, {
   year: 2023,
   month: 4,
   day: 7,
-  time: '12:00',
+  time: "12:00",
   location: "Lublin",
   descritpion: "Targi producentów żyłek"
 }, {
   year: 2023,
   month: 4,
   day: 22,
-  time: '19:00',
+  time: "19:00",
   location: "Zamość",
   descritpion: "Zjazd fanów wędkarstwa"
 }, {
   year: 2023,
   month: 5,
   day: 17,
-  time: '10:30',
+  time: "10:30",
   location: "Lublin",
   descritpion: "Targi producentów wędzisk"
 }, {
   year: 2023,
   month: 6,
   day: 10,
-  time: '13:30',
+  time: "13:30",
   location: "Poznań",
   descritpion: "Targi producentów przynęt"
 }, {
   year: 2023,
   month: 7,
   day: 18,
-  time: '15:30',
+  time: "15:30",
   location: "Gdańsk",
   descritpion: "Zjazd miłośników łowienia na otwartych wodach"
 }];
@@ -58,6 +58,12 @@ $(document).ready(function () {
   updateCalendar();
   updateCalendarTitle();
   updateEvents();
+  $(document).on("click", "#calendar_previous_month", function () {
+    previousMonth();
+  });
+  $(document).on("click", "#calendar_next_month", function () {
+    nextMonth();
+  });
 });
 function getCurrentDate() {
   date = new Date();
@@ -67,7 +73,7 @@ function getCurrentDate() {
   year = date.getFullYear();
 }
 function updateCalendar() {
-  var cal = document.getElementById('calendar_days');
+  var cal = document.getElementById("calendar_days");
   var numberOfDaysInCurrentMonth = new Date(year, month + 1, 0).getDate();
   var calendar = "";
   var firstDayOfWeekInMonth = new Date(year, month, 1).getDay();
@@ -95,7 +101,7 @@ function checkIfEventPresent(year, month, day) {
   return false;
 }
 function updateCalendarTitle() {
-  var title = document.getElementById('calendar_nav_title');
+  var title = document.getElementById("calendar_nav_title");
   title.innerHTML = "".concat(year, " ").concat(months[month]);
 }
 function previousMonth() {
@@ -121,7 +127,7 @@ function nextMonth() {
   updateEvents();
 }
 function updateEvents() {
-  var ev = document.getElementById('events');
+  var ev = document.getElementById("events");
   var eventsInMonth = [];
   for (var i = 0; i < events.length; i++) {
     if (events[i].month == month && events[i].year == year) {

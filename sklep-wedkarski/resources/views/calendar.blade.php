@@ -22,10 +22,10 @@
 
             <div id="calendar">
                 <div id="calendar_nav">
-                    <button class="calendar_nav_button" onclick="previousMonth()"><i
+                    <button id="calendar_previous_month" class="calendar_nav_button"><i
                             class="fa fa-angle-left"></i></button>
                     <div id="calendar_nav_title"></div>
-                    <button class="calendar_nav_button" onclick="nextMonth()"><i class="fa fa-angle-right"></i></button>
+                    <button id="calendar_next_month" class="calendar_nav_button"><i class="fa fa-angle-right"></i></button>
                 </div>
 
                 <div id="calendar_days"></div>
