@@ -13,7 +13,6 @@
 
     <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script src="{{ asset('js/cart.js') }}"></script>
-    <script src="{{ asset('js/newsletter.js') }}"></script>
 </head>
 
 <body>
