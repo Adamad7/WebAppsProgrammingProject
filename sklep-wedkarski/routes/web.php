@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Newsletter;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewsletterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,9 +36,9 @@ Route::get('/fishing_grounds', function () {
     return view('fishing_grounds');
 });
 
-Route::get('/newsletter', function () {
-    return view('newsletter');
-});
+Route::get('/newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
+
+Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
 
 Route::get('/shop', function () {
     return view('shop');
