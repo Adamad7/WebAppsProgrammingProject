@@ -61,7 +61,7 @@
                     <div class="form_elements">
                         <input type="email" name='email' id="email" required
                             pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-                            title="Wpisz poprawny adres email">
+                            title="Wpisz poprawny adres email" value="{{  Auth::user()->email ?? ''  }}">
                     </div>
                     <div class="error_space" id="error_email"></div>
                 </fieldset>
@@ -69,8 +69,8 @@
                 <fieldset>
                     <legend>Imię</legend>
                     <div class="form_elements">
-                        <input type="text" name='name' id="name" required pattern="^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]{1,30}$"
-                            title="Wpisz poprawne imię">
+                        <input type="text" name='name' id="name" required pattern="^[A-ZĄĆĘŁŃÓŚŹŻa-ząćęłńóśźż ]{3,255}$"
+                            title="Wpisz poprawne imię" value="{{  Auth::user()->name  ?? ''  }}">
                     </div>
                     <div class="error_space" id="error_name"></div>
                 </fieldset>
