@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Models\Newsletter;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/blog', function () {
-    return view('blog');
-});
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 
 Route::get('/calendar', function () {
     return view('calendar');

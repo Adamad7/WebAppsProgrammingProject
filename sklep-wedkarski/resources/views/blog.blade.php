@@ -21,7 +21,24 @@
 <body>
     @include('layouts.navbar')
 
-    <main></main>
+    <main>
+
+
+        <h2 class="short">Artykuły</h2>
+
+        <div id="articles">
+            @foreach ($blogPosts as $blogPost)
+            <article class="small">
+                <img src="{{  $blogPost->cover_img }}" alt="{{$blogPost->cover_img}}">
+                <div class="article_title_and_button">
+                    <div class="article_title">{{$blogPost->title}}</div>
+                    <button onclick="showArticle(${i})">Przeczytaj</button>
+                </div>
+            </article>
+            @endforeach
+        </div>
+
+    </main>
 
     @include('layouts.footer')
 </body>

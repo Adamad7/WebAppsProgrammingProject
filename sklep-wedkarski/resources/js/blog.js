@@ -1,33 +1,28 @@
 $(document).ready(function () {
-    showArticlesPage();
-
+    //showArticlesPage();
 });
-
 
 $(function () {
     setInterval("slideSwitch()", 4000);
 });
 
-
 function slideSwitch() {
-    var $active = $('#slider IMG.active');
-    if ($active.length === 0)
-        $active = $('#slider IMG:last');
-    var $next = $active.next().length ? $active.next()
-        : $('#slider IMG:first');
-    $active.addClass('last-active');
-    $next.css({ opacity: 0.0 })
-        .addClass('active')
+    var $active = $("#slider IMG.active");
+    if ($active.length === 0) $active = $("#slider IMG:last");
+    var $next = $active.next().length ? $active.next() : $("#slider IMG:first");
+    $active.addClass("last-active");
+    $next
+        .css({ opacity: 0.0 })
+        .addClass("active")
         .animate({ opacity: 1.0 }, 1000, function () {
-            $active.removeClass('active last-active');
+            $active.removeClass("active last-active");
         });
 }
 
 function showArticlesPage() {
-    var html = '';
+    var html = "";
     for (let i = 0; i < articles.length; i++) {
-        html +=
-            `
+        html += `
         <article class="small">
             <img src="${articles[i].images[0]}" alt="article_img_${i + 1}">
             <div class="article_title_and_button">
@@ -35,9 +30,9 @@ function showArticlesPage() {
                 <button onclick="showArticle(${i})">Przeczytaj</button>
             </div>
         </article>
-        `
+        `;
     }
-    document.getElementsByTagName('main')[0].innerHTML = `
+    document.getElementsByTagName("main")[0].innerHTML = `
     <h2>Witaj na naszym blogu!</h2>
 
         <div id="slider">
@@ -57,51 +52,54 @@ function showArticlesPage() {
         </div>`;
 }
 
-
 function showArticle(articleId) {
     var html = `<article class="full"><h2>${articles[articleId].title}</h2>`;
-    var gallery = '';
+    var gallery = "";
     for (let i = 0; i < articles[articleId].images.length; i++) {
-        gallery += `<a href="${articles[articleId].images[i]}" target="_blank" data-lightbox="galeria" data-title="Zdjęcie ${i + 1}">
-        <img src="${articles[articleId].images[i]}" alt="img_${i}"></a>`
+        gallery += `<a href="${
+            articles[articleId].images[i]
+        }" target="_blank" data-lightbox="galeria" data-title="Zdjęcie ${
+            i + 1
+        }">
+        <img src="${articles[articleId].images[i]}" alt="img_${i}"></a>`;
     }
     html += articles[articleId].text;
-    html += '</article>';
+    html += "</article>";
     html += '<h2 class="short">Gelera</h2>';
     html += '<div id="gallery">';
     html += gallery;
-    html += '</div>';
-    html += '<button id="go_back" onclick="showArticlesPage()"><i class="fa-solid fa-chevron-left fa-fade"></i>   Wróć</button>';
-    document.getElementsByTagName('main')[0].innerHTML = html;
+    html += "</div>";
+    html +=
+        '<button id="go_back" onclick="showArticlesPage()"><i class="fa-solid fa-chevron-left fa-fade"></i>   Wróć</button>';
+    document.getElementsByTagName("main")[0].innerHTML = html;
 }
-
 
 const articles = [
     {
-        title: 'Oman – wędkarski raj – wspomnienia – sezon 2018',
+        title: "Oman – wędkarski raj – wspomnienia – sezon 2018",
         images: [
-            'img/article_1/intext_1.jpg',
-            'img/article_1/intext_2.jpg',
-            'img/article_1/intext_3.jpg',
-            'img/article_1/intext_4.jpg',
-            'img/article_1/intext_5.jpg',
-            'img/article_1/intext_6.jpg',
-            'img/article_1/intext_7.jpg',
-            'img/article_1/intext_8.jpg',
-            'img/article_1/intext_9.jpg',
-            'img/article_1/intext_10.jpg',
-            'img/article_1/intext_11.jpg',
-            'img/article_1/intext_12.jpg',
-            'img/article_1/gallery_1.jpg',
-            'img/article_1/gallery_2.jpg',
-            'img/article_1/gallery_3.jpg',
-            'img/article_1/gallery_4.jpg',
-            'img/article_1/gallery_5.jpg',
-            'img/article_1/gallery_6.jpg',
-            'img/article_1/gallery_7.jpg',
-            'img/article_1/gallery_8.jpg',
-            'img/article_1/gallery_9.jpg',
-            'img/article_1/gallery_10.jpg',
+            "img/article_1/intext_1.jpg",
+            "img/article_1/intext_2.jpg",
+            "img/article_1/intext_3.jpg",
+            "img/article_1/intext_4.jpg",
+            "img/article_1/intext_5.jpg",
+            "img/article_1/intext_6.jpg",
+            "img/article_1/intext_7.jpg",
+            "img/article_1/intext_8.jpg",
+            "img/article_1/intext_9.jpg",
+            "img/article_1/intext_10.jpg",
+            "img/article_1/intext_11.jpg",
+            "img/article_1/intext_12.jpg",
+            "img/article_1/gallery_1.jpg",
+            "img/article_1/gallery_2.jpg",
+            "img/article_1/gallery_3.jpg",
+            "img/article_1/gallery_4.jpg",
+            "img/article_1/gallery_5.jpg",
+            "img/article_1/gallery_6.jpg",
+            "img/article_1/gallery_7.jpg",
+            "img/article_1/gallery_8.jpg",
+            "img/article_1/gallery_9.jpg",
+            "img/article_1/gallery_10.jpg",
         ],
         text: `
 Na styczniowy wyjazd wędkarski do Omanu czekaliśmy z wielką niecierpliwością.
@@ -254,16 +252,17 @@ Bałem się jednego, że po takiej wyprawie będę chciał tam wracać już zaws
 I tak się stało! Wsiąkłem w wędkarstwo egzotyczne! Tęsknię za Omanem i już czekam na kolejną wyprawę!
 <img src="img/article_1/intext_12.jpg" alt="intext_12">
 
-`},
+`,
+    },
     {
-        title: 'Szkiery Blekinge – u wrót szczupakowego królestwa',
+        title: "Szkiery Blekinge – u wrót szczupakowego królestwa",
         images: [
-            'img/article_2/intext_1.jpg',
-            'img/article_2/intext_2.jpg',
-            'img/article_2/intext_3.jpg',
-            'img/article_2/intext_4.jpg',
-            'img/article_2/intext_5.jpg',
-            'img/article_2/intext_6.jpg',
+            "img/article_2/intext_1.jpg",
+            "img/article_2/intext_2.jpg",
+            "img/article_2/intext_3.jpg",
+            "img/article_2/intext_4.jpg",
+            "img/article_2/intext_5.jpg",
+            "img/article_2/intext_6.jpg",
         ],
         text: `
     Królestwo szczupaków – taki właśnie epitet przewija się w rozmowach najczęściej, kiedy mówi się o rejonie archipelagu Blekinge. Południowe wybrzeże Szwecji od lat słynie z ogromnej populacji cętkowanych drapieżników, co sprawia, że co roku wędkarscy turyści podróżują w te rejony w nadziei na spotkanie z rybą życia… Szkiery w tym rejonie odwiedzam nie pierwszy raz, jednak tym razem czekało mnie znacznie bardziej odpowiedzialne zadanie, bowiem wyjeżdżałem w charakterze przewodnika naszej grupy.
@@ -295,10 +294,10 @@ Do końca wyjazdu złowiliśmy jeszcze wiele szczupaków, jednak większość st
 Szkiery w Blekinge to łowisko absolutnie wyjątkowe w skali całego szwedzkiego wybrzeża. Co sprawia, że łowisko to jest aż tak wyjątkowe? Po pierwsze, liczna populacja szczupaków! Najczęściej łowi się ryby długości 70-80 cm, jednak ponadmetrowe esoxy to tutaj niemal codzienność. Warto pamiętać, że nie liczy się tylko wielkość ryby, lecz także jej uroda, a tej szczupakom z Blekinge akurat nie brakuje! Tutejsze szczupaki mają rzadko spotykany złocisty koloryt, który idzie w parze z niezbyt smukłą sylwetką… Pomimo że cały rejon kojarzony jest głównie z tymi właśnie rybami, nie sposób nie wspomnieć o okoniach! Garbusy nie są aż tak liczne jak szczupaki, jednak rekompensują ten fakt imponującymi gabarytami. W dobre dni rzadko łowi się ryby mniejsze niż 40 centymetrów, a średnia ilość okoni idzie w dziesiątki… Szkiery w południowej Szwecji różnią się nieco od wybrzeża spotykanego w środkowej części kraju. Na krajobraz archipelagu składają się zarówno pojedyncze nagie skały, jak i niezbyt duże, niemal pozbawione roślinności kamienne wysepki. Z kolei, decydując się na łowienie w okolicy dużych miast, jak np. Karlskrona, nie tylko mamy szansę na wspaniały wędkarski wypoczynek, lecz także na otarcie się o absolutnie szczególne miejsca będące świadkami burzliwej historii Szwecji ciągnącej się od epoki Wikingów, aż do chwili obecnej. Ostatnią rzeczą, o której warto wspomnieć, mówiąc o Blekinge jest charakterystyka łowiska. Szkier można w zasadzie podzielić na dwie części – zatokową i tę graniczącą z otwartym morzem. Wybierając ten pierwszy rodzaj łowiska, zobaczymy znajomy krajobraz – wynurzające się łodygi podwodnej roślinności i brzeg porośnięty gęstymi i szerokimi trzcinowiskami. To właśnie tutaj wczesną wiosną i późną jesienią łowione są największe szczupaki! Zgoła odmienna jest charakterystyka łowisk graniczących z otwartym morzem. Najczęściej obławia się skraj kamiennych raf, bądź też brzegi większych wysp. Od zatok, miejscówki te odróżnia przede wszystkim wielkość łowionych ryb – niestety, są to na ogół średniaki. Warto dodać, że tzw. „kamienne szczupaki” to prawdziwi strongmani, nawet niewielkie ryby, mierzące 70-80 centymetrów, potrafią dać ostro popalić, niejednokrotnie przebijając zatokowe „metrówki”…
 
 Michał Szewczuk, 11.2015
-    `
+    `,
     },
     {
-        title: 'Syn, Tata i ryby…',
+        title: "Syn, Tata i ryby…",
         images: [
             "img/article_3/intext_1.jpg",
             "img/article_3/intext_2.jpg",
@@ -329,9 +328,6 @@ Tych ojców, którzy jeszcze nie zaczęli swojej przygody wędkarskiej lub chcą
 
 Zapraszam na wspólne wyprawy!
 
-Sebastian „rognis_oko” Kalkowski, 07.2016`
-    }
+Sebastian „rognis_oko” Kalkowski, 07.2016`,
+    },
 ];
-
-
-
