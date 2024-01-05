@@ -22,21 +22,22 @@
     @include('layouts.navbar')
 
     <main>
+    <article class="full"><h2>{{ $blogPost->title }}</h2>
+    {{ $blogPost->content }}
+    </article>
 
+    <h2 class="short">Gelera</h2>
+    <div id="gallery">
+    <!-- gallery -->
+    <!-- <a href="${
+            articles[articleId].images[i]
+        }" target="_blank" data-lightbox="galeria" data-title="Zdjęcie ${
+            i + 1
+        }">
+        <img src="${articles[articleId].images[i]}" alt="img_${i}"></a> -->
+    </div>
+    <a id="go_back" href="{{  url('/blog')  }}"><i class="fa-solid fa-chevron-left fa-fade"></i>   Wróć</a>
 
-        <h2 class="short">Artykuły</h2>
-
-        <div id="articles">
-            @foreach ($blogPosts as $blogPost)
-            <article class="small">
-                <img src="{{  $blogPost->cover_img }}" alt="{{$blogPost->cover_img}}">
-                <div class="article_title_and_button">
-                    <div class="article_title">{{$blogPost->title}}</div>
-                    <a href=" {{  url("/blog/{$blogPost->id}")  }}">Przeczytaj</a>
-                </div>
-            </article>
-            @endforeach
-        </div>
 
     </main>
 

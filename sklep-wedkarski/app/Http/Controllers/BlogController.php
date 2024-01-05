@@ -13,4 +13,11 @@ class BlogController extends Controller
         $blogPosts = BlogPost::all();
         return view('blog', ['blogPosts' => $blogPosts]);
     }
+
+
+    public function show($id)
+    {
+        $blogPost = BlogPost::find($id);
+        return view('blog_post', ['blogPost' => $blogPost]);
+    }
 }
