@@ -32,7 +32,7 @@
                 <img src="{{  $blogPost->cover_img }}" alt="{{$blogPost->cover_img}}">
                 <div class="article_title_and_button">
                     <div class="article_title">{{$blogPost->title}}</div>
-                    <a href=" {{  url("/blog/{$blogPost->id}")  }}">Przeczytaj</a>
+                    <a href=" {{  url("/blog/{$blogPost->id}")  }}"><p>Przeczytaj</p></a>
                 </div>
             </article>
             @endforeach

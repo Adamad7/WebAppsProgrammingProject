@@ -1,61 +1,333 @@
-/******/ (() => { // webpackBootstrap
-var __webpack_exports__ = {};
-/*!******************************!*\
-  !*** ./resources/js/blog.js ***!
-  \******************************/
 $(document).ready(function () {
-  //showArticlesPage();
+    //showArticlesPage();
 });
+
 $(function () {
-  setInterval("slideSwitch()", 4000);
+    setInterval("slideSwitch()", 4000);
 });
+
 function slideSwitch() {
-  var $active = $("#slider IMG.active");
-  if ($active.length === 0) $active = $("#slider IMG:last");
-  var $next = $active.next().length ? $active.next() : $("#slider IMG:first");
-  $active.addClass("last-active");
-  $next.css({
-    opacity: 0.0
-  }).addClass("active").animate({
-    opacity: 1.0
-  }, 1000, function () {
-    $active.removeClass("active last-active");
-  });
+    var $active = $("#slider IMG.active");
+    if ($active.length === 0) $active = $("#slider IMG:last");
+    var $next = $active.next().length ? $active.next() : $("#slider IMG:first");
+    $active.addClass("last-active");
+    $next
+        .css({ opacity: 0.0 })
+        .addClass("active")
+        .animate({ opacity: 1.0 }, 1000, function () {
+            $active.removeClass("active last-active");
+        });
 }
+
 function showArticlesPage() {
-  var html = "";
-  for (var i = 0; i < articles.length; i++) {
-    html += "\n        <article class=\"small\">\n            <img src=\"".concat(articles[i].images[0], "\" alt=\"article_img_").concat(i + 1, "\">\n            <div class=\"article_title_and_button\">\n                <div class=\"article_title\">").concat(articles[i].title, "</div>\n                <button onclick=\"showArticle(").concat(i, ")\">Przeczytaj</button>\n            </div>\n        </article>\n        ");
-  }
-  document.getElementsByTagName("main")[0].innerHTML = "\n    <h2>Witaj na naszym blogu!</h2>\n\n        <div id=\"slider\">\n            <img src=\"img/slider_images/slider_1.jpg\" alt=\"image1\" class=\"active\" />\n            <img src=\"img/slider_images/slider_2.jpg\" alt=\"image2\" />\n            <img src=\"img/slider_images/slider_3.jpg\" alt=\"image3\" />\n            <img src=\"img/slider_images/slider_4.jpg\" alt=\"image4\" />\n            <img src=\"img/slider_images/slider_5.jpg\" alt=\"image5\" />\n            <img src=\"img/slider_images/slider_6.jpg\" alt=\"image6\" />\n            <img src=\"img/slider_images/slider_7.jpg\" alt=\"image7\" />\n        </div>\n\n        <h2 class=\"short\">Artyku\u0142y</h2>\n\n        <div id=\"articles\">\n            ".concat(html, "\n        </div>");
+    var html = "";
+    for (let i = 0; i < articles.length; i++) {
+        html += `
+        <article class="small">
+            <img src="${articles[i].images[0]}" alt="article_img_${i + 1}">
+            <div class="article_title_and_button">
+                <div class="article_title">${articles[i].title}</div>
+                <button onclick="showArticle(${i})">Przeczytaj</button>
+            </div>
+        </article>
+        `;
+    }
+    document.getElementsByTagName("main")[0].innerHTML = `
+    <h2>Witaj na naszym blogu!</h2>
+
+        <div id="slider">
+            <img src="img/slider_images/slider_1.jpg" alt="image1" class="active" />
+            <img src="img/slider_images/slider_2.jpg" alt="image2" />
+            <img src="img/slider_images/slider_3.jpg" alt="image3" />
+            <img src="img/slider_images/slider_4.jpg" alt="image4" />
+            <img src="img/slider_images/slider_5.jpg" alt="image5" />
+            <img src="img/slider_images/slider_6.jpg" alt="image6" />
+            <img src="img/slider_images/slider_7.jpg" alt="image7" />
+        </div>
+
+        <h2 class="short">Artykuły</h2>
+
+        <div id="articles">
+            ${html}
+        </div>`;
 }
+
 function showArticle(articleId) {
-  var html = "<article class=\"full\"><h2>".concat(articles[articleId].title, "</h2>");
-  var gallery = "";
-  for (var i = 0; i < articles[articleId].images.length; i++) {
-    gallery += "<a href=\"".concat(articles[articleId].images[i], "\" target=\"_blank\" data-lightbox=\"galeria\" data-title=\"Zdj\u0119cie ").concat(i + 1, "\">\n        <img src=\"").concat(articles[articleId].images[i], "\" alt=\"img_").concat(i, "\"></a>");
-  }
-  html += articles[articleId].text;
-  html += "</article>";
-  html += '<h2 class="short">Gelera</h2>';
-  html += '<div id="gallery">';
-  html += gallery;
-  html += "</div>";
-  html += '<button id="go_back" onclick="showArticlesPage()"><i class="fa-solid fa-chevron-left fa-fade"></i>   Wróć</button>';
-  document.getElementsByTagName("main")[0].innerHTML = html;
+    var html = `<article class="full"><h2>${articles[articleId].title}</h2>`;
+    var gallery = "";
+    for (let i = 0; i < articles[articleId].images.length; i++) {
+        gallery += `<a href="${
+            articles[articleId].images[i]
+        }" target="_blank" data-lightbox="galeria" data-title="Zdjęcie ${
+            i + 1
+        }">
+        <img src="${articles[articleId].images[i]}" alt="img_${i}"></a>`;
+    }
+    html += articles[articleId].text;
+    html += "</article>";
+    html += '<h2 class="short">Gelera</h2>';
+    html += '<div id="gallery">';
+    html += gallery;
+    html += "</div>";
+    html +=
+        '<button id="go_back" onclick="showArticlesPage()"><i class="fa-solid fa-chevron-left fa-fade"></i>   Wróć</button>';
+    document.getElementsByTagName("main")[0].innerHTML = html;
 }
-var articles = [{
-  title: "Oman – wędkarski raj – wspomnienia – sezon 2018",
-  images: ["img/article_1/intext_1.jpg", "img/article_1/intext_2.jpg", "img/article_1/intext_3.jpg", "img/article_1/intext_4.jpg", "img/article_1/intext_5.jpg", "img/article_1/intext_6.jpg", "img/article_1/intext_7.jpg", "img/article_1/intext_8.jpg", "img/article_1/intext_9.jpg", "img/article_1/intext_10.jpg", "img/article_1/intext_11.jpg", "img/article_1/intext_12.jpg", "img/article_1/gallery_1.jpg", "img/article_1/gallery_2.jpg", "img/article_1/gallery_3.jpg", "img/article_1/gallery_4.jpg", "img/article_1/gallery_5.jpg", "img/article_1/gallery_6.jpg", "img/article_1/gallery_7.jpg", "img/article_1/gallery_8.jpg", "img/article_1/gallery_9.jpg", "img/article_1/gallery_10.jpg"],
-  text: "\nNa styczniowy wyjazd w\u0119dkarski do Omanu czekali\u015Bmy z wielk\u0105 niecierpliwo\u015Bci\u0105.\nOrganizacj\u0105 tego wyjazdu zaj\u0105\u0142em si\u0119 na d\u0142ugo przed terminem.\nChcia\u0142em, aby wszystko by\u0142o zapi\u0119te na ostatni guzik, co w moim przypadku jest podstaw\u0105 podczas przygotowywania ka\u017Cdej wyprawy w\u0119dkarskiej.\nSzczeg\xF3lnie takiej, gdzie jedzie si\u0119 daleko od domu.\nOko\u0142o p\xF3\u0142 roku przed terminem wszystko by\u0142o ju\u017C z g\xF3ry zaplanowane i ustalone.\nNasza ekipa liczy\u0142a 10 os\xF3b z r\xF3\u017Cnym do\u015Bwiadczeniem w\u0119dkarskim i w bardzo r\xF3\u017Cnym wieku.\nW grupie by\u0142o kilka os\xF3b, kt\xF3re by\u0142y ju\u017C na podobnych wyprawach w\u0119dkarskich w egzotyczne miejsca.\n\n<img src=\"img/article_1/intext_1.jpg\" alt=\"intext_1\">\n\nPozosta\u0142o ju\u017C tylko kilka miesi\u0119cy na przygotowanie sprz\u0119towe do wyprawy.\nWymagania by\u0142y do\u015B\u0107 du\u017Ce, poniewa\u017C zaplanowali\u015Bmy wypraw\u0119 na \u0142owiska, kt\xF3re s\u0142yn\u0105 z najwi\u0119kszych okaz\xF3w GT (Giant Trevally) na \u015Awiecie.\nOman jest mekk\u0105 \u0142owc\xF3w tego gatunku, kt\xF3rzy przyje\u017Cd\u017Caj\u0105 tam z wielu miejsc naszego globu.\nCz\u0119stymi go\u015B\u0107mi s\u0105 Amerykanie, a nawet Japo\u0144czycy.\nOman jest miejscem, w kt\xF3rym GT ma bardzo dobre warunki do rozwoju, a w szczeg\xF3lno\u015Bci do rozrodu.\nMa\u0142e GT, kt\xF3re rodz\u0105 si\u0119 w Omanie, rozp\u0142ywaj\u0105 si\u0119 po ca\u0142ym \u015Awiecie.\nS\u0105 praktycznie w wielu miejscach oceanu Indyjskiego oraz Pacyfiku.\nPo latach cz\u0119sto wracaj\u0105 na swoje rodzime terytorium do Omanu, aby dorosn\u0105\u0107 do ogromnych rozmiar\xF3w.\nAlbowiem ryby powy\u017Cej 40 kg nie s\u0105 tu rzadko\u015Bci\u0105 i s\u0105 regularnie \u0142owione.\nAle tak\u017Ce ogromne okazy tego gatunku, kt\xF3re przekraczaj\u0105 wag\u0119 powy\u017Cej 50 kg, a nawet 60 kg!\nW miejscu, do kt\xF3rego jedziemy s\u0105 takie okazy i przy odrobinie szcz\u0119\u015Bcia mo\u017Cna z nimi stoczy\u0107 walk\u0119 \u017Cycia na ci\u0119\u017Ckim zestawie do \u0142owienia wielkimi popperami.\nJednak w Omanie nie \u0142owi si\u0119 wy\u0142\u0105cznie GT, ale tak\u017Ce wiele innych gatunk\xF3w ryb, kt\xF3re s\u0105 ciekawe do \u0142owienia.\nPrzede wszystkim s\u0105 to gatunki bardzo silne i ogromnie waleczne.\nMo\u017Cemy tu z\u0142owi\u0107 wspania\u0142e Giant Queen, r\xF3\u017Cne gatunki tu\u0144czyk\xF3w, np. wielkie tu\u0144czyki \u017C\xF3\u0142top\u0142etwe lub du\u017Co mniejsze tu\u0144czyki d\u0142ugop\u0142etwe.\nJest wiele gatunk\xF3w ryb z rodziny karanksowatych, do kt\xF3rych tak\u017Ce nale\u017Cy GT.\nW Omanie nie brakuje du\u017Cych ilo\u015Bci Amber Jack (Seriola Olbrzymia).\nRyb, kt\xF3re s\u0142yn\u0105 ze swojej ogromnej si\u0142y i waleczno\u015Bci.\nMo\u017Cna je z\u0142owi\u0107 g\u0142\xF3wnie w okresie wrzesie\u0144-pa\u017Adziernik.\nNa skraju raf mo\u017Cemy liczy\u0107 na pi\u0119kne brania du\u017Cych Bream, kt\xF3re za\u017Carcie atakuj\u0105 niedu\u017Ce poppery lub ma\u0142e stickbaity.\nW Omanie \u0142owi si\u0119 tak\u017Ce inne gatunki ryb, jak chocia\u017Cby wspaniale ubarwione Mahi Mahi, a tak\u017Ce Grunter, Wahoo, Bonito, Sada Sada, graniki, snapery, \u017Caglice, barrakudy, czy nawet rekiny.\nRyby w Omanie \u0142owi si\u0119 g\u0142\xF3wnie w strefie przybrze\u017Cnej do oko\u0142o 10 km od brzegu, na rafach oraz daleko od brzegu, na oceanicznych wyspach.\nZazwyczaj przy wyspach s\u0105 najlepsze \u0142owiska i tam mo\u017Cna liczy\u0107 na najwi\u0119ksze okazy.\n\n<img src=\"img/article_1/intext_2.jpg\" alt=\"intext_2\">\n\nWraz z moim bratem Mateuszem, przygotowali\u015Bmy na ten wyjazd po 3 r\xF3\u017Cne zestawy.\nJeden bardzo mocny w skali 10 PE, g\u0142\xF3wnie do \u0142owienia du\u017Cymi popperami (130-180 gram\xF3w) oraz du\u017Cymi stickbaitami o podobnej wadze.\nTen zestaw jest praktycznie wy\u0142\u0105cznie do \u0142owienia z nastawieniem na Giant Trevally.\nDrugi zestaw do \u0142owienia w pionie, g\u0142\xF3wnie technik\u0105 \u201Espeed jigging\u201DTo bardzo ciekawa i skuteczna technika do \u0142owienia ryb, kt\xF3re \u017Ceruj\u0105 w toni i przemieszczaj\u0105 si\u0119 stadamiAle nie tylko, poniewa\u017C t\u0105 technik\u0105 mo\u017Cna wywabi\u0107 z rafy du\u017Cego granika, czy snaperaDu\u017C\u0105 atrakcj\u0105 tej techniki \u0142owienia s\u0105 wspania\u0142e brania. W tej technice przyn\u0119ta jest prowadzona bardzo szybko i mo\u017Cna sobie wyobrazi\u0107, jakie nast\u0119puje branie, kiedy nasz\u0105 przyn\u0119t\u0119 atakuje du\u017Ca i bardzo szybka ryba! Ostatni zestaw to \u201Elekki\u201D spinning w skali 4-5 PE, kt\xF3rym b\u0119dziemy \u0142owili g\u0142\xF3wnie na rafach i na ich obrze\u017Cach za pomoc\u0105 niedu\u017Cych popper\xF3w, wobler\xF3w lub stickbait\xF3w w wielko\u015Bciach 10-15 cm. Do ka\u017Cdego z zestaw\xF3w przygotowali\u015Bmy specjalistyczne ko\u0142owrotki Okuma Azores Blue, ca\u0142kowicie odporne na dzia\u0142anie soli morskiej. To bardzo wa\u017Cne podczas \u0142owienia na egzotycznych morzach, czy oceanach. Ko\u0142owrotek musi by\u0107 odporny na s\xF3l. W\xF3wczas jest niezawodny i nie przestanie dzia\u0142a\u0107 w najmniej oczekiwanym momencie. Do ka\u017Cdego zestawu przygotowali\u015Bmy tak\u017Ce specjalne przypony, kt\xF3re zrobili\u015Bmy w\u0142asnor\u0119cznie z najnowszego materia\u0142u przyponowego Regenerator. W naszych pud\u0142ach znalaz\u0142o si\u0119 oczywi\u015Bcie wiele przyn\u0119t, od zwyk\u0142ych gum, po specjalistyczne wielkie poppery do powierzchniowego \u0142owienia GT. Co najwa\u017Cniejsze, ka\u017Cda z przyn\u0119t zosta\u0142a uzbrojona w super mocne kotwice oraz super mocne k\xF3\u0142ka \u0142\u0105cznikowe. To podstawa \u0142owienia du\u017Cych ryb oceanicznych!\n\n<img src=\"img/article_1/intext_3.jpg\" alt=\"intext_3\">\n\nW ko\u0144cu nadszed\u0142 czasu wyjazdu.\nZ nasz\u0105 ekip\u0105 spotkali\u015Bmy si\u0119 ju\u017C na lotnisku w Salalah w Omanie, poniewa\u017C cz\u0119\u015B\u0107 os\xF3b polecia\u0142a przez Dubaj, a my przez Katar.\nNa lotnisku odebra\u0142a nas ekipa z Omanu, z kt\xF3r\u0105 wsp\xF3lnie zorganizowali\u015Bmy t\u0119 wypraw\u0119.\nPo przejechaniu oko\u0142o 400 km od Salalah, dojechali\u015Bmy do ma\u0142ej wioski rybackiej, w kt\xF3rej jest nasza baza.\nOczywi\u015Bcie od razu zaj\u0119li\u015Bmy si\u0119 przygotowaniem sprz\u0119tu, tak aby nast\u0119pnego dnia wyp\u0142yn\u0105\u0107 jak najwcze\u015Bniej na \u0142owisko.\n\n<img src=\"img/article_1/intext_4.jpg\" alt=\"intext_4\">\n\nPierwszy dzie\u0144, to dzie\u0144 rekonesansu, kiedy wszyscy b\u0119d\u0105 wczuwali si\u0119 w \u0142owienie, poznawali nowe \u0142owisko i testowali r\xF3\u017Cne techniki \u0142owienia.\nOd razu p\u0142yniemy na najlepsze \u0142owisko, kt\xF3re jest oddalone bardzo daleko od brzegu.\nP\u0142yniemy na s\u0142ynne wyspy oceaniczne, gdzie b\u0119dziemy mieli szans\u0119 z\u0142owienia najwi\u0119kszych Giant Trevally.\nPo ponad godzinie p\u0142yni\u0119cia dwoma \u0142odziami z 400 konnymi silnikami, dop\u0142ywamy do wielkich wysp, kt\xF3re otaczaj\u0105 ogromne rafy z bardzo zr\xF3\u017Cnicowan\u0105 g\u0142\u0119boko\u015Bci\u0105 od 0,5 do 25 metr\xF3w.\n\u0141owiska s\u0105 wspania\u0142e, a wodna bardzo przejrzysta w niebiesko-zielonym zabarwieniu.\nTego dnia \u0142owimy g\u0142\xF3wnie na poppery, jerki i stickbaity.\nUdaje nam si\u0119 z\u0142owi\u0107 r\xF3\u017Cne gatunki ryb, ale najwi\u0119ksz\u0105 atrakcj\u0105 s\u0105 Mahi Mahi (Koryfena), kt\xF3re \u0142owimy \u201Ena wypatrzonego\u201D na p\u0142ytkich rafach.\nW niekt\xF3rych momentach holujemy po 2-3 ryby na raz.\nEuforia i zabawa jest niesamowita.\nRyby walcz\u0105 zaciekle i co chwila ogl\u0105damy wspania\u0142e wyskoki ponad wod\u0119.\n\n<img src=\"img/article_1/intext_5.jpg\" alt=\"intext_5\">\n\nNiestety wieczorem w bazie, okazuje si\u0119, \u017Ce pogoda nieco zmieni nasze plany na najbli\u017Csze dni \u0142owienia.\nIdzie du\u017Cy wiatr, kt\xF3ry ca\u0142kowicie uniemo\u017Cliwi wyp\u0142yni\u0119cia na oddalone \u0142owiska i do najlepszych wysp.\nPrognoza pokazuje wiatr na najbli\u017Csze dni, wi\u0119c musimy wykorzysta\u0107 ten czas na \u0142owienie w tzw. strefie przybrze\u017Cnej.\nW pierwszym dniu wiatru, \u0142owimy wy\u0142\u0105cznie blisko brzeg\xF3w zas\u0142oni\u0119tych bardzo wysokimi ska\u0142ami.\nTam mamy mo\u017Cliwo\u015B\u0107 schronienia si\u0119 przed bardzo du\u017Cym wiatrem.\nPrzyn\u0119ty prowadzimy przy ska\u0142ach oraz na przybrze\u017Cnych rafach.\nUdaje nam si\u0119 z\u0142owi\u0107 r\xF3\u017Cne gatunki ryb.\nBlisko raf i ska\u0142 wychodz\u0105 do naszych przyn\u0119t pi\u0119kne i bardzo waleczne Bream\u2019y, kt\xF3re stanowi\u0105 wielk\u0105 atrakcj\u0119 w\u0119dkarstwa w Omanie.\n\u0141owi si\u0119 je g\u0142\xF3wnie na powierzchniowe przyn\u0119ty, niedu\u017Ce stickbaity oraz poppery.\nBrania Bream\xF3w s\u0105 niesamowite i bardzo mocne. Ryby s\u0105 waleczne i silne.\nPi\u0119kne zwie\u0144czenie dnia. Kolejny dzie\u0144 mija podobne, na \u0142owieniu blisko brzegu i wy\u0142\u0105cznie przy wysokich brzegach.\n\u0141owimy r\xF3\u017Cne gatunki ryb, w tym Bonito, Sada Sada, czy niedu\u017Ce tu\u0144czyki.\nMamy tak\u017Ce okazj\u0119 zobaczy\u0107 wielkiego Giant Trevally, kt\xF3ry na naszych oczach wspaniale i z impetem atakowa\u0142 mniejsze ryby przy samej powierzchni wody.\nWielka ryba z ogromn\u0105 pr\u0119dko\u015Bci\u0105 przemieszczaj\u0105ca si\u0119 po \u0142owisku, to niesamowity widok, kt\xF3rego nie zapomnimy na d\u0142ugo!\nWielki GT w ko\u0144cu zaatakowa\u0142 jednego z naszych popper\xF3w, ale niestety jego si\u0142a nie pozwoli\u0142a na szybkie zatrzymanie ryby w trakcie holu.\nPo kr\xF3tkim czasie GT \u201Ewbi\u0142 si\u0119\u201D w raf\u0119 i przetar\u0142 o ni\u0105 bardzo mocny przypon z fluorocarbonu 1,2 mm.\n\n<img src=\"img/article_1/intext_6.jpg\" alt=\"intext_6\">\n\nNast\u0119pne 4 dni przyjd\u0105 na zawsze do naszej pami\u0119ci.\nNiespotykana ilo\u015B\u0107 bra\u0144 i niesamowita ilo\u015B\u0107 ryb, kt\xF3re wyholowali\u015Bmy, przesz\u0142a naszej naj\u015Bmielsze oczekiwania.\nNikt z nas nie spodziewa\u0142 si\u0119 tylu bra\u0144, tylu wspania\u0142ych holi i tylu okaz\xF3w ryb, kt\xF3re uda\u0142o nam si\u0119 z\u0142owi\u0107!\nNiesamowite 4 dni, kt\xF3re mam ca\u0142y czas przed oczami i nie mog\u0119 o nich zapomnie\u0107.\nWiatr nie ustawa\u0142, ale nie by\u0142 a\u017C tak du\u017Cy, wi\u0119c mogli\u015Bmy \u0142owi\u0107 w ca\u0142ej strefie przybrze\u017Cnej do oko\u0142o 10 km od brzegu.\nW \u0142owisko wesz\u0142y stada drapie\u017Cnik\xF3w, kt\xF3re przysz\u0142y w stref\u0119 przybrze\u017Cn\u0105 w poszukiwaniu ogromnych stad sardeli.\nPrzez 4 dni byli\u015Bmy w euforii bra\u0144 i my\u015Bl\u0119, \u017Ce ka\u017Cdy z nas poczu\u0142 co\u015B wspania\u0142ego i nieoczekiwanego.\nTego nie da si\u0119 opisa\u0107 w\u0142asnymi s\u0142owami, ale spr\xF3buj\u0119 przybli\u017Cy\u0107 Wam chocia\u017C kilka chwil\u2026\nDryfuj\u0105c na jednej z raf trafiamy pi\u0119kne stado Giant Queen i wszystkim nam na \u0142odzi, udaje si\u0119 z\u0142owi\u0107 t\u0119 wspania\u0142\u0105 ryb\u0119 w jednym momencie.\nI to na powierzchniowe poppery!\nMo\u017Cecie sobie wyobrazi\u0107 brania i hole 5 bardzo silnych ryb na raz, kt\xF3re potrafi\u0105 wyskakiwa\u0107 na kilka metr\xF3w nad wod\u0119\u2026\nTo jest co\u015B nie do opisania.\nTo trzeba prze\u017Cy\u0107! Na innym dryfie, nap\u0142ywamy na ogromne stada drapie\u017Cnik\xF3w, kt\xF3re atakuj\u0105 od do\u0142u du\u017Ce stado sardeli.\n\u0141owimy ogromn\u0105 ilo\u015B\u0107 silnych ryb r\xF3\u017Cnych gatunk\xF3w, z czego prym wiod\u0105 Giant Queen, Spotted Grunter, Red Snapper i inne.\nMamy wiele sytuacji, kiedy holujemy po 3-4 ryby na raz.\nNie oszukam Was, jak powiem, \u017Ce w najlepszych godzinach \u0142owimy po 30-40 ryb na \u0142\xF3d\u017A!\nMasa akcji, ogromna ilo\u015B\u0107 bra\u0144 i wspania\u0142e hole. To po to tutaj przyjechali\u015Bmy!\n\n<img src=\"img/article_1/intext_7.jpg\" alt=\"intext_7\">\n<img src=\"img/article_1/intext_8.jpg\" alt=\"intext_8\">\n<img src=\"img/article_1/intext_9.jpg\" alt=\"intext_9\">\n\n\n\n\n\nPrzychodzi dobra informacja.\nWiatr ustaje i przez kolejne dwa dni b\u0119dziemy \u0142owili na najlepszych miejsc\xF3wkach.\nP\u0142yniemy na odleg\u0142e wyspy. Ustanawiamy jeden cel \u2013 du\u017Cy GT! Bez niego nie mo\u017Cemy wr\xF3ci\u0107 do Polski.\nPogoda nam sprzyja i w ko\u0144cu dop\u0142ywamy do \u0142owiska.\nW ruch id\u0105 wy\u0142\u0105cznie najmocniejsze zestawy 10-12 PE, wielkie ko\u0142owrotki i wytrzyma\u0142e linki.\nRzucamy wy\u0142\u0105cznie du\u017Cymi popperami i stickbaitami.\nCzeka nas bardzo ci\u0119\u017Ckie \u0142owienie, ale liczymy na branie jednej wielkiej ryby.\nDop\u0142ywamy do du\u017Cej rafy ze zmienn\u0105 g\u0142\u0119boko\u015Bci\u0105 od oko\u0142o 5 do 25 metr\xF3w.\nPrzychodzi moment, kt\xF3ry mam przed oczami, jakby by\u0142o to dos\u0142ownie przed chwil\u0105!\n\u0141owi\u0119 ko\u0142o S\u0142awka. Mam za\u0142o\u017Conego du\u017Cego poppera, a S\u0142awek jeszcze wi\u0119kszego, kt\xF3rego dosta\u0142 od naszego przewodnika.\nProwadzimy przyn\u0119ty do\u015B\u0107 blisko siebie, wi\u0119c doskonale widz\u0119 swojego poppera i S\u0142awka.\nNagle nast\u0119puje pot\u0119\u017Cne branie i ogromny wir na wodzie.\nS\u0142awek zacina i jest\u2026 Pot\u0119\u017Cny odjazd ryby na kilkadziesi\u0105t metr\xF3w i od razu wiemy, co zaatakowa\u0142o przyn\u0119t\u0119.\nWielki GT! Robimy szybki zwrot \u0142odzi\u0105, aby\u015Bmy mogli szybciej przej\u0105\u0107 kontrol\u0119 nad ryb\u0105.\nOczywi\u015Bcie je\u017Celi w og\xF3le mo\u017Cna kontrolowa\u0107 wielk\u0105 ryb\u0119, z tak pot\u0119\u017Cn\u0105 si\u0142\u0105 i pr\u0119dko\u015Bci\u0105\u2026\nS\u0142awek ma odpowiedni zestaw.\nKij 12 PE, ko\u0142owrotek 10000 oraz plecionk\u0119 70 kg wytrzyma\u0142o\u015Bci.\nJednak w pierwszej fazie holu, to ryba rz\u0105dzi i ona wyznacza co b\u0119dzie dalej.\nPomagamy S\u0142awkowi i udaje nam si\u0119 zwolni\u0107 ryb\u0119 tu\u017C przed ostr\u0105 jak brzytwa raf\u0105.\nTa faza jest wygrana, dlatego mamy coraz wi\u0119ksze nadziej\u0119, \u017Ce zobaczymy tego giganta.\nHol jest niesamowity, odjazdy na du\u017Ce odleg\u0142o\u015Bci. Wida\u0107, \u017Ce ryba jest potwornie silna i szybka.\nNa szcz\u0119\u015Bcie powoli zaczyna zwalnia\u0107 i s\u0142abn\u0105\u0107. Wykorzystujemy to i podci\u0105gamy ryb\u0119 do \u0142odzi.\nPrzewodnik i ja \u0142apiemy ryb\u0119 i szybko wci\u0105gamy j\u0105 na pok\u0142ad.\nOkrzyk rado\u015Bci! Jest! S\u0142awek jest roztrz\u0119siony, ca\u0142a ekipa w euforii.\nSzybko robimy sesj\u0119 zdj\u0119ciow\u0105. Dok\u0142adnie mierzymy i warzymy ryb\u0119.\nGiant Trevally ma a\u017C 42 kg! Wspania\u0142y okaz! Razem z przewodnikiem znakujemy ryb\u0119 specjalnym znacznikiem i wypuszczamy j\u0105 do jej kr\xF3lestwa.\nSpe\u0142ni\u0142o si\u0119 nasze marzenie! Ka\u017Cdemu z nas udzieli\u0142a si\u0119 ogromna rado\u015B\u0107 i szcz\u0119\u015Bcie. Jeste\u015Bmy spe\u0142nieni!\n\n<img src=\"img/article_1/intext_10.jpg\" alt=\"intext_10\">\n\n\nKolejnego dnia Tadzio ustanawia rekord naszej bazy w gatunku tu\u0144czyka d\u0142ugop\u0142etwego (Long Tale Tuna), \u0142owi\u0105c okaz powy\u017Cej 30 kg!\n\u0141owimy wiele ryb r\xF3\u017Cnych gatunk\xF3w. Klimat, pi\u0119kna pogoda i spok\xF3j jaki panuje w Omanie dzia\u0142a na wszystkie zmys\u0142y i tak powoli ko\u0144czy si\u0119 nasza przygoda z Omanem\u2026\n\n<img src=\"img/article_1/intext_11.jpg\" alt=\"intext_11\">\n\n\nPrzez wiele lat trzyma\u0142em si\u0119 zasady, aby nie bra\u0107 udzia\u0142u w wyprawach na egzotyczne \u0142owiska.\nBa\u0142em si\u0119 jednego, \u017Ce po takiej wyprawie b\u0119d\u0119 chcia\u0142 tam wraca\u0107 ju\u017C zawsze.\nI tak si\u0119 sta\u0142o! Wsi\u0105k\u0142em w w\u0119dkarstwo egzotyczne! T\u0119skni\u0119 za Omanem i ju\u017C czekam na kolejn\u0105 wypraw\u0119!\n<img src=\"img/article_1/intext_12.jpg\" alt=\"intext_12\">\n\n"
-}, {
-  title: "Szkiery Blekinge – u wrót szczupakowego królestwa",
-  images: ["img/article_2/intext_1.jpg", "img/article_2/intext_2.jpg", "img/article_2/intext_3.jpg", "img/article_2/intext_4.jpg", "img/article_2/intext_5.jpg", "img/article_2/intext_6.jpg"],
-  text: "\n    Kr\xF3lestwo szczupak\xF3w \u2013 taki w\u0142a\u015Bnie epitet przewija si\u0119 w rozmowach najcz\u0119\u015Bciej, kiedy m\xF3wi si\u0119 o rejonie archipelagu Blekinge. Po\u0142udniowe wybrze\u017Ce Szwecji od lat s\u0142ynie z ogromnej populacji c\u0119tkowanych drapie\u017Cnik\xF3w, co sprawia, \u017Ce co roku w\u0119dkarscy tury\u015Bci podr\xF3\u017Cuj\u0105 w te rejony w nadziei na spotkanie z ryb\u0105 \u017Cycia\u2026 Szkiery w tym rejonie odwiedzam nie pierwszy raz, jednak tym razem czeka\u0142o mnie znacznie bardziej odpowiedzialne zadanie, bowiem wyje\u017Cd\u017Ca\u0142em w charakterze przewodnika naszej grupy.\n\nPogoda, jaka przywita\u0142a nas w dniu przyjazdu do Karlskrony by\u0142a i\u015Bcie jesienna \u2013 wiatr, rz\u0119sisty deszcz i temperatura si\u0119gaj\u0105ca zaledwie 10 stopni Celsjusza. Czy mo\u017Ce by\u0107 lepiej? Niestety, nasze szcz\u0119\u015Bcie nie trwa\u0142o zbyt d\u0142ugo, bowiem w ci\u0105gu zaledwie kilku godzin zasz\u0142a diametralna zmiana \u2013 niebo przybra\u0142o czysty, b\u0142\u0119kitny kolor, za\u015B wiatr zupe\u0142nie si\u0119 uspokoi\u0142. Takie warunki nie wr\xF3\u017C\u0105 niczego dobrego! Wszyscy bowiem wiemy, co si\u0119 dzieje, gdy dojdzie do tak gwa\u0142townej zmiany, je\u015Bli jeszcze dodamy do tego zupe\u0142n\u0105 flaut\u0119, mamy gotowy przepis na niemal pewn\u0105 katastrof\u0119. Nie poddali\u015Bmy si\u0119 jednak \u2013 szybko rozlokowali\u015Bmy si\u0119 w domkach, zjedli\u015Bmy obiad i ruszyli\u015Bmy do boju! Zacz\u0119li\u015Bmy \u0142owi\u0107 tu\u017C przy naszej bazie, w miejscu w kt\xF3rym w zesz\u0142ym tygodniu z\u0142owiono 116-tk\u0119, a tak\u017Ce 5 spo\u015Br\xF3d 10 najwi\u0119kszych szczupak\xF3w w tym sezonie. Niestety, ryby by\u0142y nieub\u0142agane. Przez pierwsze 2 godziny \u0142owienia widzieli\u015Bmy zaledwie kilka szczupak\xF3w d\u0142ugo\u015Bci 70-80 cm odprowadzaj\u0105cych nasze przyn\u0119ty, a\u017C do samej \u0142odzi. Prze\u0142om nast\u0105pi\u0142, gdy nap\u0142yn\u0105\u0142em w bardzo p\u0142ytk\u0105 zatok\u0119, do kt\xF3rej uchodzi\u0142a jedna z okolicznych rzek. Pierwszych kilka rzut\xF3w i\u2026 Piotr zapina prawdziw\u0105 mamu\u015Bk\u0119! Szcz\u0119\u015Bcie nie trwa jednak d\u0142ugo, ryba rzuca kilka razy pot\u0119\u017Cnym \u0142bem i wypluwa jerka, kt\xF3rego jeszcze kilka sekund temu mia\u0142a w pysku. Inna spora ryba wychodzi do przyn\u0119ty jeszcze dwa razy, niestety tym razem nie jest na tyle zaciekawiona, by zaatakowa\u0107 woblera. Przed zachodem s\u0142o\u0144ca, zmieniam miejsc\xF3wk\u0119 na moj\u0105 \u201Ebank\xF3wk\u0119\u201D. Nie mija 5 minut i Radek zapina ca\u0142kiem przyzwoitego (jak na panuj\u0105ce warunki) szczupaka. Ryba jest wyj\u0105tkowo silna \u2013 kilkakrotnie odje\u017Cd\u017Ca, uparcie uciekaj\u0105c w stron\u0119 dna. W ko\u0144cu, gdy wydaje si\u0119 by\u0107 zm\u0119czona, pr\xF3buj\u0119 j\u0105 podebra\u0107, jednak ona nie daje za wygran\u0105. Ostatkiem si\u0142 ryba stawia \u015Bwiec\u0119, po kt\xF3rej ju\u017C zupe\u0142nie si\u0119 uspokaja. Szybkie mierzenie \u2013 okazuje si\u0119, \u017Ce esox ma r\xF3wno 80 centymetr\xF3w. Sesja fotograficzna i ryba wraca z powrotem do wody. Tym mi\u0142ym akcentem zako\u0144czyli\u015Bmy pierwszy dzie\u0144 \u0142owienia.\n\n<img src=\"img/article_2/intext_1.jpg\" alt=\"intext_1\">\n\nW poniedzia\u0142ek rano nadzieja na wielkie ryby z Blekinge zn\xF3w w nas o\u017Cy\u0142a. Na niebie pojawi\u0142y si\u0119 delikatne chmury, za\u015B wiatr nieznacznie marszczy\u0142 tafl\u0119 wody. Dosy\u0107 szybko z\u0142owili\u015Bmy po kilka \u015Bredniak\xF3w, jednak brania ryb zupe\u0142nie usta\u0142y w momencie, gdy si\u0119 rozpogodzi\u0142o. Jako \u017Ce pogoda by\u0142a typowo wypoczynkowa, a ryby nie wykazywa\u0142y si\u0119 zbytni\u0105 ch\u0119ci\u0105 wsp\xF3\u0142pracy, dobili\u015Bmy na brzeg, by chwil\u0119 odpocz\u0105\u0107 i zje\u015B\u0107 co\u015B ciep\u0142ego. Gdy ju\u017C pod\u0142adowali\u015Bmy akumulatory, z powrotem zabrali\u015Bmy si\u0119 za \u0142owienie. Do p\xF3\u017Anego popo\u0142udnia zanotowali\u015Bmy kilka niewielkich ryb i pojedyncze, nie\u015Bmia\u0142e brania. Ostre s\u0142o\u0144ce i wysoka temperatura nie wp\u0142yn\u0119\u0142y korzystnie na \u017Cerowanie ryb. Podejrzewaj\u0105c, \u017Ce tego dnia nie zwojujemy ju\u017C zbyt wiele, postanowi\u0142em, \u017Ce spr\xF3bujemy poszuka\u0107 okoni w okolicy stromego stoku tu\u017C przy naszej bazie. W ci\u0105gu pierwszych kilku rzut\xF3w raz po raz czu\u0142em delikatne podskubywanie niewielkiego rippera\u2026 W nast\u0119pnym rzucie delikatnym sprz\u0119tem, czuj\u0119 t\u0119py op\xF3r i jestem niemal pewien, \u017Ce zahaczy\u0142em o podwodny kabel. Dopiero po kilku sekundach \u201Ekabel\u201D o\u017Cywa i zaczyna desperack\u0105 walk\u0119. Ryba, jak przysta\u0142o na szczupaki z Blekinge, jest wyj\u0105tkowo silna. Za wszelk\u0105 cen\u0119 stara si\u0119 wysnu\u0107 kolejne metry plecionki ze szpuli delikatnego multiplikatora i uciec pomi\u0119dzy nabrze\u017Cne g\u0142azy. W ko\u0144cu, szczupak daje za wygran\u0105 i l\u0105duje na pok\u0142adzie naszej \u0142odzi. Miarka wskazuje 99 cm. Po kr\xF3tkiej sesji fotograficznej, ryba odp\u0142ywa, ochlapuj\u0105c mnie przy tym ca\u0142ego.\n\n<img src=\"img/article_2/intext_2.jpg\" alt=\"intext_2\">\n\nKolejne dni przynios\u0142y wr\u0119cz wymarzon\u0105 pogod\u0119 \u2013 wia\u0142 do\u015B\u0107 silny wiatr, za\u015B niebo naznaczone by\u0142o pojedynczymi chmurami. Czy mo\u017Cna prosi\u0107 o wi\u0119cej, b\u0119d\u0105c na szczupakach? Z dnia na dzie\u0144 Blekinge coraz bardziej pokazywa\u0142o pazury. Szczupaki bra\u0142y praktycznie w ka\u017Cdym miejscu, na kt\xF3re nap\u0142yn\u0119li\u015Bmy i co najwa\u017Cniejsze \u2013 nie wybrzydza\u0142y! Atakowa\u0142y jerki, wahad\u0142\xF3wki, obrot\xF3wki, du\u017Ce i ma\u0142e gumy. Do\u015B\u0107 powiedzie\u0107, \u017Ce najlepsza spo\u015Br\xF3d miejsc\xF3wek obdarzy\u0142a tr\xF3jk\u0119 uczestnik\xF3w wyprawy przesz\u0142o 20 szczupakami w niespe\u0142na godzin\u0119! Do szcz\u0119\u015Bcia brakowa\u0142o nam jedynie ryby, kt\xF3rej d\u0142ugo\u015B\u0107 przekroczy\u0142aby magiczne 100 cm\u2026\n\n<img src=\"img/article_2/intext_3.jpg\" alt=\"intext_3\">\n\nW \u015Brod\u0119 po po\u0142udniu Piotr jak zwykle przekomarza\u0142 si\u0119 z Radkiem i rzuci\u0142 \u017Cartobliwie: \u201Eoby\u015B tak do ko\u0144ca wyjazdu nic ju\u017C nie z\u0142owi\u0142!\u201D. Radek za\u015Bmia\u0142 si\u0119 i wykona\u0142 rzut. To, co zdarzy\u0142o si\u0119 p\xF3\u017Aniej, b\u0119dziemy wszyscy d\u0142ugo wspomina\u0107! Kij wygina si\u0119 w pa\u0142\u0105k, ko\u0142owrotek j\u0119czy, powoli poddaj\u0105c si\u0119 sile ryby i oddaje kolejne metry plecionki. Radek stwierdza, \u017Ce tym razem ryba jest naprawd\u0119 konkretna. Ryba walczy wykonuj\u0105c d\u0142ugie, majestatyczne odjazdy typowe dla \u201Emamusiek\u201D. Walka si\u0119 przeci\u0105ga, jednak w ko\u0144cu szczupak zaczyna s\u0142abn\u0105\u0107 i daje za wygran\u0105. Przyk\u0142adamy esoxa do miarki i okazuje si\u0119, \u017Ce mierzy dok\u0142adnie 102 centymetry! Jest po prostu pi\u0119kny \u2013 delikatny z\u0142oty odcie\u0144 \u0142usek, masywny, gruby kark\u2026 Podobnie jak poprzednio, zaraz po sesji, ryba zostaje ostro\u017Cnie wypuszczona.\n\n<img src=\"img/article_2/intext_4.jpg\" alt=\"intext_4\">\n\nLepsza sytuacja mia\u0142a miejsce na \u0142odzi Jacka, kt\xF3ry podczas wieczornych opowie\u015Bci powiedzia\u0142, \u017Ce w czwartek z\u0142owili \u201Edwa i p\xF3\u0142 metra ryby\u201D w jednym rzucie! Jak to mo\u017Cliwe? Ca\u0142a tr\xF3jka \u0142owi\u0142a na jednej \u0142odzi i zadzia\u0142a\u0142o prawo serii, niemal w tym samym momencie zanotowali brania! Jacek najszybciej wyholowa\u0142 swoj\u0105 60 cm ryb\u0119. Po nieco d\u0142u\u017Cszej chwili tak\u017Ce Rafa\u0142 podebra\u0142 swojego szczupaka \u2013 ryba mierzy\u0142a 92 centymetry, jednak zosta\u0142a niemal natychmiast wypuszczona, nie doczekawszy si\u0119 sesji zdj\u0119ciowej. Dlaczego tak si\u0119 sta\u0142o? Wiatr by\u0142 na tyle silny, \u017Ce w ekspresowym tempie pcha\u0142 \u0142\xF3d\u017A w stron\u0119 przybrze\u017Cnej kamiennej rafy, a kapitan w\u0142a\u015Bnie walczy\u0142 z najwi\u0119kszym spo\u015Br\xF3d z\u0142owionych dotychczas szczupak\xF3w. Jacek i Rafa\u0142 zarz\u0105dzili ma\u0142\u0105 roszad\u0119 i \u0142\xF3d\u017A zacz\u0119\u0142a powoli oddala\u0107 si\u0119 od brzegu. W ko\u0144cu nast\u0105pi\u0142a chwila s\u0142odkiego triumfu. Po kilku minutach zmaga\u0144, ryba znalaz\u0142a si\u0119 w \u201Eobj\u0119ciach\u201D Micha\u0142a. Szczupak mierzy\u0142 104 centymetry i sta\u0142 si\u0119 jednocze\u015Bnie now\u0105 \u201E\u017Cyci\xF3wk\u0105\u201D Micha\u0142a!\n\n<img src=\"img/article_2/intext_5.jpg\" alt=\"intext_5\">\n\nDo ko\u0144ca wyjazdu z\u0142owili\u015Bmy jeszcze wiele szczupak\xF3w, jednak wi\u0119kszo\u015B\u0107 stanowi\u0142y \u201E\u015Bredniaki\u201D d\u0142ugo\u015Bci 70-80 cm. Bilans zamkn\u0119li\u015Bmy z przesz\u0142o 500 rybami, w\u015Br\xF3d kt\xF3rych by\u0142o kilka sztuk, o d\u0142ugo\u015Bci przekraczaj\u0105cej 90 cm (niestety nie wyczerpali\u015Bmy wszystkich liczb z zakresu 90-99) i ponad 30 szczupak\xF3w pomi\u0119dzy 80 a 89 cm.\n\n<img src=\"img/article_2/intext_6.jpg\" alt=\"intext_6\">\n\nSzkiery w Blekinge to \u0142owisko absolutnie wyj\u0105tkowe w skali ca\u0142ego szwedzkiego wybrze\u017Ca. Co sprawia, \u017Ce \u0142owisko to jest a\u017C tak wyj\u0105tkowe? Po pierwsze, liczna populacja szczupak\xF3w! Najcz\u0119\u015Bciej \u0142owi si\u0119 ryby d\u0142ugo\u015Bci 70-80 cm, jednak ponadmetrowe esoxy to tutaj niemal codzienno\u015B\u0107. Warto pami\u0119ta\u0107, \u017Ce nie liczy si\u0119 tylko wielko\u015B\u0107 ryby, lecz tak\u017Ce jej uroda, a tej szczupakom z Blekinge akurat nie brakuje! Tutejsze szczupaki maj\u0105 rzadko spotykany z\u0142ocisty koloryt, kt\xF3ry idzie w parze z niezbyt smuk\u0142\u0105 sylwetk\u0105\u2026 Pomimo \u017Ce ca\u0142y rejon kojarzony jest g\u0142\xF3wnie z tymi w\u0142a\u015Bnie rybami, nie spos\xF3b nie wspomnie\u0107 o okoniach! Garbusy nie s\u0105 a\u017C tak liczne jak szczupaki, jednak rekompensuj\u0105 ten fakt imponuj\u0105cymi gabarytami. W dobre dni rzadko \u0142owi si\u0119 ryby mniejsze ni\u017C 40 centymetr\xF3w, a \u015Brednia ilo\u015B\u0107 okoni idzie w dziesi\u0105tki\u2026 Szkiery w po\u0142udniowej Szwecji r\xF3\u017Cni\u0105 si\u0119 nieco od wybrze\u017Ca spotykanego w \u015Brodkowej cz\u0119\u015Bci kraju. Na krajobraz archipelagu sk\u0142adaj\u0105 si\u0119 zar\xF3wno pojedyncze nagie ska\u0142y, jak i niezbyt du\u017Ce, niemal pozbawione ro\u015Blinno\u015Bci kamienne wysepki. Z kolei, decyduj\u0105c si\u0119 na \u0142owienie w okolicy du\u017Cych miast, jak np. Karlskrona, nie tylko mamy szans\u0119 na wspania\u0142y w\u0119dkarski wypoczynek, lecz tak\u017Ce na otarcie si\u0119 o absolutnie szczeg\xF3lne miejsca b\u0119d\u0105ce \u015Bwiadkami burzliwej historii Szwecji ci\u0105gn\u0105cej si\u0119 od epoki Wiking\xF3w, a\u017C do chwili obecnej. Ostatni\u0105 rzecz\u0105, o kt\xF3rej warto wspomnie\u0107, m\xF3wi\u0105c o Blekinge jest charakterystyka \u0142owiska. Szkier mo\u017Cna w zasadzie podzieli\u0107 na dwie cz\u0119\u015Bci \u2013 zatokow\u0105 i t\u0119 granicz\u0105c\u0105 z otwartym morzem. Wybieraj\u0105c ten pierwszy rodzaj \u0142owiska, zobaczymy znajomy krajobraz \u2013 wynurzaj\u0105ce si\u0119 \u0142odygi podwodnej ro\u015Blinno\u015Bci i brzeg poro\u015Bni\u0119ty g\u0119stymi i szerokimi trzcinowiskami. To w\u0142a\u015Bnie tutaj wczesn\u0105 wiosn\u0105 i p\xF3\u017An\u0105 jesieni\u0105 \u0142owione s\u0105 najwi\u0119ksze szczupaki! Zgo\u0142a odmienna jest charakterystyka \u0142owisk granicz\u0105cych z otwartym morzem. Najcz\u0119\u015Bciej ob\u0142awia si\u0119 skraj kamiennych raf, b\u0105d\u017A te\u017C brzegi wi\u0119kszych wysp. Od zatok, miejsc\xF3wki te odr\xF3\u017Cnia przede wszystkim wielko\u015B\u0107 \u0142owionych ryb \u2013 niestety, s\u0105 to na og\xF3\u0142 \u015Bredniaki. Warto doda\u0107, \u017Ce tzw. \u201Ekamienne szczupaki\u201D to prawdziwi strongmani, nawet niewielkie ryby, mierz\u0105ce 70-80 centymetr\xF3w, potrafi\u0105 da\u0107 ostro popali\u0107, niejednokrotnie przebijaj\u0105c zatokowe \u201Emetr\xF3wki\u201D\u2026\n\nMicha\u0142 Szewczuk, 11.2015\n    "
-}, {
-  title: "Syn, Tata i ryby…",
-  images: ["img/article_3/intext_1.jpg", "img/article_3/intext_2.jpg", "img/article_3/intext_3.jpg", "img/article_3/intext_4.jpg", "img/article_3/intext_5.jpg"],
-  text: "\n        Chyba do ko\u0144ca \u017Cycia nie zapomn\u0119 pierwszej ryby, kt\xF3r\u0105 z\u0142owi\u0142em w wieku 6-7 lat. Pierwsza p\u0142otka, kt\xF3r\u0105 z\u0142owi\u0142em na sp\u0142awik\xF3wk\u0119 mojego taty. W\u0119dk\u0119 dosta\u0142em tylko do potrzymania w r\u0119kach. Sp\u0142awik szybko zaton\u0105\u0142. Tata powiedzia\u0142 g\u0142o\u015Bno \u201EPoci\u0105gnij do g\xF3ry\u201D. Ja to zrobi\u0142em i na ko\u0144cu zestawu zacz\u0119\u0142a walczy\u0107 niewielka rybka. To by\u0142a moja pierwsza, niezapomniana! P\xF3\u017Aniej przyszed\u0142 czas na \u0142owienie wi\u0119kszych ryb, pierwszych drapie\u017Cnik\xF3w. Dosta\u0142em od taty sw\xF3j pierwszy spinning i ko\u0142owrotek. Tata nawin\u0105\u0142 mi grub\u0105 \u017Cy\u0142k\u0119, na ko\u0144cu zawi\u0105za\u0142 przypon i da\u0142 mi w prezencie kilka przyn\u0119t. Oj jaki by\u0142em z tego dumny! Mia\u0142em sw\xF3j spinning i 4 r\xF3\u017Cne metalowe przyn\u0119ty \u2013 trzy wahad\u0142\xF3wki i jedn\u0105 wir\xF3wk\u0119. Nadszed\u0142 wolny weekend i tata zabra\u0142 mnie nad Narew w okolicach Pu\u0142tuska. Tam pojechali\u015Bmy nad rozlewiska Narwi. Tata z koleg\u0105, rozstawili si\u0119 ze sp\u0142awik\xF3wkami, a ja wzi\u0105\u0142em sw\xF3j spinning i poszed\u0142em \u0142owi\u0107 dos\u0142ownie kilkadziesi\u0105t metr\xF3w dalej. Po nied\u0142ugim czasie, mam branie, pot\u0119\u017Cne, nie do opisania. Ryba walczy zaciekle i w zasadzie zaczyna wci\u0105ga\u0107 mnie do wody\u2026 Jest ogromna! Wo\u0142am w niebog\u0142osy \u201ETato szybko. Mam wielk\u0105 ryb\u0119\u201D. Tata przyszed\u0142 do mnie z podbierakiem i jak ryba by\u0142a ju\u017C blisko brzegu, podebra\u0142 j\u0105. Jest! Mam j\u0105! Jest wielka! Emocje si\u0119gn\u0119\u0142y zenitu! Jestem zachwycony! Tak zacz\u0119\u0142a si\u0119 moja przygoda z w\u0119dkarstwem. Wsi\u0105k\u0142em w ni\u0105 na dobre. Teraz jak sobie o tym pomy\u015Bl\u0119, to troch\u0119 \u015Bmia\u0107 mi si\u0119 chce. Szczupak, kt\xF3rego z\u0142owi\u0142em mia\u0142 pewnie z 50 cm, ale wtedy wydawa\u0142 mi si\u0119 ogromny, silny i gro\u017Any\u2026 Hehehe. Jednak do ko\u0144ca \u017Cycia nie zapomn\u0119 tej chwili. Moje wspomnienia przywo\u0142uj\u0105 t\u0119 chwil\u0119. Ogromne emocje i pewnie wielka adrenalina, kt\xF3rej kiedy\u015B nie by\u0142em w stanie okre\u015Bli\u0107.\n        <img src=\"img/article_3/intext_1.jpg\" alt=\"intext_1\">\nW moim dzisiejszym w\u0119dkarstwie, a jest to moja najwi\u0119ksza \u017Cyciowa pasja, takie chwile euforii przychodz\u0105 ju\u017C tylko wtedy, kiedy uda mi si\u0119 z\u0142owi\u0107 naprawd\u0119 konkretny okaz. I nie przesadzam. Z\u0142owi\u0142em ju\u017C wiele ryb w swoim \u017Cyciu i ka\u017Cda z\u0142owiona ryba sprawia mi du\u017C\u0105 satysfakcj\u0119. Jednak prawdziwa adrenalina leje si\u0119 ze mnie tylko podczas holu wielkich, rekordowych ryb. I to nie wa\u017Cne, czy jest to rekordowy pstr\u0105g, szczupak, czy sum. Ryba musi da\u0107 mi popali\u0107, abym poczu\u0142 to, co czu\u0142em jak z\u0142owi\u0142em tego swojego pierwszego \u201Ewielkiego\u201D szczupaka. Pasja w\u0119dkarska jest ze mn\u0105 od dziecka. Zawdzi\u0119czam to mojemu tacie! To on od ma\u0142ego zabiera\u0142 mnie na Mazury, nad Wis\u0142\u0119, czy Narew. To pod jego okiem z\u0142owi\u0142em swoje pierwsze ryby\u2026\n\nW dzisiejszych czasach, wielu z nas ma bardzo ograniczony czasu. Ojcowie cz\u0119sto wracaj\u0105 p\xF3\u017Ano do domu, niekt\xF3rzy nie maj\u0105 wolnych weekend\xF3w. Wielu tatusi\xF3w chcia\u0142oby spr\xF3bowa\u0107 si\u0119 w w\u0119dkarstwie, ale po prostu brakuje im czasu na zaanga\u017Cowanie si\u0119 w temat od pocz\u0105tku. A co tu dopiero m\xF3wi\u0107 o zabraniu syna na ryby, skoro sami nie mamy na to czasu wystarczaj\u0105co, aby wgry\u017A\u0107 si\u0119 w temat. W\u0119dkarstwo wbrew pozorom, tak naprawd\u0119 nie jest takie proste i wymaga od nas wielu godzin po\u015Bwi\u0119conego czasu. Aby \u201Eogarn\u0105\u0107\u201D te wszystkie metody, przyn\u0119ty, zan\u0119ty, sp\u0142awiki, ko\u0142owrotki i w\u0119dki\u2026 W dzisiejszych czasach, gdzie mamy ogromny wyb\xF3r sprz\u0119tu, gdzie jest wiele technik po\u0142owu, czy metod \u0142owienia, tym bardziej staje si\u0119 to skomplikowane dla kogo\u015B kto chcia\u0142by spr\xF3bowa\u0107 od zera i to jeszcze z w\u0142asnym dzieckiem. Nat\u0142ok informacji, wielki wyb\xF3r sprz\u0119towy, tak naprawd\u0119 nie u\u0142atwia zadania. A wr\u0119cz je komplikuje\u2026 Dlatego te\u017C, warto rozpocz\u0105\u0107 swoj\u0105 przygod\u0119 z w\u0119dkarstwem i zabra\u0107 swojego syna na wypraw\u0119 w\u0119dkarsk\u0105, czy szkolenie w\u0119dkarskie, zorganizowane przez do\u015Bwiadczonych pasjonat\xF3w tego hobby. Pod okiem profesjonalist\xF3w, spr\xF3bowa\u0107 postawi\u0107 swoje pierwsze kroki w w\u0119dkarstwie. Przyswoi\u0107 w kr\xF3tkim czasie ogromn\u0105 wiedz\u0119, kt\xF3r\u0105 tak naprawd\u0119 trzeba zdobywa\u0107 latami! Spr\xF3bowa\u0107 odnale\u017A\u0107 si\u0119 w tym wszystkim i wraz z synem spr\xF3bowa\u0107 z\u0142owi\u0107 swoj\u0105 pierwsz\u0105 ryb\u0119, pod opiek\u0105 przewodnika w\u0119dkarskiego. Taka wyprawa wraz z profesjonalist\u0105 jest \u015Bwietnym rozwi\u0105zaniem, szczeg\xF3lnie dla ojc\xF3w, kt\xF3rzy na co dzie\u0144 nie maj\u0105 du\u017Co czasu, a chc\u0105 wraz ze swoim synem sp\u0119dzi\u0107 mi\u0142e chwile na \u0142onie natury, odpoczywaj\u0105c i \u0142owi\u0105c ryby.\n\n<img src=\"img/article_3/intext_2.jpg\" alt=\"intext_2\">\n\nOd 9 lat jestem przewodnikiem w\u0119dkarskim. Swoj\u0105 pasj\u0119, po\u0142\u0105czy\u0142em z prac\u0105. Bardzo ch\u0119tnie dziel\u0119 si\u0119 swoj\u0105 zdobyt\u0105 wiedz\u0105, wraz z moimi Klientami, kt\xF3rych goszcz\u0119 na wsp\xF3lnych wyprawach. Przez te wszystkie lata spotka\u0142em si\u0119 z wieloma lud\u017Ami, w tym z ojcami i ich synami, kt\xF3rzy dzi\u0119ki naszej pomocy, realizuj\u0105 swoje hobby, czyli w\u0119dkarstwo. Sami nie maj\u0105 czasu na rozgryzanie wielu niuans\xF3w zwi\u0105zanych z w\u0119dkarstwem, nie maj\u0105 czasu na kupowanie sprz\u0119tu, a zale\u017Cy im, aby po prostu sp\u0119dzi\u0107 sw\xF3j czas z synem, \u0142owi\u0105c ryby w dobrym towarzystwie. Za nami wiele udanych wypraw, wielu zadowolonych ojc\xF3w, patrz\u0105cych na szcz\u0119\u015Bcie swoich dzieci! Wiele udanych holi du\u017Cych ryb i wiele mi\u0142ych chwil sp\u0119dzonych z dzik\u0105 natur\u0105 w tle\u2026 Czego chcie\u0107 wi\u0119cej, jak widok u\u015Bmiechni\u0119tego ojca, wraz ze szcz\u0119\u015Bliwym synem, wypuszczaj\u0105cych wielk\u0105 ryb\u0119 z powrotem do wody\u2026\n\n<img src=\"img/article_3/intext_3.jpg\" alt=\"intext_3\">\n\nZapraszam na wyprawy w\u0119dkarskie, gdzie ojciec wraz z synem mo\u017Ce realizowa\u0107 swoje hobby, pod opiek\u0105 profesjonalnych przewodnik\xF3w \u2013 www.przewodnicywedkarscy.pl. Wyprawy organizujemy zar\xF3wno w Polsce, jak i w Europie oraz w r\xF3\u017Cnych miejscach na \u015Awiecie.\n\n<img src=\"img/article_3/intext_4.jpg\" alt=\"intext_4\">\n\nTych ojc\xF3w, kt\xF3rzy jeszcze nie zacz\u0119li swojej przygody w\u0119dkarskiej lub chc\u0105 podszlifowa\u0107 swoj\u0105 wiedz\u0119 pod okiem profesjonalnych instruktor\xF3w, zapraszam do jedynej w Polsce szko\u0142y w\u0119dkarskiej \u2013 www.naukawedkowania.pl. Tutaj wraz ze swoimi dzie\u0107mi, mo\u017Cecie nauczy\u0107 si\u0119 podstaw \u0142owienia r\xF3\u017Cnymi technikami i metodami oraz rozwin\u0105\u0107 swoje wcze\u015Bniej zdobyte do\u015Bwiadczenia.\n\n<img src=\"img/article_3/intext_5.jpg\" alt=\"intext_5\">\n\nZapraszam na wsp\xF3lne wyprawy!\n\nSebastian \u201Erognis_oko\u201D Kalkowski, 07.2016"
-}];
-/******/ })()
-;
+
+const articles = [
+    {
+        title: "Oman – wędkarski raj – wspomnienia – sezon 2018",
+        images: [
+            "img/article_1/intext_1.jpg",
+            "img/article_1/intext_2.jpg",
+            "img/article_1/intext_3.jpg",
+            "img/article_1/intext_4.jpg",
+            "img/article_1/intext_5.jpg",
+            "img/article_1/intext_6.jpg",
+            "img/article_1/intext_7.jpg",
+            "img/article_1/intext_8.jpg",
+            "img/article_1/intext_9.jpg",
+            "img/article_1/intext_10.jpg",
+            "img/article_1/intext_11.jpg",
+            "img/article_1/intext_12.jpg",
+            "img/article_1/gallery_1.jpg",
+            "img/article_1/gallery_2.jpg",
+            "img/article_1/gallery_3.jpg",
+            "img/article_1/gallery_4.jpg",
+            "img/article_1/gallery_5.jpg",
+            "img/article_1/gallery_6.jpg",
+            "img/article_1/gallery_7.jpg",
+            "img/article_1/gallery_8.jpg",
+            "img/article_1/gallery_9.jpg",
+            "img/article_1/gallery_10.jpg",
+        ],
+        text: `
+Na styczniowy wyjazd wędkarski do Omanu czekaliśmy z wielką niecierpliwością.
+Organizacją tego wyjazdu zająłem się na długo przed terminem.
+Chciałem, aby wszystko było zapięte na ostatni guzik, co w moim przypadku jest podstawą podczas przygotowywania każdej wyprawy wędkarskiej.
+Szczególnie takiej, gdzie jedzie się daleko od domu.
+Około pół roku przed terminem wszystko było już z góry zaplanowane i ustalone.
+Nasza ekipa liczyła 10 osób z różnym doświadczeniem wędkarskim i w bardzo różnym wieku.
+W grupie było kilka osób, które były już na podobnych wyprawach wędkarskich w egzotyczne miejsca.
+
+<img src="img/article_1/intext_1.jpg" alt="intext_1">
+
+Pozostało już tylko kilka miesięcy na przygotowanie sprzętowe do wyprawy.
+Wymagania były dość duże, ponieważ zaplanowaliśmy wyprawę na łowiska, które słyną z największych okazów GT (Giant Trevally) na Świecie.
+Oman jest mekką łowców tego gatunku, którzy przyjeżdżają tam z wielu miejsc naszego globu.
+Częstymi gośćmi są Amerykanie, a nawet Japończycy.
+Oman jest miejscem, w którym GT ma bardzo dobre warunki do rozwoju, a w szczególności do rozrodu.
+Małe GT, które rodzą się w Omanie, rozpływają się po całym Świecie.
+Są praktycznie w wielu miejscach oceanu Indyjskiego oraz Pacyfiku.
+Po latach często wracają na swoje rodzime terytorium do Omanu, aby dorosnąć do ogromnych rozmiarów.
+Albowiem ryby powyżej 40 kg nie są tu rzadkością i są regularnie łowione.
+Ale także ogromne okazy tego gatunku, które przekraczają wagę powyżej 50 kg, a nawet 60 kg!
+W miejscu, do którego jedziemy są takie okazy i przy odrobinie szczęścia można z nimi stoczyć walkę życia na ciężkim zestawie do łowienia wielkimi popperami.
+Jednak w Omanie nie łowi się wyłącznie GT, ale także wiele innych gatunków ryb, które są ciekawe do łowienia.
+Przede wszystkim są to gatunki bardzo silne i ogromnie waleczne.
+Możemy tu złowić wspaniałe Giant Queen, różne gatunki tuńczyków, np. wielkie tuńczyki żółtopłetwe lub dużo mniejsze tuńczyki długopłetwe.
+Jest wiele gatunków ryb z rodziny karanksowatych, do których także należy GT.
+W Omanie nie brakuje dużych ilości Amber Jack (Seriola Olbrzymia).
+Ryb, które słyną ze swojej ogromnej siły i waleczności.
+Można je złowić głównie w okresie wrzesień-październik.
+Na skraju raf możemy liczyć na piękne brania dużych Bream, które zażarcie atakują nieduże poppery lub małe stickbaity.
+W Omanie łowi się także inne gatunki ryb, jak chociażby wspaniale ubarwione Mahi Mahi, a także Grunter, Wahoo, Bonito, Sada Sada, graniki, snapery, żaglice, barrakudy, czy nawet rekiny.
+Ryby w Omanie łowi się głównie w strefie przybrzeżnej do około 10 km od brzegu, na rafach oraz daleko od brzegu, na oceanicznych wyspach.
+Zazwyczaj przy wyspach są najlepsze łowiska i tam można liczyć na największe okazy.
+
+<img src="img/article_1/intext_2.jpg" alt="intext_2">
+
+Wraz z moim bratem Mateuszem, przygotowaliśmy na ten wyjazd po 3 różne zestawy.
+Jeden bardzo mocny w skali 10 PE, głównie do łowienia dużymi popperami (130-180 gramów) oraz dużymi stickbaitami o podobnej wadze.
+Ten zestaw jest praktycznie wyłącznie do łowienia z nastawieniem na Giant Trevally.
+Drugi zestaw do łowienia w pionie, głównie techniką „speed jigging”To bardzo ciekawa i skuteczna technika do łowienia ryb, które żerują w toni i przemieszczają się stadamiAle nie tylko, ponieważ tą techniką można wywabić z rafy dużego granika, czy snaperaDużą atrakcją tej techniki łowienia są wspaniałe brania. W tej technice przynęta jest prowadzona bardzo szybko i można sobie wyobrazić, jakie następuje branie, kiedy naszą przynętę atakuje duża i bardzo szybka ryba! Ostatni zestaw to „lekki” spinning w skali 4-5 PE, którym będziemy łowili głównie na rafach i na ich obrzeżach za pomocą niedużych popperów, woblerów lub stickbaitów w wielkościach 10-15 cm. Do każdego z zestawów przygotowaliśmy specjalistyczne kołowrotki Okuma Azores Blue, całkowicie odporne na działanie soli morskiej. To bardzo ważne podczas łowienia na egzotycznych morzach, czy oceanach. Kołowrotek musi być odporny na sól. Wówczas jest niezawodny i nie przestanie działać w najmniej oczekiwanym momencie. Do każdego zestawu przygotowaliśmy także specjalne przypony, które zrobiliśmy własnoręcznie z najnowszego materiału przyponowego Regenerator. W naszych pudłach znalazło się oczywiście wiele przynęt, od zwykłych gum, po specjalistyczne wielkie poppery do powierzchniowego łowienia GT. Co najważniejsze, każda z przynęt została uzbrojona w super mocne kotwice oraz super mocne kółka łącznikowe. To podstawa łowienia dużych ryb oceanicznych!
+
+<img src="img/article_1/intext_3.jpg" alt="intext_3">
+
+W końcu nadszedł czasu wyjazdu.
+Z naszą ekipą spotkaliśmy się już na lotnisku w Salalah w Omanie, ponieważ część osób poleciała przez Dubaj, a my przez Katar.
+Na lotnisku odebrała nas ekipa z Omanu, z którą wspólnie zorganizowaliśmy tę wyprawę.
+Po przejechaniu około 400 km od Salalah, dojechaliśmy do małej wioski rybackiej, w której jest nasza baza.
+Oczywiście od razu zajęliśmy się przygotowaniem sprzętu, tak aby następnego dnia wypłynąć jak najwcześniej na łowisko.
+
+<img src="img/article_1/intext_4.jpg" alt="intext_4">
+
+Pierwszy dzień, to dzień rekonesansu, kiedy wszyscy będą wczuwali się w łowienie, poznawali nowe łowisko i testowali różne techniki łowienia.
+Od razu płyniemy na najlepsze łowisko, które jest oddalone bardzo daleko od brzegu.
+Płyniemy na słynne wyspy oceaniczne, gdzie będziemy mieli szansę złowienia największych Giant Trevally.
+Po ponad godzinie płynięcia dwoma łodziami z 400 konnymi silnikami, dopływamy do wielkich wysp, które otaczają ogromne rafy z bardzo zróżnicowaną głębokością od 0,5 do 25 metrów.
+Łowiska są wspaniałe, a wodna bardzo przejrzysta w niebiesko-zielonym zabarwieniu.
+Tego dnia łowimy głównie na poppery, jerki i stickbaity.
+Udaje nam się złowić różne gatunki ryb, ale największą atrakcją są Mahi Mahi (Koryfena), które łowimy „na wypatrzonego” na płytkich rafach.
+W niektórych momentach holujemy po 2-3 ryby na raz.
+Euforia i zabawa jest niesamowita.
+Ryby walczą zaciekle i co chwila oglądamy wspaniałe wyskoki ponad wodę.
+
+<img src="img/article_1/intext_5.jpg" alt="intext_5">
+
+Niestety wieczorem w bazie, okazuje się, że pogoda nieco zmieni nasze plany na najbliższe dni łowienia.
+Idzie duży wiatr, który całkowicie uniemożliwi wypłynięcia na oddalone łowiska i do najlepszych wysp.
+Prognoza pokazuje wiatr na najbliższe dni, więc musimy wykorzystać ten czas na łowienie w tzw. strefie przybrzeżnej.
+W pierwszym dniu wiatru, łowimy wyłącznie blisko brzegów zasłoniętych bardzo wysokimi skałami.
+Tam mamy możliwość schronienia się przed bardzo dużym wiatrem.
+Przynęty prowadzimy przy skałach oraz na przybrzeżnych rafach.
+Udaje nam się złowić różne gatunki ryb.
+Blisko raf i skał wychodzą do naszych przynęt piękne i bardzo waleczne Bream’y, które stanowią wielką atrakcję wędkarstwa w Omanie.
+Łowi się je głównie na powierzchniowe przynęty, nieduże stickbaity oraz poppery.
+Brania Breamów są niesamowite i bardzo mocne. Ryby są waleczne i silne.
+Piękne zwieńczenie dnia. Kolejny dzień mija podobne, na łowieniu blisko brzegu i wyłącznie przy wysokich brzegach.
+Łowimy różne gatunki ryb, w tym Bonito, Sada Sada, czy nieduże tuńczyki.
+Mamy także okazję zobaczyć wielkiego Giant Trevally, który na naszych oczach wspaniale i z impetem atakował mniejsze ryby przy samej powierzchni wody.
+Wielka ryba z ogromną prędkością przemieszczająca się po łowisku, to niesamowity widok, którego nie zapomnimy na długo!
+Wielki GT w końcu zaatakował jednego z naszych popperów, ale niestety jego siła nie pozwoliła na szybkie zatrzymanie ryby w trakcie holu.
+Po krótkim czasie GT „wbił się” w rafę i przetarł o nią bardzo mocny przypon z fluorocarbonu 1,2 mm.
+
+<img src="img/article_1/intext_6.jpg" alt="intext_6">
+
+Następne 4 dni przyjdą na zawsze do naszej pamięci.
+Niespotykana ilość brań i niesamowita ilość ryb, które wyholowaliśmy, przeszła naszej najśmielsze oczekiwania.
+Nikt z nas nie spodziewał się tylu brań, tylu wspaniałych holi i tylu okazów ryb, które udało nam się złowić!
+Niesamowite 4 dni, które mam cały czas przed oczami i nie mogę o nich zapomnieć.
+Wiatr nie ustawał, ale nie był aż tak duży, więc mogliśmy łowić w całej strefie przybrzeżnej do około 10 km od brzegu.
+W łowisko weszły stada drapieżników, które przyszły w strefę przybrzeżną w poszukiwaniu ogromnych stad sardeli.
+Przez 4 dni byliśmy w euforii brań i myślę, że każdy z nas poczuł coś wspaniałego i nieoczekiwanego.
+Tego nie da się opisać własnymi słowami, ale spróbuję przybliżyć Wam chociaż kilka chwil…
+Dryfując na jednej z raf trafiamy piękne stado Giant Queen i wszystkim nam na łodzi, udaje się złowić tę wspaniałą rybę w jednym momencie.
+I to na powierzchniowe poppery!
+Możecie sobie wyobrazić brania i hole 5 bardzo silnych ryb na raz, które potrafią wyskakiwać na kilka metrów nad wodę…
+To jest coś nie do opisania.
+To trzeba przeżyć! Na innym dryfie, napływamy na ogromne stada drapieżników, które atakują od dołu duże stado sardeli.
+Łowimy ogromną ilość silnych ryb różnych gatunków, z czego prym wiodą Giant Queen, Spotted Grunter, Red Snapper i inne.
+Mamy wiele sytuacji, kiedy holujemy po 3-4 ryby na raz.
+Nie oszukam Was, jak powiem, że w najlepszych godzinach łowimy po 30-40 ryb na łódź!
+Masa akcji, ogromna ilość brań i wspaniałe hole. To po to tutaj przyjechaliśmy!
+
+<img src="img/article_1/intext_7.jpg" alt="intext_7">
+<img src="img/article_1/intext_8.jpg" alt="intext_8">
+<img src="img/article_1/intext_9.jpg" alt="intext_9">
+
+
+
+
+
+Przychodzi dobra informacja.
+Wiatr ustaje i przez kolejne dwa dni będziemy łowili na najlepszych miejscówkach.
+Płyniemy na odległe wyspy. Ustanawiamy jeden cel – duży GT! Bez niego nie możemy wrócić do Polski.
+Pogoda nam sprzyja i w końcu dopływamy do łowiska.
+W ruch idą wyłącznie najmocniejsze zestawy 10-12 PE, wielkie kołowrotki i wytrzymałe linki.
+Rzucamy wyłącznie dużymi popperami i stickbaitami.
+Czeka nas bardzo ciężkie łowienie, ale liczymy na branie jednej wielkiej ryby.
+Dopływamy do dużej rafy ze zmienną głębokością od około 5 do 25 metrów.
+Przychodzi moment, który mam przed oczami, jakby było to dosłownie przed chwilą!
+Łowię koło Sławka. Mam założonego dużego poppera, a Sławek jeszcze większego, którego dostał od naszego przewodnika.
+Prowadzimy przynęty dość blisko siebie, więc doskonale widzę swojego poppera i Sławka.
+Nagle następuje potężne branie i ogromny wir na wodzie.
+Sławek zacina i jest… Potężny odjazd ryby na kilkadziesiąt metrów i od razu wiemy, co zaatakowało przynętę.
+Wielki GT! Robimy szybki zwrot łodzią, abyśmy mogli szybciej przejąć kontrolę nad rybą.
+Oczywiście jeżeli w ogóle można kontrolować wielką rybę, z tak potężną siłą i prędkością…
+Sławek ma odpowiedni zestaw.
+Kij 12 PE, kołowrotek 10000 oraz plecionkę 70 kg wytrzymałości.
+Jednak w pierwszej fazie holu, to ryba rządzi i ona wyznacza co będzie dalej.
+Pomagamy Sławkowi i udaje nam się zwolnić rybę tuż przed ostrą jak brzytwa rafą.
+Ta faza jest wygrana, dlatego mamy coraz większe nadzieję, że zobaczymy tego giganta.
+Hol jest niesamowity, odjazdy na duże odległości. Widać, że ryba jest potwornie silna i szybka.
+Na szczęście powoli zaczyna zwalniać i słabnąć. Wykorzystujemy to i podciągamy rybę do łodzi.
+Przewodnik i ja łapiemy rybę i szybko wciągamy ją na pokład.
+Okrzyk radości! Jest! Sławek jest roztrzęsiony, cała ekipa w euforii.
+Szybko robimy sesję zdjęciową. Dokładnie mierzymy i warzymy rybę.
+Giant Trevally ma aż 42 kg! Wspaniały okaz! Razem z przewodnikiem znakujemy rybę specjalnym znacznikiem i wypuszczamy ją do jej królestwa.
+Spełniło się nasze marzenie! Każdemu z nas udzieliła się ogromna radość i szczęście. Jesteśmy spełnieni!
+
+<img src="img/article_1/intext_10.jpg" alt="intext_10">
+
+
+Kolejnego dnia Tadzio ustanawia rekord naszej bazy w gatunku tuńczyka długopłetwego (Long Tale Tuna), łowiąc okaz powyżej 30 kg!
+Łowimy wiele ryb różnych gatunków. Klimat, piękna pogoda i spokój jaki panuje w Omanie działa na wszystkie zmysły i tak powoli kończy się nasza przygoda z Omanem…
+
+<img src="img/article_1/intext_11.jpg" alt="intext_11">
+
+
+Przez wiele lat trzymałem się zasady, aby nie brać udziału w wyprawach na egzotyczne łowiska.
+Bałem się jednego, że po takiej wyprawie będę chciał tam wracać już zawsze.
+I tak się stało! Wsiąkłem w wędkarstwo egzotyczne! Tęsknię za Omanem i już czekam na kolejną wyprawę!
+<img src="img/article_1/intext_12.jpg" alt="intext_12">
+
+`,
+    },
+    {
+        title: "Szkiery Blekinge – u wrót szczupakowego królestwa",
+        images: [
+            "img/article_2/intext_1.jpg",
+            "img/article_2/intext_2.jpg",
+            "img/article_2/intext_3.jpg",
+            "img/article_2/intext_4.jpg",
+            "img/article_2/intext_5.jpg",
+            "img/article_2/intext_6.jpg",
+        ],
+        text: `
+    Królestwo szczupaków – taki właśnie epitet przewija się w rozmowach najczęściej, kiedy mówi się o rejonie archipelagu Blekinge. Południowe wybrzeże Szwecji od lat słynie z ogromnej populacji cętkowanych drapieżników, co sprawia, że co roku wędkarscy turyści podróżują w te rejony w nadziei na spotkanie z rybą życia… Szkiery w tym rejonie odwiedzam nie pierwszy raz, jednak tym razem czekało mnie znacznie bardziej odpowiedzialne zadanie, bowiem wyjeżdżałem w charakterze przewodnika naszej grupy.
+
+Pogoda, jaka przywitała nas w dniu przyjazdu do Karlskrony była iście jesienna – wiatr, rzęsisty deszcz i temperatura sięgająca zaledwie 10 stopni Celsjusza. Czy może być lepiej? Niestety, nasze szczęście nie trwało zbyt długo, bowiem w ciągu zaledwie kilku godzin zaszła diametralna zmiana – niebo przybrało czysty, błękitny kolor, zaś wiatr zupełnie się uspokoił. Takie warunki nie wróżą niczego dobrego! Wszyscy bowiem wiemy, co się dzieje, gdy dojdzie do tak gwałtownej zmiany, jeśli jeszcze dodamy do tego zupełną flautę, mamy gotowy przepis na niemal pewną katastrofę. Nie poddaliśmy się jednak – szybko rozlokowaliśmy się w domkach, zjedliśmy obiad i ruszyliśmy do boju! Zaczęliśmy łowić tuż przy naszej bazie, w miejscu w którym w zeszłym tygodniu złowiono 116-tkę, a także 5 spośród 10 największych szczupaków w tym sezonie. Niestety, ryby były nieubłagane. Przez pierwsze 2 godziny łowienia widzieliśmy zaledwie kilka szczupaków długości 70-80 cm odprowadzających nasze przynęty, aż do samej łodzi. Przełom nastąpił, gdy napłynąłem w bardzo płytką zatokę, do której uchodziła jedna z okolicznych rzek. Pierwszych kilka rzutów i… Piotr zapina prawdziwą mamuśkę! Szczęście nie trwa jednak długo, ryba rzuca kilka razy potężnym łbem i wypluwa jerka, którego jeszcze kilka sekund temu miała w pysku. Inna spora ryba wychodzi do przynęty jeszcze dwa razy, niestety tym razem nie jest na tyle zaciekawiona, by zaatakować woblera. Przed zachodem słońca, zmieniam miejscówkę na moją „bankówkę”. Nie mija 5 minut i Radek zapina całkiem przyzwoitego (jak na panujące warunki) szczupaka. Ryba jest wyjątkowo silna – kilkakrotnie odjeżdża, uparcie uciekając w stronę dna. W końcu, gdy wydaje się być zmęczona, próbuję ją podebrać, jednak ona nie daje za wygraną. Ostatkiem sił ryba stawia świecę, po której już zupełnie się uspokaja. Szybkie mierzenie – okazuje się, że esox ma równo 80 centymetrów. Sesja fotograficzna i ryba wraca z powrotem do wody. Tym miłym akcentem zakończyliśmy pierwszy dzień łowienia.
+
+<img src="img/article_2/intext_1.jpg" alt="intext_1">
+
+W poniedziałek rano nadzieja na wielkie ryby z Blekinge znów w nas ożyła. Na niebie pojawiły się delikatne chmury, zaś wiatr nieznacznie marszczył taflę wody. Dosyć szybko złowiliśmy po kilka średniaków, jednak brania ryb zupełnie ustały w momencie, gdy się rozpogodziło. Jako że pogoda była typowo wypoczynkowa, a ryby nie wykazywały się zbytnią chęcią współpracy, dobiliśmy na brzeg, by chwilę odpocząć i zjeść coś ciepłego. Gdy już podładowaliśmy akumulatory, z powrotem zabraliśmy się za łowienie. Do późnego popołudnia zanotowaliśmy kilka niewielkich ryb i pojedyncze, nieśmiałe brania. Ostre słońce i wysoka temperatura nie wpłynęły korzystnie na żerowanie ryb. Podejrzewając, że tego dnia nie zwojujemy już zbyt wiele, postanowiłem, że spróbujemy poszukać okoni w okolicy stromego stoku tuż przy naszej bazie. W ciągu pierwszych kilku rzutów raz po raz czułem delikatne podskubywanie niewielkiego rippera… W następnym rzucie delikatnym sprzętem, czuję tępy opór i jestem niemal pewien, że zahaczyłem o podwodny kabel. Dopiero po kilku sekundach „kabel” ożywa i zaczyna desperacką walkę. Ryba, jak przystało na szczupaki z Blekinge, jest wyjątkowo silna. Za wszelką cenę stara się wysnuć kolejne metry plecionki ze szpuli delikatnego multiplikatora i uciec pomiędzy nabrzeżne głazy. W końcu, szczupak daje za wygraną i ląduje na pokładzie naszej łodzi. Miarka wskazuje 99 cm. Po krótkiej sesji fotograficznej, ryba odpływa, ochlapując mnie przy tym całego.
+
+<img src="img/article_2/intext_2.jpg" alt="intext_2">
+
+Kolejne dni przyniosły wręcz wymarzoną pogodę – wiał dość silny wiatr, zaś niebo naznaczone było pojedynczymi chmurami. Czy można prosić o więcej, będąc na szczupakach? Z dnia na dzień Blekinge coraz bardziej pokazywało pazury. Szczupaki brały praktycznie w każdym miejscu, na które napłynęliśmy i co najważniejsze – nie wybrzydzały! Atakowały jerki, wahadłówki, obrotówki, duże i małe gumy. Dość powiedzieć, że najlepsza spośród miejscówek obdarzyła trójkę uczestników wyprawy przeszło 20 szczupakami w niespełna godzinę! Do szczęścia brakowało nam jedynie ryby, której długość przekroczyłaby magiczne 100 cm…
+
+<img src="img/article_2/intext_3.jpg" alt="intext_3">
+
+W środę po południu Piotr jak zwykle przekomarzał się z Radkiem i rzucił żartobliwie: „obyś tak do końca wyjazdu nic już nie złowił!”. Radek zaśmiał się i wykonał rzut. To, co zdarzyło się później, będziemy wszyscy długo wspominać! Kij wygina się w pałąk, kołowrotek jęczy, powoli poddając się sile ryby i oddaje kolejne metry plecionki. Radek stwierdza, że tym razem ryba jest naprawdę konkretna. Ryba walczy wykonując długie, majestatyczne odjazdy typowe dla „mamusiek”. Walka się przeciąga, jednak w końcu szczupak zaczyna słabnąć i daje za wygraną. Przykładamy esoxa do miarki i okazuje się, że mierzy dokładnie 102 centymetry! Jest po prostu piękny – delikatny złoty odcień łusek, masywny, gruby kark… Podobnie jak poprzednio, zaraz po sesji, ryba zostaje ostrożnie wypuszczona.
+
+<img src="img/article_2/intext_4.jpg" alt="intext_4">
+
+Lepsza sytuacja miała miejsce na łodzi Jacka, który podczas wieczornych opowieści powiedział, że w czwartek złowili „dwa i pół metra ryby” w jednym rzucie! Jak to możliwe? Cała trójka łowiła na jednej łodzi i zadziałało prawo serii, niemal w tym samym momencie zanotowali brania! Jacek najszybciej wyholował swoją 60 cm rybę. Po nieco dłuższej chwili także Rafał podebrał swojego szczupaka – ryba mierzyła 92 centymetry, jednak została niemal natychmiast wypuszczona, nie doczekawszy się sesji zdjęciowej. Dlaczego tak się stało? Wiatr był na tyle silny, że w ekspresowym tempie pchał łódź w stronę przybrzeżnej kamiennej rafy, a kapitan właśnie walczył z największym spośród złowionych dotychczas szczupaków. Jacek i Rafał zarządzili małą roszadę i łódź zaczęła powoli oddalać się od brzegu. W końcu nastąpiła chwila słodkiego triumfu. Po kilku minutach zmagań, ryba znalazła się w „objęciach” Michała. Szczupak mierzył 104 centymetry i stał się jednocześnie nową „życiówką” Michała!
+
+<img src="img/article_2/intext_5.jpg" alt="intext_5">
+
+Do końca wyjazdu złowiliśmy jeszcze wiele szczupaków, jednak większość stanowiły „średniaki” długości 70-80 cm. Bilans zamknęliśmy z przeszło 500 rybami, wśród których było kilka sztuk, o długości przekraczającej 90 cm (niestety nie wyczerpaliśmy wszystkich liczb z zakresu 90-99) i ponad 30 szczupaków pomiędzy 80 a 89 cm.
+
+<img src="img/article_2/intext_6.jpg" alt="intext_6">
+
+Szkiery w Blekinge to łowisko absolutnie wyjątkowe w skali całego szwedzkiego wybrzeża. Co sprawia, że łowisko to jest aż tak wyjątkowe? Po pierwsze, liczna populacja szczupaków! Najczęściej łowi się ryby długości 70-80 cm, jednak ponadmetrowe esoxy to tutaj niemal codzienność. Warto pamiętać, że nie liczy się tylko wielkość ryby, lecz także jej uroda, a tej szczupakom z Blekinge akurat nie brakuje! Tutejsze szczupaki mają rzadko spotykany złocisty koloryt, który idzie w parze z niezbyt smukłą sylwetką… Pomimo że cały rejon kojarzony jest głównie z tymi właśnie rybami, nie sposób nie wspomnieć o okoniach! Garbusy nie są aż tak liczne jak szczupaki, jednak rekompensują ten fakt imponującymi gabarytami. W dobre dni rzadko łowi się ryby mniejsze niż 40 centymetrów, a średnia ilość okoni idzie w dziesiątki… Szkiery w południowej Szwecji różnią się nieco od wybrzeża spotykanego w środkowej części kraju. Na krajobraz archipelagu składają się zarówno pojedyncze nagie skały, jak i niezbyt duże, niemal pozbawione roślinności kamienne wysepki. Z kolei, decydując się na łowienie w okolicy dużych miast, jak np. Karlskrona, nie tylko mamy szansę na wspaniały wędkarski wypoczynek, lecz także na otarcie się o absolutnie szczególne miejsca będące świadkami burzliwej historii Szwecji ciągnącej się od epoki Wikingów, aż do chwili obecnej. Ostatnią rzeczą, o której warto wspomnieć, mówiąc o Blekinge jest charakterystyka łowiska. Szkier można w zasadzie podzielić na dwie części – zatokową i tę graniczącą z otwartym morzem. Wybierając ten pierwszy rodzaj łowiska, zobaczymy znajomy krajobraz – wynurzające się łodygi podwodnej roślinności i brzeg porośnięty gęstymi i szerokimi trzcinowiskami. To właśnie tutaj wczesną wiosną i późną jesienią łowione są największe szczupaki! Zgoła odmienna jest charakterystyka łowisk graniczących z otwartym morzem. Najczęściej obławia się skraj kamiennych raf, bądź też brzegi większych wysp. Od zatok, miejscówki te odróżnia przede wszystkim wielkość łowionych ryb – niestety, są to na ogół średniaki. Warto dodać, że tzw. „kamienne szczupaki” to prawdziwi strongmani, nawet niewielkie ryby, mierzące 70-80 centymetrów, potrafią dać ostro popalić, niejednokrotnie przebijając zatokowe „metrówki”…
+
+Michał Szewczuk, 11.2015
+    `,
+    },
+    {
+        title: "Syn, Tata i ryby…",
+        images: [
+            "img/article_3/intext_1.jpg",
+            "img/article_3/intext_2.jpg",
+            "img/article_3/intext_3.jpg",
+            "img/article_3/intext_4.jpg",
+            "img/article_3/intext_5.jpg",
+        ],
+        text: `
+        Chyba do końca życia nie zapomnę pierwszej ryby, którą złowiłem w wieku 6-7 lat. Pierwsza płotka, którą złowiłem na spławikówkę mojego taty. Wędkę dostałem tylko do potrzymania w rękach. Spławik szybko zatonął. Tata powiedział głośno „Pociągnij do góry”. Ja to zrobiłem i na końcu zestawu zaczęła walczyć niewielka rybka. To była moja pierwsza, niezapomniana! Później przyszedł czas na łowienie większych ryb, pierwszych drapieżników. Dostałem od taty swój pierwszy spinning i kołowrotek. Tata nawinął mi grubą żyłkę, na końcu zawiązał przypon i dał mi w prezencie kilka przynęt. Oj jaki byłem z tego dumny! Miałem swój spinning i 4 różne metalowe przynęty – trzy wahadłówki i jedną wirówkę. Nadszedł wolny weekend i tata zabrał mnie nad Narew w okolicach Pułtuska. Tam pojechaliśmy nad rozlewiska Narwi. Tata z kolegą, rozstawili się ze spławikówkami, a ja wziąłem swój spinning i poszedłem łowić dosłownie kilkadziesiąt metrów dalej. Po niedługim czasie, mam branie, potężne, nie do opisania. Ryba walczy zaciekle i w zasadzie zaczyna wciągać mnie do wody… Jest ogromna! Wołam w niebogłosy „Tato szybko. Mam wielką rybę”. Tata przyszedł do mnie z podbierakiem i jak ryba była już blisko brzegu, podebrał ją. Jest! Mam ją! Jest wielka! Emocje sięgnęły zenitu! Jestem zachwycony! Tak zaczęła się moja przygoda z wędkarstwem. Wsiąkłem w nią na dobre. Teraz jak sobie o tym pomyślę, to trochę śmiać mi się chce. Szczupak, którego złowiłem miał pewnie z 50 cm, ale wtedy wydawał mi się ogromny, silny i groźny… Hehehe. Jednak do końca życia nie zapomnę tej chwili. Moje wspomnienia przywołują tę chwilę. Ogromne emocje i pewnie wielka adrenalina, której kiedyś nie byłem w stanie określić.
+        <img src="img/article_3/intext_1.jpg" alt="intext_1">
+W moim dzisiejszym wędkarstwie, a jest to moja największa życiowa pasja, takie chwile euforii przychodzą już tylko wtedy, kiedy uda mi się złowić naprawdę konkretny okaz. I nie przesadzam. Złowiłem już wiele ryb w swoim życiu i każda złowiona ryba sprawia mi dużą satysfakcję. Jednak prawdziwa adrenalina leje się ze mnie tylko podczas holu wielkich, rekordowych ryb. I to nie ważne, czy jest to rekordowy pstrąg, szczupak, czy sum. Ryba musi dać mi popalić, abym poczuł to, co czułem jak złowiłem tego swojego pierwszego „wielkiego” szczupaka. Pasja wędkarska jest ze mną od dziecka. Zawdzięczam to mojemu tacie! To on od małego zabierał mnie na Mazury, nad Wisłę, czy Narew. To pod jego okiem złowiłem swoje pierwsze ryby…
+
+W dzisiejszych czasach, wielu z nas ma bardzo ograniczony czasu. Ojcowie często wracają późno do domu, niektórzy nie mają wolnych weekendów. Wielu tatusiów chciałoby spróbować się w wędkarstwie, ale po prostu brakuje im czasu na zaangażowanie się w temat od początku. A co tu dopiero mówić o zabraniu syna na ryby, skoro sami nie mamy na to czasu wystarczająco, aby wgryźć się w temat. Wędkarstwo wbrew pozorom, tak naprawdę nie jest takie proste i wymaga od nas wielu godzin poświęconego czasu. Aby „ogarnąć” te wszystkie metody, przynęty, zanęty, spławiki, kołowrotki i wędki… W dzisiejszych czasach, gdzie mamy ogromny wybór sprzętu, gdzie jest wiele technik połowu, czy metod łowienia, tym bardziej staje się to skomplikowane dla kogoś kto chciałby spróbować od zera i to jeszcze z własnym dzieckiem. Natłok informacji, wielki wybór sprzętowy, tak naprawdę nie ułatwia zadania. A wręcz je komplikuje… Dlatego też, warto rozpocząć swoją przygodę z wędkarstwem i zabrać swojego syna na wyprawę wędkarską, czy szkolenie wędkarskie, zorganizowane przez doświadczonych pasjonatów tego hobby. Pod okiem profesjonalistów, spróbować postawić swoje pierwsze kroki w wędkarstwie. Przyswoić w krótkim czasie ogromną wiedzę, którą tak naprawdę trzeba zdobywać latami! Spróbować odnaleźć się w tym wszystkim i wraz z synem spróbować złowić swoją pierwszą rybę, pod opieką przewodnika wędkarskiego. Taka wyprawa wraz z profesjonalistą jest świetnym rozwiązaniem, szczególnie dla ojców, którzy na co dzień nie mają dużo czasu, a chcą wraz ze swoim synem spędzić miłe chwile na łonie natury, odpoczywając i łowiąc ryby.
+
+<img src="img/article_3/intext_2.jpg" alt="intext_2">
+
+Od 9 lat jestem przewodnikiem wędkarskim. Swoją pasję, połączyłem z pracą. Bardzo chętnie dzielę się swoją zdobytą wiedzą, wraz z moimi Klientami, których goszczę na wspólnych wyprawach. Przez te wszystkie lata spotkałem się z wieloma ludźmi, w tym z ojcami i ich synami, którzy dzięki naszej pomocy, realizują swoje hobby, czyli wędkarstwo. Sami nie mają czasu na rozgryzanie wielu niuansów związanych z wędkarstwem, nie mają czasu na kupowanie sprzętu, a zależy im, aby po prostu spędzić swój czas z synem, łowiąc ryby w dobrym towarzystwie. Za nami wiele udanych wypraw, wielu zadowolonych ojców, patrzących na szczęście swoich dzieci! Wiele udanych holi dużych ryb i wiele miłych chwil spędzonych z dziką naturą w tle… Czego chcieć więcej, jak widok uśmiechniętego ojca, wraz ze szczęśliwym synem, wypuszczających wielką rybę z powrotem do wody…
+
+<img src="img/article_3/intext_3.jpg" alt="intext_3">
+
+Zapraszam na wyprawy wędkarskie, gdzie ojciec wraz z synem może realizować swoje hobby, pod opieką profesjonalnych przewodników – www.przewodnicywedkarscy.pl. Wyprawy organizujemy zarówno w Polsce, jak i w Europie oraz w różnych miejscach na Świecie.
+
+<img src="img/article_3/intext_4.jpg" alt="intext_4">
+
+Tych ojców, którzy jeszcze nie zaczęli swojej przygody wędkarskiej lub chcą podszlifować swoją wiedzę pod okiem profesjonalnych instruktorów, zapraszam do jedynej w Polsce szkoły wędkarskiej – www.naukawedkowania.pl. Tutaj wraz ze swoimi dziećmi, możecie nauczyć się podstaw łowienia różnymi technikami i metodami oraz rozwinąć swoje wcześniej zdobyte doświadczenia.
+
+<img src="img/article_3/intext_5.jpg" alt="intext_5">
+
+Zapraszam na wspólne wyprawy!
+
+Sebastian „rognis_oko” Kalkowski, 07.2016`,
+    },
+];

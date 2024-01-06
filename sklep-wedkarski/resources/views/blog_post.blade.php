@@ -36,7 +36,8 @@
         }">
         <img src="${articles[articleId].images[i]}" alt="img_${i}"></a> -->
     </div>
-    <a id="go_back" href="{{  url('/blog')  }}"><i class="fa-solid fa-chevron-left fa-fade"></i>   Wróć</a>
+    <a href="{{  url('/blog')  }}"><div id="go_back"><i class="fa-solid fa-chevron-left fa-fade"></i>   Wróć</div></a>
+    
 
 
     </main>

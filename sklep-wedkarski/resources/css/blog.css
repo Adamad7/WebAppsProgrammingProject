@@ -7,7 +7,7 @@ h2.short {
     height: 300px;
     width: 450px;
     overflow: hidden;
-    border: 2px solid #001E42;
+    border: 2px solid #001e42;
     border-radius: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -56,7 +56,7 @@ article.small img {
     z-index: 1;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    border: 2px solid #001E42;
+    border: 2px solid #001e42;
 }
 
 article.small .article_title_and_button {
@@ -69,7 +69,7 @@ article.small .article_title_and_button {
     z-index: 2;
     margin-left: -20px;
     background-color: white;
-    border: 2px solid #001E42;
+    border: 2px solid #001e42;
     overflow: hidden;
 }
 
@@ -82,22 +82,29 @@ article.small .article_title {
     font-size: 1.1em;
 }
 
-article.small button {
+article.small a {
     width: 180px;
     height: 50px;
     outline: none;
     border: none;
-    border-top: 2px solid #001E42;
-    border-left: 2px solid #001E42;
+    border-top: 2px solid #001e42;
+    border-left: 2px solid #001e42;
     border-top-left-radius: 20px;
-    background-color: #6A99B6;
+    background-color: #6a99b6;
     font-size: 1.1em;
+    text-decoration: none;
+    text-align: center;
+    color: black;
 }
 
-article.small button:hover {
-    background-color: #55A630;
+article.small a:visited {
+    color: black;
 }
 
+article.small a:hover {
+    background-color: #55a630;
+    color: black;
+}
 
 article.full {
     flex-direction: column;
@@ -116,9 +123,8 @@ article.full img {
     margin-right: auto;
     margin-block: 20px;
     border-radius: 20px;
-    border: 2px solid #001E42;
+    border: 2px solid #001e42;
 }
-
 
 #go_back {
     position: fixed;
@@ -128,14 +134,21 @@ article.full img {
     width: 200px;
     outline: none;
     border: none;
-    border: 2px solid #001E42;
+    border: 2px solid #001e42;
     border-radius: 15px;
-    background-color: #6A99B6;
+    background-color: #6a99b6;
     font-size: 1.3em;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #go_back:hover {
-    background-color: #55A630;
+    background-color: #55a630;
+    color: black;
 }
 
 #gallery {
@@ -145,13 +158,12 @@ article.full img {
     justify-content: center;
 }
 
-
 #gallery a {
     width: 250px;
     height: 160px;
     margin: 5px;
     overflow: hidden;
-    border: 2px solid #001E42;
+    border: 2px solid #001e42;
     border-radius: 15px;
 }
 
@@ -159,7 +171,6 @@ article.full img {
     width: 250px;
     height: 160px;
 }
-
 
 @media screen and (max-width: 1024px) {
     article.small {
@@ -171,9 +182,7 @@ article.full img {
     }
 }
 
-
 @media screen and (max-width: 768px) {
-
     h2.short {
         width: 250px;
     }
@@ -183,7 +192,7 @@ article.full img {
         height: 180px;
         width: 250px;
         overflow: hidden;
-        border: 2px solid #001E42;
+        border: 2px solid #001e42;
         border-radius: 20px;
         margin-left: auto;
         margin-right: auto;
@@ -220,7 +229,7 @@ article.full img {
         font-size: 0.9em;
     }
 
-    article.small button {
+    article.small a {
         width: 140px;
         height: 40px;
         font-size: 1em;
@@ -228,7 +237,6 @@ article.full img {
 }
 
 @media screen and (max-width: 425px) {
-
     h2.short {
         width: 60%;
     }
@@ -238,7 +246,7 @@ article.full img {
         height: 180px;
         width: 80%;
         overflow: hidden;
-        border: 2px solid #001E42;
+        border: 2px solid #001e42;
         border-radius: 20px;
         margin-left: auto;
         margin-right: auto;
@@ -275,9 +283,9 @@ article.full img {
         font-size: 0.9em;
     }
 
-    article.small button {
+    article.small a {
         width: 100px;
         height: 30px;
-        font-size: 1em;
+        font-size: 0.9em;
     }
 }

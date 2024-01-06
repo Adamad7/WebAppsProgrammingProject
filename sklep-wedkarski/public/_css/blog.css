@@ -16,9 +16,6 @@ h2.short {
 #slider img {
     height: 300px;
     width: 450px;
-}
-
-#slider img {
     position: absolute;
     top: 0;
     left: 0;
@@ -131,7 +128,7 @@ article.full img {
     bottom: 40px;
     right: 50px;
     height: 50px;
-    width: 160px;
+    width: 200px;
     outline: none;
     border: none;
     border: 2px solid #001e42;
@@ -289,3 +286,4 @@ article.full img {
         font-size: 0.9em;
     }
 }
+
