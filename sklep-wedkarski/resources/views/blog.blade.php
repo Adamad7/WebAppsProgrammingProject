@@ -13,9 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/blog.css') }}">
 
     <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script src="{{ asset('js/lightbox.js') }}"></script>
     <script src="{{ asset('js/cart.js') }}"></script>
-    <script src="{{ asset('js/blog.js') }}"></script>
 </head>
 
 <body>

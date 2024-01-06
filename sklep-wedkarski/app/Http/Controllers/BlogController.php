@@ -33,12 +33,6 @@ class BlogController extends Controller
         $comment->blog_post_id = $id;
         $comment->save();
 
-
-        // $blogPost = BlogPost::find($id);
-        // $blogPost->comments()->create([
-        //     'content' => $request->content,
-        //     'user_id' => auth()->user()->id,
-        // ]);
         return redirect()->back();
     }
 
@@ -46,6 +40,30 @@ class BlogController extends Controller
     {
         $blogPost = BlogPost::find($blogPostId);
         $blogPost->comments()->where('id', $commentId)->delete();
+        return redirect()->back();
+    }
+
+    public function editComment($blogPostId, $commentId)
+    {   
+
+        $editedComment = BlogPostComment::find($commentId);
+        if(auth()->user()->id == $editedComment->user_id)
+        {
+            return redirect()->route('blog.show', $blogPostId)->with(['edited_comment' => $editedComment]);
+        }
+        else {
+            return redirect()->back()->with(['edit_error' => 'Nie możesz edytować komentarza, który nie należy do Ciebie']);
+        }
+        
+    }
+
+    public function applyCommentEdit(Request $request, $blogPostId, $commentId)
+    {
+        $request->validate([
+            'edit_content' => 'required|min:10|max:1000',
+        ]);
+        $blogPost = BlogPost::find($blogPostId);
+        $blogPost->comments()->where('id', $commentId)->update(['content' => $request->edit_content]);
         return redirect()->back();
     }
 }

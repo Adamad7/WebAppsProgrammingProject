@@ -13,9 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/blog.css') }}">
 
     <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script src="{{ asset('js/lightbox.js') }}"></script>
     <script src="{{ asset('js/cart.js') }}"></script>
-    <script src="{{ asset('js/blog.js') }}"></script>
 </head>
 
 <body>
@@ -27,17 +25,6 @@
             {!! $blogPost->content !!}
         </article>
 
-        <!-- <h2 class="short">Gelera</h2>
-        <div id="gallery"> -->
-            <!-- gallery -->
-            <!-- <a href="${
-            articles[articleId].images[i]
-        }" target="_blank" data-lightbox="galeria" data-title="Zdjęcie ${
-            i + 1
-        }">
-        <img src="${articles[articleId].images[i]}" alt="img_${i}"></a> -->
-        
-        <!-- </div> -->
         <a href="{{  url('/blog')  }}">
             <div id="go_back"><i class="fa-solid fa-chevron-left fa-fade"></i> Wróć</div>
         </a>
@@ -45,25 +32,26 @@
 
         <h2 class="short">Komentarze</h2>
 
+        @if (!session('edited_comment'))
         <div class="add_comment">
             @auth
 
             @if ($errors->any())
-                <div class="errors">
-                    <ul>
-                @foreach ($errors->all() as $error)
+            <div class="errors">
+                <ul>
+                    @foreach ($errors->all() as $error)
                     <li>
-                    {{$error}}
+                        {{$error}}
                     </li>
-                @endforeach
-                    </ul>
-                </div>
+                    @endforeach
+                </ul>
+            </div>
             @endif
 
 
 
             <div class="add_comment_form">
-                <form action="{{url("blog/{$blogPost->id}")}}" method="POST">
+                <form action="{{route('blog.add_comment', ['id' => $blogPost->id])}}" method="POST">
                     @csrf
                     <textarea name="content" id="content" cols="50" rows="5" placeholder="Treść komentarza"></textarea>
                     <input class="add_comment_button" type="submit" value="Dodaj komentarz"></input>
@@ -76,24 +64,51 @@
             <div class="login_to_comment">Zaloguj się, aby dodać komentarz</div>
             @endguest
         </div>
+        @endif
 
 
-
+        
 
 
         @foreach ($blogPost->comments as $comment)
         <div class="comment">
             <div class="comment_author">{{$comment->author->name}}</div>
-            <div class="comment_content">{{$comment->content}}</div>
+            <div class="comment_content">        
+
+
+
+            @if (session('edited_comment') && session('edited_comment')->id == $comment->id)
+            <form action="{{route('blog.apply_comment_edit', ['blogPost' => $blogPost->id, 'comment' => $comment->id])}}" method="POST">
+                @csrf
+                @method('PUT')
+                <textarea name="edit_content" id="edit_content" cols="50" rows="5"
+                    placeholder="Treść komentarza">{{$comment->content}}</textarea>
+                <input class="add_comment_button" type="submit" value="Zapisz"></input>
+            </form>
+            @else
+                {{$comment->content}}
+            @endif
+            </div>
+
+
+
             <div class="comment_date">{{$comment->created_at}}</div>
             @if (auth()->user() != null)
-                @if (auth()->user()->id == $comment->user_id)
-                <form action="{{url("blog/{$blogPost->id}/{$comment->id}")}}" method="POST">
+            @if (auth()->user()->id == $comment->user_id)
+            <div>
+                <form action="{{route('blog.delete_comment', ['blogPost' => $blogPost->id, 'comment' => $comment->id])}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <input class="delete_comment_button" type="submit" value="Usuń">
                 </form>
-                @endif
+                <form action="{{route('blog.edit_comment', ['blogPost' => $blogPost->id, 'comment' => $comment->id])}}"
+                    method="POST">
+                    @csrf
+                    @method('PUT')
+                    <input class="edit_comment_button" type="submit" value="Edytuj">
+                </form>
+            </div>
+            @endif
             @endif
         </div>
         @endforeach

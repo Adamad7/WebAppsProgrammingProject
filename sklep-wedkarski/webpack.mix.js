@@ -13,7 +13,6 @@ const mix = require("laravel-mix");
 
 mix.setPublicPath("public");
 mix.js("resources/js/app.js", "public/js")
-    .js("resources/js/blog.js", "public/js")
     .js("resources/js/bootstrap.js", "public/js")
     .js("resources/js/calendar.js", "public/js")
     .js("resources/js/cart.js", "public/js")
