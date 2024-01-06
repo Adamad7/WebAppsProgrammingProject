@@ -172,6 +172,129 @@ article.full img {
     height: 160px;
 }
 
+.comment {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-block: 20px;
+    border-radius: 20px;
+    border: 2px solid #001e42;
+    background-color: white;
+    overflow: hidden;
+}
+
+.comment_author {
+    font-size: 1em;
+    font-weight: bold;
+    max-width: 60%;
+    min-width: 10%;
+    width: fit-content;
+    padding-inline: 10px;
+    border-bottom-right-radius: 20px;
+    border-right: solid 2px #001e42;
+    border-bottom: solid 2px #001e42;
+    background-color: #6a99b6;
+    color: black;
+    text-align: center;
+    padding-block: 5px;
+    padding-inline: 10px;
+}
+
+.comment_content {
+    font-size: 1em;
+    padding: 10px;
+    line-height: 1.3em;
+}
+
+.comment_date {
+    font-size: 0.8em;
+    padding: 10px;
+    padding-top: 0;
+    text-align: right;
+}
+
+.add_comment {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-block: 20px;
+    border-radius: 20px;
+    border: 2px solid #001e42;
+    background-color: white;
+    overflow: hidden;
+}
+
+.login_to_comment {
+    padding: 10px;
+    text-align: center;
+}
+
+.add_comment_form {
+    padding: 10px;
+}
+
+.add_comment_form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.errors {
+    color: red;
+    font-size: 0.9em;
+}
+
+.add_comment_form form textarea {
+    width: 90%;
+    height: 100px;
+    margin-block: 10px;
+    border-radius: 20px;
+    border: 2px solid #001e42;
+    resize: none;
+    padding: 10px;
+    font-size: 1em;
+}
+
+.add_comment_button {
+    width: 180px;
+    height: 30px;
+    outline: none;
+    border: none;
+    border: 2px solid #001e42;
+
+    border-radius: 20px;
+    background-color: #6a99b6;
+    font-size: 0.9em;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+}
+
+.add_comment_button:hover {
+    background-color: #55a630;
+}
+
+.delete_comment_button {
+    width: 80px;
+    height: 30px;
+    outline: none;
+    border: none;
+    border-top: 2px solid #001e42;
+    border-right: 2px solid #001e42;
+    border-top-right-radius: 20px;
+    background-color: red;
+    font-size: 0.9em;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    padding-left: -2px;
+    padding-bottom: -2px;
+}
+
 @media screen and (max-width: 1024px) {
     article.small {
         width: 90%;

@@ -23,6 +23,8 @@ Route::get('/', function () {
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog.show');
+Route::post('/blog/{id}', [BlogController::class, 'addComment'])->name('blog.add_comment');
+Route::delete('/blog/{blogPost}/{comment}', [BlogController::class, 'deleteComment'])->name('blog.delete_comment');
 
 Route::get('/calendar', function () {
     return view('calendar');
