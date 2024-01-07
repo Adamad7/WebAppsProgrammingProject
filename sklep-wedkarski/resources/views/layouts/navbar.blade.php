@@ -20,6 +20,11 @@
 
     @auth
     <a href="{{route('profile.edit')}}">{{  Auth::user()->name  }}</a>
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+            Wyloguj się</a>
     @else
     <a href="{{ route('login') }}">Zaloguj się</a>
 

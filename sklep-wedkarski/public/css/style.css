@@ -29,6 +29,10 @@ nav {
     line-height: 1;
 }
 
+nav form {
+    display: flex;
+}
+
 nav a {
     font-size: 16px;
     color: white;
@@ -161,6 +165,16 @@ h2.index_title {
         padding: 14px 0px;
         text-decoration: none;
         width: 50%;
+    }
+
+    nav form {
+        padding: 0px 0px;
+        text-decoration: none;
+        width: 100%;
+    }
+
+    nav form a {
+        width: 100%;
     }
 
     .dropdown {
