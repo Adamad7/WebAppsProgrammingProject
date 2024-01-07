@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/blog.css') }}">
+    <link rel="stylesheet  type="text/css"" href="{{ asset('css/blog.css') }}">
 
     <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script src="{{ asset('js/cart.js') }}"></script>
@@ -95,7 +95,7 @@
             <div class="comment_date">{{$comment->created_at}}</div>
             @if (auth()->user() != null)
             @if (auth()->user()->id == $comment->user_id)
-            <div>
+            <div class="comment_buttons">
                 <form action="{{route('blog.delete_comment', ['blogPost' => $blogPost->id, 'comment' => $comment->id])}}" method="POST">
                     @csrf
                     @method('DELETE')

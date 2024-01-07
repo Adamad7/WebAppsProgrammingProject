@@ -118,7 +118,7 @@ article.full {
 
 article.full img {
     display: block;
-    width: 60%;
+    width: 500px;
     margin-left: auto;
     margin-right: auto;
     margin-block: 20px;
@@ -149,27 +149,6 @@ article.full img {
 #go_back:hover {
     background-color: #55a630;
     color: black;
-}
-
-#gallery {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-#gallery a {
-    width: 250px;
-    height: 160px;
-    margin: 5px;
-    overflow: hidden;
-    border: 2px solid #001e42;
-    border-radius: 15px;
-}
-
-#gallery img {
-    width: 250px;
-    height: 160px;
 }
 
 .comment {
@@ -235,20 +214,23 @@ article.full img {
 
 .add_comment_form {
     padding: 10px;
-}
-
-.add_comment_form form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+/* .add_comment_form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} */
 
 .errors {
     color: red;
     font-size: 0.9em;
 }
 
-.add_comment_form form textarea {
+textarea {
     width: 90%;
     height: 100px;
     margin-block: 10px;
@@ -278,7 +260,14 @@ article.full img {
     background-color: #55a630;
 }
 
-.delete_comment_button {
+.comment_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.delete_comment_button,
+.edit_comment_button {
     width: 80px;
     height: 30px;
     outline: none;
@@ -291,8 +280,21 @@ article.full img {
     text-decoration: none;
     text-align: center;
     color: black;
-    padding-left: -2px;
-    padding-bottom: -2px;
+}
+
+.delete_comment_button:hover {
+    background-color: darkred;
+}
+
+.edit_comment_button {
+    border-left: 2px solid #001e42;
+    border-top-left-radius: 20px;
+    background-color: #6a99b6;
+    margin-left: 20px;
+}
+
+.edit_comment_button:hover {
+    background-color: #55a630;
 }
 
 @media screen and (max-width: 1024px) {
@@ -357,27 +359,15 @@ article.full img {
         height: 40px;
         font-size: 1em;
     }
+
+    article.full img {
+        width: 60%;
+    }
 }
 
 @media screen and (max-width: 425px) {
     h2.short {
         width: 60%;
-    }
-
-    #slider {
-        position: relative;
-        height: 180px;
-        width: 80%;
-        overflow: hidden;
-        border: 2px solid #001e42;
-        border-radius: 20px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    #slider img {
-        height: 180px;
-        width: 100%;
     }
 
     article.small {
