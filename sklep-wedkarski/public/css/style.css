@@ -3,7 +3,6 @@ body {
     font-family: Arial;
     padding: 0;
     margin: 8px;
-    /* box-sizing: border-box; */
 }
 
 footer {
@@ -69,6 +68,7 @@ nav a {
 nav a:hover,
 .dropdown:hover .dropbtn {
     background-color: #55a630;
+    border-radius: 15px;
 }
 
 .dropdown-content {
@@ -76,6 +76,7 @@ nav a:hover,
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
+    border-radius: 15px;
 }
 
 .dropdown-content a {
@@ -85,6 +86,7 @@ nav a:hover,
     display: block;
     text-align: left;
     position: sticky;
+    border-radius: 15px;
 }
 
 .dropdown-content a:hover {
@@ -166,7 +168,7 @@ h2.index_title {
     display: block;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
     nav {
         width: 100%;
         flex-wrap: wrap;
@@ -186,6 +188,10 @@ h2.index_title {
 
     nav form a {
         width: 100%;
+    }
+
+    main {
+        margin-top: 200px;
     }
 
     .dropdown {
