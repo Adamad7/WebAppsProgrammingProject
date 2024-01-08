@@ -32,15 +32,14 @@ class BlogController extends Controller
         $comment->user_id = auth()->user()->id;
         $comment->blog_post_id = $id;
         $comment->save();
-
-        return redirect()->back();
+        return redirect()->back()->with(['scroll' => true, 'scroll_to' => hash('sha256', $comment->id)]);
     }
 
     public function deleteComment($blogPostId, $commentId)
     {
         $blogPost = BlogPost::find($blogPostId);
         $blogPost->comments()->where('id', $commentId)->delete();
-        return redirect()->back();
+        return redirect()->back()->with(['scroll' => true]);
     }
 
     public function editComment($blogPostId, $commentId)
@@ -49,10 +48,10 @@ class BlogController extends Controller
         $editedComment = BlogPostComment::find($commentId);
         if(auth()->user()->id == $editedComment->user_id)
         {
-            return redirect()->route('blog.show', $blogPostId)->with(['edited_comment' => $editedComment]);
+            return redirect()->route('blog.show', $blogPostId)->with(['edited_comment' => $editedComment, 'scroll' => true, 'scroll_to' => hash('sha256', $commentId)]);
         }
         else {
-            return redirect()->back()->with(['edit_error' => 'Nie możesz edytować komentarza, który nie należy do Ciebie']);
+            return redirect()->back()->with(['edit_error' => 'Nie możesz edytować komentarza, który nie należy do Ciebie', 'scroll' => true]);
         }
         
     }
@@ -65,6 +64,6 @@ class BlogController extends Controller
         $blogPost = BlogPost::find($blogPostId);
         $stripped =  filter_var($request->edit_content, FILTER_SANITIZE_STRING);
         $blogPost->comments()->where('id', $commentId)->update(['content' => $stripped]);
-        return redirect()->back();
+        return redirect()->back()->with(['scroll' => true, 'scroll_to' => hash('sha256', $commentId)]);
     }
 }

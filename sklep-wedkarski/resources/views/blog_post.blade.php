@@ -14,6 +14,21 @@
 
     <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script src="{{ asset('js/cart.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+        @if (session('scroll'))
+            @if (session('scroll_to'))
+                $('html, body').animate({
+                    scrollTop: $('#{{session('scroll_to')}}').offset().top
+                }, 0, 'swing');
+            @else
+            $('html, body').animate({
+                scrollTop: $('#comments').offset().top
+            }, 0, 'swing');
+            @endif
+        @endif
+    });
+    </script>
 </head>
 
 <body>
@@ -69,9 +84,9 @@
 
         
 
-
+        <div id='comments'>
         @foreach ($blogPost->comments as $comment)
-        <div class="comment">
+        <div class="comment" id="{{hash('sha256', $comment->id)}}">
             <div class="comment_author">{{$comment->author->name}}</div>
             <div class="comment_content">        
 
@@ -82,7 +97,7 @@
                 @csrf
                 @method('PUT')
                 <textarea name="edit_content" id="edit_content" cols="50" rows="5"
-                    placeholder="Treść komentarza">{{$comment->content}}</textarea>
+                    placeholder="Treść komentarza">{!!nl2br(e($comment->content))!!}</textarea>
                 <input class="add_comment_button" type="submit" value="Zapisz"></input>
             </form>
             @else
@@ -93,8 +108,8 @@
 
 
             <div class="comment_date">{{$comment->created_at}}</div>
-            @if (auth()->user() != null)
-            @if (auth()->user()->id == $comment->user_id)
+            @if (!session('edited_comment') && auth()->user() != null && auth()->user()->id == $comment->user_id)
+            
             <div class="comment_buttons">
                 <form action="{{route('blog.delete_comment', ['blogPost' => $blogPost->id, 'comment' => $comment->id])}}" method="POST">
                     @csrf
@@ -108,10 +123,11 @@
                     <input class="edit_comment_button" type="submit" value="Edytuj">
                 </form>
             </div>
-            @endif
+            
             @endif
         </div>
         @endforeach
+        </div>
 
     </main>
 
