@@ -4,224 +4,222 @@ var currentItem;
 
 const items = {
     spinning_rods: [
-        {
-            name: "Wędka Jaxon Tenesa Easy Spin",
-            img: "img/item_images/spinning_rod_1.jpg",
-            manufacturer: "Jaxon",
-            price: [60, 80, 90, 100],
-            length: [210, 240, 270, 300],
-            castingWeight: [20, 30, 40, 60, 75],
-            sections: [2, 2, 3, 3],
-            transportlength: [120, 130, 150, 190],
-            weight: [260, 280, 300, 340],
-        },
-        {
-            name: "Wędka Dragon Express Spinn 35",
-            img: "img/item_images/spinning_rod_2.jpg",
-            manufacturer: "Dragon",
-            price: [160, 180, 190, 210],
-            length: [190, 220, 245, 305],
-            castingWeight: [18, 25, 30, 35, 42],
-            sections: [2, 2, 3, 3],
-            transportlength: [110, 125, 142, 180],
-            weight: [180, 210, 250, 290],
-        },
-        {
-            name: "Wędka Mikado Bixlite Spin",
-            img: "img/item_images/spinning_rod_3.jpg",
-            manufacturer: "Mikado",
-            price: [100, 120, 150, 160],
-            length: [198, 214, 244, 260],
-            castingWeight: [7, 9, 12, 14, 16],
-            sections: [2, 2, 2, 3],
-            transportlength: [105, 116, 133, 150],
-            weight: [80, 110, 119, 135],
-        }
+        // {
+        //     name: "Wędka Jaxon Tenesa Easy Spin",
+        //     img: "img/item_images/spinning_rod_1.jpg",
+        //     manufacturer: "Jaxon",
+        //     price: [60, 80, 90, 100],
+        //     length: [210, 240, 270, 300],
+        //     castingWeight: [20, 30, 40, 60, 75],
+        //     sections: [2, 2, 3, 3],
+        //     transportlength: [120, 130, 150, 190],
+        //     weight: [260, 280, 300, 340],
+        // },
+        // {
+        //     name: "Wędka Dragon Express Spinn 35",
+        //     img: "img/item_images/spinning_rod_2.jpg",
+        //     manufacturer: "Dragon",
+        //     price: [160, 180, 190, 210],
+        //     length: [190, 220, 245, 305],
+        //     castingWeight: [18, 25, 30, 35, 42],
+        //     sections: [2, 2, 3, 3],
+        //     transportlength: [110, 125, 142, 180],
+        //     weight: [180, 210, 250, 290],
+        // },
+        // {
+        //     name: "Wędka Mikado Bixlite Spin",
+        //     img: "img/item_images/spinning_rod_3.jpg",
+        //     manufacturer: "Mikado",
+        //     price: [100, 120, 150, 160],
+        //     length: [198, 214, 244, 260],
+        //     castingWeight: [7, 9, 12, 14, 16],
+        //     sections: [2, 2, 2, 3],
+        //     transportlength: [105, 116, 133, 150],
+        //     weight: [80, 110, 119, 135],
+        // }
     ],
     carp_rods: [
-        {
-            name: "Wędka Mikado Sasori Feeder",
-            img: "img/item_images/carp_rod_1.jpg",
-            manufacturer: "Mikado",
-            price: [160, 180],
-            length: [220, 255],
-            castingWeight: [20, 30],
-            sections: [2, 2],
-            transportlength: [150, 180],
-            weight: [230, 245],
-        },
-        {
-            name: "Wędka Zaffira Tele Carp Rt Jaxon",
-            img: "img/item_images/carp_rod_2.jpg",
-            manufacturer: "Jaxon",
-            price: [260, 280, 300],
-            length: [170, 190, 230],
-            castingWeight: [60, 70, 100],
-            sections: [2, 2, 3],
-            transportlength: [180, 190, 210],
-            weight: [280, 300, 325],
-        },
-        {
-            name: "Wędka Mikado Ultraviolet Feeder",
-            img: "img/item_images/carp_rod_3.jpg",
-            manufacturer: "Mikado",
-            price: [190, 215],
-            length: [185, 212],
-            castingWeight: [70, 85],
-            sections: [2, 2],
-            transportlength: [130, 145],
-            weight: [195, 235],
-        }
+        // {
+        //     name: "Wędka Mikado Sasori Feeder",
+        //     img: "img/item_images/carp_rod_1.jpg",
+        //     manufacturer: "Mikado",
+        //     price: [160, 180],
+        //     length: [220, 255],
+        //     castingWeight: [20, 30],
+        //     sections: [2, 2],
+        //     transportlength: [150, 180],
+        //     weight: [230, 245],
+        // },
+        // {
+        //     name: "Wędka Zaffira Tele Carp Rt Jaxon",
+        //     img: "img/item_images/carp_rod_2.jpg",
+        //     manufacturer: "Jaxon",
+        //     price: [260, 280, 300],
+        //     length: [170, 190, 230],
+        //     castingWeight: [60, 70, 100],
+        //     sections: [2, 2, 3],
+        //     transportlength: [180, 190, 210],
+        //     weight: [280, 300, 325],
+        // },
+        // {
+        //     name: "Wędka Mikado Ultraviolet Feeder",
+        //     img: "img/item_images/carp_rod_3.jpg",
+        //     manufacturer: "Mikado",
+        //     price: [190, 215],
+        //     length: [185, 212],
+        //     castingWeight: [70, 85],
+        //     sections: [2, 2],
+        //     transportlength: [130, 145],
+        //     weight: [195, 235],
+        // },
     ],
     front_reels: [
-        {
-            name: "Kołowrotek DAM Runshift 3L",
-            img: "img/item_images/front_reel_1.jpg",
-            manufacturer: "DAM",
-            price: [130, 150],
-            size: [4000, 5000],
-            ratio: "5:1",
-            spoolCapacity: ["0.28/250", "0.33/265"],
-            brakeForce: [8, 11],
-            length: [215, 265],
-            bearing: "2+1"
-        },
-        {
-            name: "Kołowrotek Dragon Magnum FD230i",
-            img: "img/item_images/front_reel_2.jpg",
-            manufacturer: "Dragon",
-            price: [60, 70],
-            size: [3000, 4000],
-            ratio: "6:1",
-            spoolCapacity: ["0.28/210", "0.33/180"],
-            brakeForce: [6, 8],
-            length: [190, 210],
-            bearing: "2"
-        },
-        {
-            name: "Kołowrotek Jaxon Bonzo PRI",
-            img: "img/item_images/front_reel_3.jpg",
-            manufacturer: "Jaxon",
-            price: [50, 90],
-            size: [2000, 3000],
-            ratio: "4:1",
-            spoolCapacity: ["0.28/220", "0.33/250"],
-            brakeForce: [5, 10],
-            length: [220, 240],
-            bearing: "2+1"
-        }
+        // {
+        //     name: "Kołowrotek DAM Runshift 3L",
+        //     img: "img/item_images/front_reel_1.jpg",
+        //     manufacturer: "DAM",
+        //     price: [130, 150],
+        //     size: [4000, 5000],
+        //     ratio: "5:1",
+        //     spoolCapacity: ["0.28/250", "0.33/265"],
+        //     brakeForce: [8, 11],
+        //     length: [215, 265],
+        //     bearing: "2+1",
+        // },
+        // {
+        //     name: "Kołowrotek Dragon Magnum FD230i",
+        //     img: "img/item_images/front_reel_2.jpg",
+        //     manufacturer: "Dragon",
+        //     price: [60, 70],
+        //     size: [3000, 4000],
+        //     ratio: "6:1",
+        //     spoolCapacity: ["0.28/210", "0.33/180"],
+        //     brakeForce: [6, 8],
+        //     length: [190, 210],
+        //     bearing: "2",
+        // },
+        // {
+        //     name: "Kołowrotek Jaxon Bonzo PRI",
+        //     img: "img/item_images/front_reel_3.jpg",
+        //     manufacturer: "Jaxon",
+        //     price: [50, 90],
+        //     size: [2000, 3000],
+        //     ratio: "4:1",
+        //     spoolCapacity: ["0.28/220", "0.33/250"],
+        //     brakeForce: [5, 10],
+        //     length: [220, 240],
+        //     bearing: "2+1",
+        // },
     ],
     back_reels: [
-        {
-            name: "Kołowrotek Jaxon Piano VM",
-            img: "img/item_images/back_reel_1.jpg",
-            manufacturer: "Jaxon",
-            price: [40, 60],
-            size: [3000, 5000],
-            ratio: "5.5:1",
-            spoolCapacity: ["0.28/190", "0.33/235"],
-            brakeForce: [5, 9],
-            length: [210, 235],
-            bearing: "2"
-        },
-        {
-            name: "Kołowrotek Jaxon Piano VS",
-            img: "img/item_images/back_reel_2.jpg",
-            manufacturer: "Jaxon",
-            price: [45, 68],
-            size: [3000, 4000],
-            ratio: "5.0:1",
-            spoolCapacity: ["0.28/215", "0.33/240"],
-            brakeForce: [8, 10],
-            length: [245, 260],
-            bearing: "4+1"
-        },
-        {
-            name: "Kołowrotek Mikado Sasori RD",
-            img: "img/item_images/back_reel_3.jpg",
-            manufacturer: "Mikado",
-            price: [55, 72],
-            size: [2000, 3000],
-            ratio: "5.2:1",
-            spoolCapacity: ["0.28/235", "0.33/270"],
-            brakeForce: [3, 5],
-            length: [280, 310],
-            bearing: "1"
-        }
+        // {
+        //     name: "Kołowrotek Jaxon Piano VM",
+        //     img: "img/item_images/back_reel_1.jpg",
+        //     manufacturer: "Jaxon",
+        //     price: [40, 60],
+        //     size: [3000, 5000],
+        //     ratio: "5.5:1",
+        //     spoolCapacity: ["0.28/190", "0.33/235"],
+        //     brakeForce: [5, 9],
+        //     length: [210, 235],
+        //     bearing: "2",
+        // },
+        // {
+        //     name: "Kołowrotek Jaxon Piano VS",
+        //     img: "img/item_images/back_reel_2.jpg",
+        //     manufacturer: "Jaxon",
+        //     price: [45, 68],
+        //     size: [3000, 4000],
+        //     ratio: "5.0:1",
+        //     spoolCapacity: ["0.28/215", "0.33/240"],
+        //     brakeForce: [8, 10],
+        //     length: [245, 260],
+        //     bearing: "4+1",
+        // },
+        // {
+        //     name: "Kołowrotek Mikado Sasori RD",
+        //     img: "img/item_images/back_reel_3.jpg",
+        //     manufacturer: "Mikado",
+        //     price: [55, 72],
+        //     size: [2000, 3000],
+        //     ratio: "5.2:1",
+        //     spoolCapacity: ["0.28/235", "0.33/270"],
+        //     brakeForce: [3, 5],
+        //     length: [280, 310],
+        //     bearing: "1",
+        // },
     ],
     main_strings: [
-        {
-            name: "Żyłka Dragon Millenium Szczupak",
-            img: "img/item_images/main_string_1.jpg",
-            manufacturer: "Dragon",
-            price: [10, 15],
-            diameter: [0.20, 0.24],
-            length: [200, 300],
-        },
-        {
-            name: "Żyłka Jaxon Crocodile Spinning",
-            img: "img/item_images/main_string_2.jpg",
-            manufacturer: "Jaxon",
-            price: [8, 19],
-            diameter: [0.25, 0.3],
-            length: [100, 150],
-        },
-        {
-            name: "Żyłka Mikado Dino Dynamic II",
-            img: "img/item_images/main_string_3.jpg",
-            manufacturer: "Mikado",
-            price: [25, 32],
-            diameter: [0.3, 0.34],
-            length: [500, 750],
-        },
-        {
-            name: "Żyłka Dragon Guide Select",
-            img: "img/item_images/main_string_4.jpg",
-            manufacturer: "Dragon",
-            price: [39, 45],
-            diameter: [0.24, 0.3],
-            length: [750, 1000],
-        }
+        // {
+        //     name: "Żyłka Dragon Millenium Szczupak",
+        //     img: "img/item_images/main_string_1.jpg",
+        //     manufacturer: "Dragon",
+        //     price: [10, 15],
+        //     diameter: [0.2, 0.24],
+        //     length: [200, 300],
+        // },
+        // {
+        //     name: "Żyłka Jaxon Crocodile Spinning",
+        //     img: "img/item_images/main_string_2.jpg",
+        //     manufacturer: "Jaxon",
+        //     price: [8, 19],
+        //     diameter: [0.25, 0.3],
+        //     length: [100, 150],
+        // },
+        // {
+        //     name: "Żyłka Mikado Dino Dynamic II",
+        //     img: "img/item_images/main_string_3.jpg",
+        //     manufacturer: "Mikado",
+        //     price: [25, 32],
+        //     diameter: [0.3, 0.34],
+        //     length: [500, 750],
+        // },
+        // {
+        //     name: "Żyłka Dragon Guide Select",
+        //     img: "img/item_images/main_string_4.jpg",
+        //     manufacturer: "Dragon",
+        //     price: [39, 45],
+        //     diameter: [0.24, 0.3],
+        //     length: [750, 1000],
+        // },
     ],
     artificial_baits: [
-        {
-            name: "Guma Savage Gear Slender Scoop Shad",
-            img: "img/item_images/artificial_bait_1.jpg",
-            manufacturer: "Savage Gear",
-            price: [8, 9, 10],
-            color: ["Czerwony", "Zielony", "Niebieski"],
-            length: [9, 11, 13],
-            weight: [7, 10, 12],
-        },
-        {
-            name: "Guma Mikado Angry CrayFish",
-            img: "img/item_images/artificial_bait_2.jpg",
-            manufacturer: "Mikado",
-            price: [2, 4, 5],
-            color: ["Różowy", "Złoty", "Zielony"],
-            length: [3.5, 5, 6],
-            weight: [4, 5, 7],
-        }
+        // {
+        //     name: "Guma Savage Gear Slender Scoop Shad",
+        //     img: "img/item_images/artificial_bait_1.jpg",
+        //     manufacturer: "Savage Gear",
+        //     price: [8, 9, 10],
+        //     color: ["Czerwony", "Zielony", "Niebieski"],
+        //     length: [9, 11, 13],
+        //     weight: [7, 10, 12],
+        // },
+        // {
+        //     name: "Guma Mikado Angry CrayFish",
+        //     img: "img/item_images/artificial_bait_2.jpg",
+        //     manufacturer: "Mikado",
+        //     price: [2, 4, 5],
+        //     color: ["Różowy", "Złoty", "Zielony"],
+        //     length: [3.5, 5, 6],
+        //     weight: [4, 5, 7],
+        // },
     ],
     natural_baits: [
-        {
-            name: "Kulki haczykowe Jaxon Method Ground 16mm",
-            img: "img/item_images/natural_bait_1.jpg",
-            price: [9],
-            manufacturer: "Jaxon",
-            flavor: ["Truskawka", "Wanilia", "Amur"]
-        },
-        {
-            name: "Kukurydza wędkarska w puszce Traper",
-            img: "img/item_images/natural_bait_2.jpg",
-            price: [3.5],
-            manufacturer: "Traper",
-            flavor: ["Truskawka", "Tutti-frutti", "Miód"]
-        }
-
+        // {
+        //     name: "Kulki haczykowe Jaxon Method Ground 16mm",
+        //     img: "img/item_images/natural_bait_1.jpg",
+        //     price: [9],
+        //     manufacturer: "Jaxon",
+        //     flavor: ["Truskawka", "Wanilia", "Amur"],
+        // },
+        // {
+        //     name: "Kukurydza wędkarska w puszce Traper",
+        //     img: "img/item_images/natural_bait_2.jpg",
+        //     price: [3.5],
+        //     manufacturer: "Traper",
+        //     flavor: ["Truskawka", "Tutti-frutti", "Miód"],
+        // },
     ],
-}
-
+};
 
 function showCategory(categoryId) {
     var displayedItems;
@@ -233,10 +231,9 @@ function showCategory(categoryId) {
         "Kołowrotki z tylnym hamulcem",
         "Żyłki główne",
         "Przynęty sztuczne",
-        "Przynęty naturalne"
+        "Przynęty naturalne",
     ];
     switch (categoryId) {
-
         case 1:
             displayedItems = items.spinning_rods;
             itemsDescriptions = getRodsDescription(displayedItems);
@@ -269,11 +266,10 @@ function showCategory(categoryId) {
         default:
             return null;
     }
-    var html = '';
+    var html = "";
 
     for (let i = 0; i < displayedItems.length; i++) {
-        html +=
-            `
+        html += `
         <div class="item">
             <div class="item_image">
                 <img src="${displayedItems[i].img}" alt="item_img">
@@ -287,12 +283,12 @@ function showCategory(categoryId) {
                 <button class="item_details" onclick="showItemDetails(${categoryId}, ${i})">Szczegóły</button>
             </dvi>
         </div>
-        `
+        `;
     }
-    document.getElementsByClassName('selected_category')[0].innerHTML = categoryNames[categoryId - 1];
-    document.getElementById('items_display').innerHTML = html;
+    document.getElementsByClassName("selected_category")[0].innerHTML =
+        categoryNames[categoryId - 1];
+    document.getElementById("items_display").innerHTML = html;
 }
-
 
 function getRodsDescription(rods) {
     var descriptions = [];
@@ -303,7 +299,6 @@ function getRodsDescription(rods) {
     }
     return descriptions;
 }
-
 
 function getReelsDescription(reels) {
     var descriptions = [];
@@ -316,7 +311,6 @@ function getReelsDescription(reels) {
     return descriptions;
 }
 
-
 function getStringsDescription(strings) {
     var descriptions = [];
     for (let i = 0; i < strings.length; i++) {
@@ -325,7 +319,6 @@ function getStringsDescription(strings) {
     }
     return descriptions;
 }
-
 
 function getArtificialBaitsDescription(baits) {
     var descriptions = [];
@@ -337,7 +330,6 @@ function getArtificialBaitsDescription(baits) {
     return descriptions;
 }
 
-
 function getNaturalBaitsDescprition(baits) {
     var descriptions = [];
     for (let i = 0; i < baits.length; i++) {
@@ -346,49 +338,111 @@ function getNaturalBaitsDescprition(baits) {
     return descriptions;
 }
 
-
-
-
 function showItemDetails(categoryId, itemIndex) {
     currentMainOptionIndex = 0;
     currentAdditionalOptionIndex = 0;
 
     var item;
-    var mainOptions = '';
-    var additionalOptions = '';
+    var mainOptions = "";
+    var additionalOptions = "";
     switch (categoryId) {
-
         case 1:
             item = items.spinning_rods[itemIndex];
-            mainOptions = getOptions('length', item.length, "Długość [mm]", true, categoryId);
-            additionalOptions = getOptions('cw', item.castingWeight, "C.W. [g]", false, categoryId);
+            mainOptions = getOptions(
+                "length",
+                item.length,
+                "Długość [mm]",
+                true,
+                categoryId
+            );
+            additionalOptions = getOptions(
+                "cw",
+                item.castingWeight,
+                "C.W. [g]",
+                false,
+                categoryId
+            );
             break;
         case 2:
             item = items.carp_rods[itemIndex];
-            mainOptions = getOptions('length', item.length, "Długość [mm]", true, categoryId);
-            additionalOptions = getOptions('cw', item.castingWeight, "C.W. [g]", false, categoryId);
+            mainOptions = getOptions(
+                "length",
+                item.length,
+                "Długość [mm]",
+                true,
+                categoryId
+            );
+            additionalOptions = getOptions(
+                "cw",
+                item.castingWeight,
+                "C.W. [g]",
+                false,
+                categoryId
+            );
             break;
         case 3:
             item = items.front_reels[itemIndex];
-            mainOptions = getOptions('size', item.size, "Wielkość", true, categoryId);
+            mainOptions = getOptions(
+                "size",
+                item.size,
+                "Wielkość",
+                true,
+                categoryId
+            );
             break;
         case 4:
             item = items.back_reels[itemIndex];
-            mainOptions = getOptions('size', item.size, "Wielkość", true, categoryId);
+            mainOptions = getOptions(
+                "size",
+                item.size,
+                "Wielkość",
+                true,
+                categoryId
+            );
             break;
         case 5:
             item = items.main_strings[itemIndex];
-            mainOptions = getOptions('length', item.length, "Długość [mm]", true, categoryId);
-            additionalOptions = getOptions('diameter', item.diameter, "Średnica [mm]", false, categoryId);
+            mainOptions = getOptions(
+                "length",
+                item.length,
+                "Długość [mm]",
+                true,
+                categoryId
+            );
+            additionalOptions = getOptions(
+                "diameter",
+                item.diameter,
+                "Średnica [mm]",
+                false,
+                categoryId
+            );
             break;
         case 6:
             item = items.artificial_baits[itemIndex];
-            mainOptions = getOptions('length', item.length, "Długość [mm]", true, categoryId);
-            additionalOptions = getOptions('color', item.color, "Kolor", false, categoryId);
+            mainOptions = getOptions(
+                "length",
+                item.length,
+                "Długość [mm]",
+                true,
+                categoryId
+            );
+            additionalOptions = getOptions(
+                "color",
+                item.color,
+                "Kolor",
+                false,
+                categoryId
+            );
             break;
         case 7:
             item = items.natural_baits[itemIndex];
-            additionalOptions = getOptions('flavor', item.flavor, "Smak", false, categoryId);
+            additionalOptions = getOptions(
+                "flavor",
+                item.flavor,
+                "Smak",
+                false,
+                categoryId
+            );
             break;
 
         default:
@@ -432,29 +486,23 @@ function showItemDetails(categoryId, itemIndex) {
         </div>
     </div>
     `;
-    document.getElementsByTagName('main')[0].innerHTML = html;
+    document.getElementsByTagName("main")[0].innerHTML = html;
     updateDetails(categoryId);
 }
-
 
 function updateDetails(categoryId) {
     if (categoryId <= 2) {
         updateRodDetails();
-    }
-    else if (categoryId > 2 && categoryId <= 4) {
+    } else if (categoryId > 2 && categoryId <= 4) {
         updateReelDetails();
-    }
-    else if (categoryId > 4 && categoryId <= 5) {
+    } else if (categoryId > 4 && categoryId <= 5) {
         updateStringDetails();
-    }
-    else if (categoryId > 5 && categoryId <= 6) {
+    } else if (categoryId > 5 && categoryId <= 6) {
         updateArtificialBaitDetails();
-    }
-    else if (categoryId > 6 && categoryId <= 7) {
+    } else if (categoryId > 6 && categoryId <= 7) {
         updateNaturalBaitDetails();
     }
 }
-
 
 function getOptions(className, options, optionName, isMainOption, categoryId) {
     var html = `
@@ -464,10 +512,9 @@ function getOptions(className, options, optionName, isMainOption, categoryId) {
     for (let i = 1; i < options.length; i++) {
         html += `<button class="option ${className}" onclick="selectOption('${className}', ${i}, ${isMainOption}, ${categoryId})">${options[i]}</button>`;
     }
-    html += '</div>';
+    html += "</div>";
     return html;
 }
-
 
 function updateRodDetails() {
     var html = `
@@ -482,10 +529,9 @@ function updateRodDetails() {
                     <tr><td>Waga [g]</td><td>${currentItem.weight[currentMainOptionIndex]}</td></tr>
                 </tbody>
             </table>
-    `
-    document.getElementById('product_details').innerHTML = html;
+    `;
+    document.getElementById("product_details").innerHTML = html;
 }
-
 
 function updateReelDetails() {
     var html = `
@@ -501,10 +547,9 @@ function updateReelDetails() {
                     <tr><td>Łożyska</td><td>${currentItem.bearing}</td></tr>
                 </tbody>
             </table>
-    `
-    document.getElementById('product_details').innerHTML = html;
+    `;
+    document.getElementById("product_details").innerHTML = html;
 }
-
 
 function updateStringDetails() {
     var html = `
@@ -516,10 +561,9 @@ function updateStringDetails() {
                     <tr><td>Średnica [mm]</td><td>${currentItem.diameter[currentAdditionalOptionIndex]}</td></tr>
                 </tbody>
             </table>
-    `
-    document.getElementById('product_details').innerHTML = html;
+    `;
+    document.getElementById("product_details").innerHTML = html;
 }
-
 
 function updateArtificialBaitDetails() {
     var html = `
@@ -532,10 +576,9 @@ function updateArtificialBaitDetails() {
                     <tr><td>Ciężar [g]</td><td>${currentItem.weight[currentMainOptionIndex]}</td></tr>
                 </tbody>
             </table>
-    `
-    document.getElementById('product_details').innerHTML = html;
+    `;
+    document.getElementById("product_details").innerHTML = html;
 }
-
 
 function updateNaturalBaitDetails() {
     var html = `
@@ -546,32 +589,29 @@ function updateNaturalBaitDetails() {
                     <tr><td>Smak</td><td>${currentItem.flavor[currentAdditionalOptionIndex]}</td></tr>
                 </tbody>
             </table>
-    `
-    document.getElementById('product_details').innerHTML = html;
+    `;
+    document.getElementById("product_details").innerHTML = html;
 }
-
 
 function updatePrice() {
-    document.getElementById('item_price').innerHTML = currentItem.price[currentMainOptionIndex] + "zł";
+    document.getElementById("item_price").innerHTML =
+        currentItem.price[currentMainOptionIndex] + "zł";
 }
-
 
 function selectOption(className, selectedIndex, isMainOption, categoryId) {
     var options = document.getElementsByClassName(className);
     if (isMainOption == true) {
         currentMainOptionIndex = selectedIndex;
-    }
-    else {
+    } else {
         currentAdditionalOptionIndex = selectedIndex;
     }
-    var parentId = options[0].parentElement.id
+    var parentId = options[0].parentElement.id;
     var html = ``;
     for (let i = 0; i < options.length; i++) {
         if (i == selectedIndex) {
-            html += `<button class="option ${className} selected" onclick="selectOption('${className}', ${i}, ${isMainOption}, ${categoryId})">${options[i].innerHTML}</button>`
-        }
-        else {
-            html += `<button class="option ${className}" onclick="selectOption('${className}', ${i}, ${isMainOption}, ${categoryId})">${options[i].innerHTML}</button>`
+            html += `<button class="option ${className} selected" onclick="selectOption('${className}', ${i}, ${isMainOption}, ${categoryId})">${options[i].innerHTML}</button>`;
+        } else {
+            html += `<button class="option ${className}" onclick="selectOption('${className}', ${i}, ${isMainOption}, ${categoryId})">${options[i].innerHTML}</button>`;
         }
     }
 
@@ -580,9 +620,8 @@ function selectOption(className, selectedIndex, isMainOption, categoryId) {
     document.getElementById(parentId).innerHTML = html;
 }
 
-
 function goBack(categoryId) {
-    document.getElementsByTagName('main')[0].innerHTML = `
+    document.getElementsByTagName("main")[0].innerHTML = `
     <div id="shop">
             <aside id="filters">
                 <div class="category">
@@ -631,38 +670,34 @@ function goBack(categoryId) {
     showCategory(categoryId);
 }
 
-
 function addToCart() {
-    var itemQuantity = document.getElementById("quantity").value
+    var itemQuantity = document.getElementById("quantity").value;
     if (itemQuantity < 1 || itemQuantity > 10) {
-        document.getElementById('quantity_error').innerHTML = "Błąd, możesz kupić od 1 do 10 sztuk produktu";
+        document.getElementById("quantity_error").innerHTML =
+            "Błąd, możesz kupić od 1 do 10 sztuk produktu";
         return;
+    } else {
+        document.getElementById("quantity_error").innerHTML = "";
     }
-    else {
-        document.getElementById('quantity_error').innerHTML = '';
-    }
-    var cart = JSON.parse(localStorage.getItem('cart'));
+    var cart = JSON.parse(localStorage.getItem("cart"));
     if (cart == null) {
         cart = {
             totalValue: 0,
-            itemsInCart: []
+            itemsInCart: [],
         };
     }
 
-    cart.itemsInCart.push(
-        {
-            item: currentItem,
-            quantity: itemQuantity,
-            price: currentItem.price[currentMainOptionIndex],
-            totalPrice: itemQuantity * currentItem.price[currentMainOptionIndex],
-            mainOption: currentMainOptionIndex,
-            additionalOption: currentAdditionalOptionIndex,
-        }
-    )
+    cart.itemsInCart.push({
+        item: currentItem,
+        quantity: itemQuantity,
+        price: currentItem.price[currentMainOptionIndex],
+        totalPrice: itemQuantity * currentItem.price[currentMainOptionIndex],
+        mainOption: currentMainOptionIndex,
+        additionalOption: currentAdditionalOptionIndex,
+    });
 
     cart.totalValue += itemQuantity * currentItem.price[currentMainOptionIndex];
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem("cart", JSON.stringify(cart));
     alert("Dodano produkt do koszyka");
-    updateCartValue()
+    updateCartValue();
 }
-

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 
     <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script src="{{ asset('js/cart.js') }}"></script>
+    <!-- <script src="{{ asset('js/cart.js') }}"></script> -->
 </head>
 
 <body>
@@ -21,7 +21,26 @@
     <main>
         <h2 class="cart_title">Koszyk</h2>
 
-        <div id="cart_content"></div>
+        <div id="cart_content">
+            <table><thead><tr><th>Nazwa produktu</th><th>Liczba sztuk</th><th>Cena</th></tr></thead><tbody>
+                @if (!isset($cartItems))
+                    <tr><td colspan="4">Brak produktów w koszyku</td></tr>
+                @else
+                    @foreach ($cartItems as $cartItem)
+                        <tr>
+                            <td>{{ $cartItem->product->product_name }}</td>
+                            <td>
+                            <a href="{{ route('cart.add', ['productId' => $cartItem->product->id]) }}"><i class="fas fa-plus"></i></a>    
+                            {{ $cartItem->quantity }}
+                            <a href="{{ route('cart.remove', ['productId' => $cartItem->product->id]) }}"><i class="fas fa-minus"></i></a>
+                        </td>
+                            <td>{{ $cartItem->product->product_price * $cartItem->quantity }} zł</td>
+                            
+                        </tr>
+                    @endforeach
+                @endif
+            </tbody></table>
+        </div>
 
         <form action="javascript:sendDelivery()">
             <div id="delivery_info">

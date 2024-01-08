@@ -5,6 +5,8 @@ use App\Models\Newsletter;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +34,9 @@ Route::get('/calendar', function () {
     return view('calendar');
 })->name('calendar');
 
-Route::get('/cart', function () {
-    return view('cart');
-});
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('/cart/add/{productId}', [CartController::class, 'addItem'])->name('cart.add');
+Route::get('/cart/remove/{productId}', [CartController::class, 'removeItem'])->name('cart.remove');
 
 Route::get('/fishing_grounds', function () {
     return view('fishing_grounds');
@@ -44,9 +46,8 @@ Route::get('/newsletter', [NewsletterController::class, 'index'])->name('newslet
 
 Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
 
-Route::get('/shop', function () {
-    return view('shop');
-});
+Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
+Route::get('/shop/{category}', [ShopController::class, 'showCategory'])->name('shop.category');
 
 Route::get('/sources', function () {
     return view('sources');
