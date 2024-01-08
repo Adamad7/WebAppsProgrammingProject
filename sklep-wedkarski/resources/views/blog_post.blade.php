@@ -86,7 +86,7 @@
                 <input class="add_comment_button" type="submit" value="Zapisz"></input>
             </form>
             @else
-                {{$comment->content}}
+                {!!nl2br(e($comment->content))!!}
             @endif
             </div>
 

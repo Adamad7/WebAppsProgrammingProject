@@ -28,7 +28,7 @@ class BlogController extends Controller
             'content' => 'required|min:10|max:1000',
         ]);
         $comment = new BlogPostComment();
-        $comment->content = $request->content;
+        $comment->content = filter_var($request->content, FILTER_SANITIZE_STRING);
         $comment->user_id = auth()->user()->id;
         $comment->blog_post_id = $id;
         $comment->save();
@@ -63,7 +63,8 @@ class BlogController extends Controller
             'edit_content' => 'required|min:10|max:1000',
         ]);
         $blogPost = BlogPost::find($blogPostId);
-        $blogPost->comments()->where('id', $commentId)->update(['content' => $request->edit_content]);
+        $stripped =  filter_var($request->edit_content, FILTER_SANITIZE_STRING);
+        $blogPost->comments()->where('id', $commentId)->update(['content' => $stripped]);
         return redirect()->back();
     }
 }

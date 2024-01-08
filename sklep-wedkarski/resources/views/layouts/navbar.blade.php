@@ -8,7 +8,7 @@
         </button>
         <div class="dropdown-content">
             <a href="{{ url('/fishing_grounds') }}">Łowiska</a>
-            <a href="{{ url('/calendar') }}">Kalendarz</a>
+            <a href="{{ route('calendar') }}">Kalendarz</a>
         </div>
     </div>
     <a href="{{ url('/newsletter') }}">Newsletter</a>
@@ -22,9 +22,11 @@
     <a href="{{route('profile.edit')}}">{{  Auth::user()->name  }}</a>
     <form method="POST" action="{{ route('logout') }}">
         @csrf
+        <!-- <input submit type="submit" value="Wyloguj się"></input> -->
         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
             Wyloguj się</a>
+    </form>
     @else
     <a href="{{ route('login') }}">Zaloguj się</a>
 
