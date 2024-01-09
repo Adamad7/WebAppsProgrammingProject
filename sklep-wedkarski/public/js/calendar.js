@@ -15,57 +15,7 @@ const months = [
 
 const dayNames = ["Pn", "Wt", "Śr", "Cz", "Pt", "Sb", "Nd"];
 
-var events = [
-    {
-        year: 2023,
-        month: 4,
-        day: 10,
-        time: "10:30",
-        location: "Warszawa",
-        descritpion: "Zjazd miłośników szczupaków",
-    },
-    {
-        year: 2023,
-        month: 4,
-        day: 7,
-        time: "12:00",
-        location: "Lublin",
-        descritpion: "Targi producentów żyłek",
-    },
-    {
-        year: 2023,
-        month: 4,
-        day: 22,
-        time: "19:00",
-        location: "Zamość",
-        descritpion: "Zjazd fanów wędkarstwa",
-    },
-    {
-        year: 2023,
-        month: 5,
-        day: 17,
-        time: "10:30",
-        location: "Lublin",
-        descritpion: "Targi producentów wędzisk",
-    },
-    {
-        year: 2023,
-        month: 6,
-        day: 10,
-        time: "13:30",
-        location: "Poznań",
-        descritpion: "Targi producentów przynęt",
-    },
-    {
-        year: 2023,
-        month: 7,
-        day: 18,
-        time: "15:30",
-        location: "Gdańsk",
-        descritpion: "Zjazd miłośników łowienia na otwartych wodach",
-    },
-];
-
+var events = [];
 var date;
 var dayOfMonth;
 var currentMonth;
@@ -73,6 +23,20 @@ var month;
 var year;
 
 $(document).ready(function () {
+    getEventsAndInit();
+});
+
+async function getEventsAndInit() {
+    events = await fetch("/fishing_events")
+        .then((response) => response.json())
+        .then((data) => {
+            return data;
+        });
+    init();
+}
+
+function init() {
+    console.log(events);
     getCurrentDate();
     updateCalendar();
     updateCalendarTitle();
@@ -84,7 +48,7 @@ $(document).ready(function () {
     $(document).on("click", "#calendar_next_month", function () {
         nextMonth();
     });
-});
+}
 
 function getCurrentDate() {
     date = new Date();
@@ -193,7 +157,7 @@ function updateEvents() {
         ].toLowerCase()} ${year}</b>
                     - <u>${eventsInMonth[i].location}</u>
                     <b>${eventsInMonth[i].time}</b>
-                    - ${eventsInMonth[i].descritpion}
+                    - ${eventsInMonth[i].description}
                 </div>
             </div>`;
     }

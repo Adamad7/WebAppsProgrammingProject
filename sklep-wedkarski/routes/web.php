@@ -7,6 +7,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\FishingEventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,8 @@ Route::get('/shop/{category}', [ShopController::class, 'showCategory'])->name('s
 Route::get('/sources', function () {
     return view('sources');
 });
+
+Route::get('/fishing_events', [FishingEventController::class, 'getEvents'])->name('fishing_events.get_events');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
