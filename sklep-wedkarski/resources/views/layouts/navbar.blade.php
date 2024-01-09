@@ -1,7 +1,11 @@
 <nav>
     <a href="{{ url('/') }}">Strona główna</a>
-    <a href="{{ url('/shop') }}">Sklep</a>
-    <a href="{{ url('/blog') }}">Blog</a>
+    <a href="{{ url('/shop') }}">
+        <i class="fa-solid fa-shop"></i> Sklep
+    </a>
+    <a href="{{ url('/blog') }}">
+        <i class="fa-solid fa-newspaper"></i> Blog
+    </a>
     <div class="dropdown">
         <button class="dropbtn">Niezbędnik
             <i class="fa fa-caret-down"></i>
@@ -11,18 +15,20 @@
             <a href="{{ route('calendar') }}">Kalendarz</a>
         </div>
     </div>
-    <a href="{{ url('/newsletter') }}">Newsletter</a>
-    <a href="{{ url('/sources') }}">Źródła</a>
-    <a href="{{ url('/cart') }}">
-        <div id="cart_value"><i class="fas fa-shopping-cart"></i> (0zł)</div>
+    <a href="{{ url('/newsletter') }}">
+        <i class="fa-solid fa-envelope"></i> Newsletter
     </a>
+    <a href="{{ url('/sources') }}">Źródła</a>
+    
     @if (Route::has('login'))
 
     @auth
+    <a href="{{ url('/cart') }}">
+        <i class="fas fa-shopping-cart"></i> Koszyk
+    </a>
     <a href="{{route('profile.edit')}}">{{  Auth::user()->name  }}</a>
     <form method="POST" action="{{ route('logout') }}">
         @csrf
-        <!-- <input submit type="submit" value="Wyloguj się"></input> -->
         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
             Wyloguj się</a>
