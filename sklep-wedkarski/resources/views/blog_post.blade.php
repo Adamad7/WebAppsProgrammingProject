@@ -65,7 +65,7 @@
             <div class="add_comment_form">
                 <form action="{{route('blog.add_comment', ['id' => $blogPost->id])}}" method="POST">
                     @csrf
-                    <textarea name="content" id="content" cols="50" rows="5" placeholder="Treść komentarza"></textarea>
+                    <textarea name="content" id="content" cols="50" rows="5" placeholder="Treść komentarza (min. 10 znaków)" minlength="10" maxlength="1000" required></textarea>
                     <input class="add_comment_button" type="submit" value="Dodaj komentarz">
                 </form>
 
@@ -94,7 +94,7 @@
                 @csrf
                 @method('PUT')
                 <textarea name="edit_content" id="edit_content" cols="50" rows="5"
-                    placeholder="Treść komentarza">{!!nl2br(e($comment->content))!!}</textarea>
+                    placeholder="Treść komentarza (min. 10 znaków)" minlength="10" maxlength="1000" required>{!!nl2br(e($comment->content))!!}</textarea>
                 <input class="add_comment_button" type="submit" value="Zapisz">
             </form>
             @else

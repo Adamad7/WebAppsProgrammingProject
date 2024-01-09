@@ -55,17 +55,6 @@
             <a href="https://fontawesome.com">fontawesome.com</a> - Ikonki
         </div>
 
-        <div class="source">
-            <img src="{{ asset('img/sea-fish-drawing.png') }}" alt="ryba">
-            <a href="http://jonraasch.com/blog/a-simple-jquery-slideshow">jonraasch.com/blog/a-simple-jquery-slideshow</a>
-            - Slider ze zdjęciami
-        </div>
-
-        <div class="source">
-            <img src="{{ asset('img/sea-fish-drawing.png') }}" alt="ryba">
-            <a href="https://lokeshdhakar.com/projects/lightbox2/">lokeshdhakar.com/projects/lightbox2</a>
-            - Galeria zdjęć
-        </div>
     </div>
 </main>
 
