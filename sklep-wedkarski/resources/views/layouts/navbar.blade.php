@@ -26,7 +26,9 @@
     <a href="{{ url('/cart') }}">
         <i class="fas fa-shopping-cart"></i> Koszyk
     </a>
-    <a href="{{route('profile.edit')}}">{{  Auth::user()->name  }}</a>
+    <a href="{{route('profile.edit')}}">
+        <i class="fa-solid fa-user"></i> {{  Auth::user()->name  }}
+    </a>
     <form method="POST" action="{{ route('logout') }}">
         @csrf
         <a href="{{ route('logout') }}" onclick="event.preventDefault();
