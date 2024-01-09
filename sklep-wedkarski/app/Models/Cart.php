@@ -26,4 +26,13 @@ class Cart extends Model
     {
         return $this->hasOne(User::class);
     }
+
+    public function totalValue()
+    {
+        $totalValue = 0;
+        foreach ($this->cartItems as $cartItem) {
+            $totalValue += $cartItem->product->product_price * $cartItem->quantity;
+        }
+        return $totalValue;
+    }
 }

@@ -43,6 +43,12 @@
                 @endif
             </tbody></table>
         </div>
+        @if (isset($cartItems) && !$cartItems->isEmpty())
+        <div id="total_value_info">
+            <div>Wartość zamówienia</div>
+            <div id="total_value">{{ $cartItems[0]->cart->totalValue() }} zł</div>
+        </div>
+        @endif
 
         <form action="{{ route('cart.place_order') }}">
             <div id="delivery_info">

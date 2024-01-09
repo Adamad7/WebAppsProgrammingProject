@@ -66,6 +66,36 @@ h2.cart_title {
     margin-inline: 5px;
 }
 
+#total_value_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #001e42;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-inline: 10px;
+    width: 150px;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#total_value {
+    font-size: 1.3em;
+    width: 100px;
+    margin-top: 10px;
+    padding: 5px;
+    border-top: 2px solid #001e42;
+    border-left: 2px solid #001e42;
+    border-right: 2px solid #001e42;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    text-align: center;
+    background-color: #6a99b6;
+}
+
 form {
     text-align: center;
 }
