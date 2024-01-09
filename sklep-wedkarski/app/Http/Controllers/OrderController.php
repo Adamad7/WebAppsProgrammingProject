@@ -26,7 +26,7 @@ class OrderController extends Controller
             'house_number' => 'required|string|regex:/^[0-9]{1,6}[a-zA-Z]{0,2}$/',
             'phone_number' => 'required|string|regex:/^[0-9]{3}[\- ]?[0-9]{3}[\- ]?[0-9]{3}$/',
             'payment_method' => 'required|string|in:credit_card,debit_card,paypal,transfer,blik,cash',
-            'delivery_method' => 'required|string|in:dhl,dpd,poczetex,inpost',
+            'delivery_method' => 'required|string|in:dhl,dpd,pocztex,inpost',
         ]);
 
         $deliveryDetails = new DeliveryDetails([

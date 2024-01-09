@@ -58,14 +58,14 @@
                 <div id="grounds_map">
                     <div id="map"></div>
                     <div id="map_buttons">
-                        <button class="map_button" onclick="findClosestFishingGround()">Najbliże łowisko</button>
+                        <button class="map_button" id="find_closest_ground_button">Najbliże łowisko</button>
                         <div id="map_buttons_divider"></div>
-                        <button class="map_button" onclick="panToCurrentLocation()">Moja lokalizacja</button>
+                        <button class="map_button" id="pan_to_location_button">Moja lokalizacja</button>
                     </div>
                 </div>
             </div>
             <div id="weather">
-                <button id="check_weather_button" onclick="checkWeather()">Sprawdź pogodę</button>
+                <button id="check_weather_button">Sprawdź pogodę</button>
                 <div id="weather_forecast">
                 </div>
             </div>

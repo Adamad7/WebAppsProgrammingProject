@@ -1,13 +1,14 @@
 body {
-    background-color: #E6E6E6;
+    background-color: #e6e6e6;
     font-family: Arial;
     padding: 0;
+    margin: 8px;
 }
 
 footer {
     width: 50%;
     height: 25px;
-    color: #001E42;
+    color: #001e42;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -16,14 +17,21 @@ footer {
 }
 
 nav {
-    overflow: hidden;
-    background-color: #001E42;
+    position: fixed;
+    background-color: #001e42;
     font-family: Arial;
     display: flex;
     border-radius: 15px;
-    width: 92%;
-    margin-left: auto;
-    margin-right: auto;
+    top: 20px;
+    left: 0;
+    right: 0;
+    width: 85%;
+    margin: 0 auto;
+    line-height: 1;
+}
+
+nav form {
+    display: flex;
 }
 
 nav a {
@@ -52,7 +60,8 @@ nav a {
 
 nav a:hover,
 .dropdown:hover .dropbtn {
-    background-color: #55A630;
+    background-color: #55a630;
+    border-radius: 15px;
 }
 
 .dropdown-content {
@@ -60,6 +69,7 @@ nav a:hover,
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
+    border-radius: 15px;
 }
 
 .dropdown-content a {
@@ -68,6 +78,8 @@ nav a:hover,
     text-decoration: none;
     display: block;
     text-align: left;
+    position: sticky;
+    border-radius: 15px;
 }
 
 .dropdown-content a:hover {
@@ -89,8 +101,9 @@ main {
     border-bottom-right-radius: 15px;
     padding-left: 40px;
     padding-right: 40px;
-    padding-top: 10px;
+    padding-top: 70px;
     padding-bottom: 20px;
+    margin-top: 30px;
 }
 
 h2 {
@@ -98,9 +111,9 @@ h2 {
     padding: 10px;
     border-radius: 15px;
     font-size: 1.2em;
-    background-color: #4F75A7;
+    background-color: #4f75a7;
     display: block;
-    border: 3px solid #001E42;
+    border: 3px solid #001e42;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -114,7 +127,7 @@ h2.index_title {
     font-weight: 300;
     font-size: 1em;
     background-color: white;
-    border: 2px solid #001E42;
+    border: 2px solid #001e42;
     border-radius: 20px;
     padding-inline: 20px;
     padding-block: 10px;
@@ -125,31 +138,26 @@ h2.index_title {
 }
 
 #main_page_content a {
-    border: 2px solid #001E42;
+    border: 2px solid #001e42;
     border-radius: 7px;
-    background-color: #4F75A7;
+    background-color: #4f75a7;
     text-decoration: none;
     color: white;
-    padding: 2px
+    padding: 2px;
 }
 
 #main_page_content a:hover {
-    background-color: #55A630;
-}
-
-#cart_value {
-    font-size: 0.9em;
+    background-color: #55a630;
 }
 
 #index_page_fish {
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-    display: block
+    display: block;
 }
 
-@media screen and (max-width: 768px) {
-
+@media screen and (max-width: 1024px) {
     nav {
         width: 100%;
         flex-wrap: wrap;
@@ -159,6 +167,20 @@ h2.index_title {
         padding: 14px 0px;
         text-decoration: none;
         width: 50%;
+    }
+
+    nav form {
+        padding: 0px 0px;
+        text-decoration: none;
+        width: 100%;
+    }
+
+    nav form a {
+        width: 100%;
+    }
+
+    main {
+        margin-top: 200px;
     }
 
     .dropdown {
@@ -182,7 +204,6 @@ h2.index_title {
         width: 100%;
         padding-left: 20px;
     }
-
 }
 
 @media screen and (max-width: 425px) {
