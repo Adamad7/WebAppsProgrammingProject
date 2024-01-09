@@ -13,7 +13,7 @@ class Order extends Model
 
     public function cart()
     {
-        return $this->hasOne(Cart::class);
+        return $this->belongsTo(Cart::class);
     }
 
     public function user()
@@ -23,6 +23,6 @@ class Order extends Model
 
     public function deliveryDetails()
     {
-        return $this->hasOne(DeliveryDetails::class);
+        return $this->belongsTo(DeliveryDetails::class);
     }
 }

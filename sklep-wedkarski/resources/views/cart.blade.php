@@ -22,19 +22,24 @@
         <h2 class="cart_title">Koszyk</h2>
 
         <div id="cart_content">
-            <table><thead><tr><th>Nazwa produktu</th><th>Liczba sztuk</th><th>Cena</th></tr></thead><tbody>
-                @if (!isset($cartItems))
+            <table><thead><tr><th>Nazwa produktu</th><th>Liczba sztuk</th><th>Cena</th><th></th></tr></thead><tbody>
+                @if (!isset($cartItems) || $cartItems->isEmpty())
                     <tr><td colspan="4">Brak produktów w koszyku</td></tr>
                 @else
                     @foreach ($cartItems as $cartItem)
                         <tr>
                             <td>{{ $cartItem->product->product_name }}</td>
                             <td>
-                            <a href="{{ route('cart.add', ['productId' => $cartItem->product->id]) }}"><i class="fas fa-plus"></i></a>    
+                            @if ($cartItem->quantity < 20)
+                            <a href="{{ route('cart.add', ['productId' => $cartItem->product->id]) }}"><i class="fas fa-plus"></i></a> 
+                            @endif   
                             {{ $cartItem->quantity }}
+                            @if ($cartItem->quantity >= 1)
                             <a href="{{ route('cart.remove', ['productId' => $cartItem->product->id]) }}"><i class="fas fa-minus"></i></a>
-                        </td>
+                            @endif
+                            </td>
                             <td>{{ $cartItem->product->product_price * $cartItem->quantity }} zł</td>
+                            <td><a href="{{ route('cart.delete', ['productId' => $cartItem->product->id]) }}"><i class="fas fa-trash-alt"></i></a></td>
                             
                         </tr>
                     @endforeach
@@ -42,7 +47,7 @@
             </tbody></table>
         </div>
 
-        <form action="javascript:sendDelivery()">
+        <form action="{{ route('cart.place_order') }}">
             <div id="delivery_info">
                 <table>
                     <thead>
@@ -62,34 +67,34 @@
                                     pattern="^([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+(-[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+)?)$"></td>
                         </tr>
                         <tr>
-                            <td><label for="postal">Kod pocztowy:</label></td>
-                            <td><input type="text" id="postal" name="postal" required pattern="^[0-9]{2}-[0-9]{3}$">
+                            <td><label for="postal_code">Kod pocztowy:</label></td>
+                            <td><input type="text" id="postal_code" name="postal_code" required pattern="^[0-9]{2}-[0-9]{3}$">
                             </td>
                         </tr>
                         <tr>
-                            <td><label for="locality">Miejscowość:</label></td>
-                            <td><input type="text" id="locality" name="locality" required
+                            <td><label for="city">Miasto:</label></td>
+                            <td><input type="text" id="city" name="city" required
                                     pattern="^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż\- ]{1,50}$"></td>
                         </tr>
                         <tr>
-                            <td><label for="address">Numer domu:</label></td>
-                            <td><input type="text" id="address" name="address" required
+                            <td><label for="street">Ulica:</label></td>
+                            <td><input type="text" id="street" name="street" required
+                                    pattern="^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż\- ]{1,50}$"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="house_number">Numer domu:</label></td>
+                            <td><input type="text" id="house_number" name="house_number" required
                                     pattern="^[0-9]{1,6}[a-zA-Z]{0,2}$">
                             </td>
                         </tr>
                         <tr>
-                            <td><label for="email">Adres e-mail:</label></td>
-                            <td><input type="email" id="email" name="email" required
-                                    pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"></td>
-                        </tr>
-                        <tr>
-                            <td><label for="phone">Numer telefonu:</label></td>
-                            <td><input type="tel" id="phone" name="phone" required
+                            <td><label for="phone_number">Numer telefonu:</label></td>
+                            <td><input type="tel" id="phone_number" name="phone_number" required
                                     pattern="^[0-9]{3}[\- ]?[0-9]{3}[\- ]?[0-9]{3}$"></td>
                         </tr>
                         <tr>
-                            <td><label for="payment">Metoda płatności:</label></td>
-                            <td><select id="payment" name="payment" required>
+                            <td><label for="payment_method">Metoda płatności:</label></td>
+                            <td><select id="payment_method" name="payment_method" required>
                                     <option label="Wybierz płatność"></option>
                                     <option value="credit_card">Karta kredytowa</option>
                                     <option value="debit_card">Karta debetowa</option>
@@ -112,7 +117,24 @@
                     </tbody>
                 </table>
 
+                
+
             </div>
+            @if (isset($order_status))
+                    <div id="order_status" style="font-weight:bold">
+                        <p>{{ $order_status }}</p>
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div id="errors" style="color:red">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li><i class="fas fa-exclamation-triangle"></i> {{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             <input id="submit_delivery" type="submit" value="Zamów">
         </form>
     </main>

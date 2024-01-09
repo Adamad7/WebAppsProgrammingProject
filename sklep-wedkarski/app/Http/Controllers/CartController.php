@@ -10,11 +10,11 @@ use App\Models\Cart;
 
 class CartController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $cartItems = auth()->user()->cart->cartItems;
         // dd($cartItems);
-        return view('cart', ['cartItems' => $cartItems]);
+        return view('cart', ['cartItems' => $cartItems, 'order_status' => $request->order_status]);
         // return view('cart');
     }
 
@@ -59,6 +59,20 @@ class CartController extends Controller
         }
         $cart->total_price -= $product->product_price;
         $cart->save();
+        return redirect()->route('cart.index');
+    }
+
+    public function deleteItem($productId) {
+        // $product = Product::where('id', $productId)->first();
+        $cart = auth()->user()->cart;
+        if ($cart->cartItems->contains('product_id', $productId)) {
+            $cartItem = $cart->cartItems->where('product_id', $productId)->first();
+            $cart->total_price -= $cartItem->product->product_price * $cartItem->quantity;
+            $cartItem->delete();
+            $cart->save();
+        }
+        
+        
         return redirect()->route('cart.index');
     }
 }

@@ -10,8 +10,20 @@ class DeliveryDetails extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'postal_code',
+        'city',
+        'street',
+        'house_number',
+        'phone_number',
+        'payment_method',
+        'delivery_method',
+    ];
+
     public function order()
     {
-        return $this->belongsTo(Order::class);
+        return $this->has(Order::class);
     }
 }
