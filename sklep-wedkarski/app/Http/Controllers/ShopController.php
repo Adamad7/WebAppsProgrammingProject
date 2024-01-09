@@ -17,8 +17,16 @@ class ShopController extends Controller
     public function showCategory($category) {
         $categoryId = ProductCategory::where('category_name', $category)->first()->id;
         $products = Product::where('product_category_id', $categoryId)->get();
-        // $products = Product::where('product_category_id', $id)->get();
-        // $categoryName = ProductCategory::where('id', $id)->first()->category_name;
-        return view('shop', ['products' => $products, 'categoryName' => $category]);
+
+        $categoryNames = [
+            'spinning_rods' => 'Wędziska spinningowe',
+            'carp_rods' => 'Wędziska karpiowe',
+            'front_reels' => 'Kołowrotki z przednim hamulcem',
+            'back_reels' => 'Kołowrotki z tylnym hamulcem',
+            'main_strings' => 'Żyłki główne',
+            'artificial_baits' => 'Przynęty sztuczne',
+            'natural_baits' => 'Przynęty naturalne',
+        ];
+        return view('shop', ['products' => $products, 'categoryName' => $categoryNames[$category]]);
     }
 }

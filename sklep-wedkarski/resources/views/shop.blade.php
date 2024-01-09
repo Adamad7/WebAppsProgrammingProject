@@ -59,32 +59,15 @@
                 </div>
             </aside>
 
-            <!-- <div class=\"item\"> 
-                <div class=\"item_image\">
-                    <img src=\"".concat(displayedItems[i].img, "\" alt=\"item_img\">
-                </div>
-                <div class=\"item_name\">
-                    displayedItems[i].name
-                </div>
-                <div class=\"item_description\">
-                    itemsDescriptions[i]
-                </div>
-                <dvi class=\"item_price_details\">
-                    <div class=\"item_price\">
-                        displayedItems[i].price[0], " z\u0142
-                    </div>
-                    <button class=\"item_details\" onclick=\"showItemDetails(").concat(categoryId, ", ").concat(i, ")\">
-                        Szczeg\xF3\u0142y
-                    </button>
-                </div>
-            </div> -->
-
 
             <div id="items">
+                @guest
+                <p id="login_to_add"> Zaloguj się, aby móc dodawać produkty do koszyka </p>
+                @endguest
                 @if (isset($categoryName))
                 <h2 class="selected_category">{{$categoryName}}</h2>
                 @else
-                <h2 class="selected_category">Wybierz kategorięee</h2>
+                <h2 class="selected_category">Wybierz kategorię</h2>
                 @endif
                 <div id="items_display">
                     @if (isset($products))
@@ -103,9 +86,12 @@
                             <div class="item_price">
                                 {{ $product->product_price }} zł
                             </div>
+                            @auth
                             <a class="item_details" href="{{ route('cart.add', ['productId' => $product->id]) }}">
                                 Do koszyka
                             </a>
+                            @endauth
+                            
                         </div>
                     </div>
                     @endforeach
