@@ -7,8 +7,8 @@
         <i class="fa-solid fa-newspaper"></i> Blog
     </a>
     <div class="dropdown">
-        <button class="dropbtn">Niezbędnik
-            <i class="fa fa-caret-down"></i>
+        <button class="dropbtn">
+            <i class="fa fa-caret-down"></i> Niezbędnik
         </button>
         <div class="dropdown-content">
             <a href="{{ url('/fishing_grounds') }}">Łowiska</a>

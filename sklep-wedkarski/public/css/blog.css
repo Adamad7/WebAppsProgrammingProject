@@ -219,12 +219,6 @@ article.full img {
     align-items: center;
 }
 
-/* .add_comment_form form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-} */
-
 .errors {
     color: red;
     font-size: 0.9em;

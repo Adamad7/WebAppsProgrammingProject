@@ -27,16 +27,16 @@
                         <tr>
                             <td>{{ $cartItem->product->product_name }}</td>
                             <td>
-                            @if ($cartItem->quantity < 20)
-                            <a href="{{ route('cart.add', ['productId' => $cartItem->product->id]) }}"><i class="fas fa-plus"></i></a> 
-                            @endif   
-                            {{ $cartItem->quantity }}
-                            @if ($cartItem->quantity >= 1)
-                            <a href="{{ route('cart.remove', ['productId' => $cartItem->product->id]) }}"><i class="fas fa-minus"></i></a>
-                            @endif
+                                @if ($cartItem->quantity >= 1)
+                                <a id="remove_item_button" href="{{ route('cart.remove', ['productId' => $cartItem->product->id]) }}"><i class="fas fa-minus fa-lg"></i></a>
+                                @endif
+                                {{ $cartItem->quantity }}
+                                @if ($cartItem->quantity < 20)
+                                <a id="add_item_button" href="{{ route('cart.add', ['productId' => $cartItem->product->id]) }}"><i class="fas fa-plus fa-lg"></i></a> 
+                                @endif   
                             </td>
                             <td>{{ $cartItem->product->product_price * $cartItem->quantity }} zł</td>
-                            <td><a href="{{ route('cart.delete', ['productId' => $cartItem->product->id]) }}"><i class="fas fa-trash-alt"></i></a></td>
+                            <td><a id="delete_item_button" href="{{ route('cart.delete', ['productId' => $cartItem->product->id]) }}"><i class="fas fa-trash-alt fa-lg"></i></a></td>
                             
                         </tr>
                     @endforeach
