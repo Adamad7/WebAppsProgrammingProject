@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet  type="text/css"" href="{{ asset('css/blog.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/blog.css') }}">
 
     <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script>
@@ -66,7 +66,7 @@
                 <form action="{{route('blog.add_comment', ['id' => $blogPost->id])}}" method="POST">
                     @csrf
                     <textarea name="content" id="content" cols="50" rows="5" placeholder="Treść komentarza"></textarea>
-                    <input class="add_comment_button" type="submit" value="Dodaj komentarz"></input>
+                    <input class="add_comment_button" type="submit" value="Dodaj komentarz">
                 </form>
 
             </div>
@@ -95,7 +95,7 @@
                 @method('PUT')
                 <textarea name="edit_content" id="edit_content" cols="50" rows="5"
                     placeholder="Treść komentarza">{!!nl2br(e($comment->content))!!}</textarea>
-                <input class="add_comment_button" type="submit" value="Zapisz"></input>
+                <input class="add_comment_button" type="submit" value="Zapisz">
             </form>
             @else
                 {!!nl2br(e($comment->content))!!}
