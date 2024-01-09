@@ -13,7 +13,6 @@
     <link rel="stylesheet  type="text/css"" href="{{ asset('css/blog.css') }}">
 
     <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script src="{{ asset('js/cart.js') }}"></script>
     <script>
         $(document).ready(function () {
         @if (session('scroll'))

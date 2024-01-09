@@ -12,8 +12,6 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/blog.css') }}">
 
-    <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script src="{{ asset('js/cart.js') }}"></script>
 </head>
 
 <body>

@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="{{ asset('css/calendar.css') }}">
 
     <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script src="{{ asset('js/cart.js') }}"></script>
     <script src="{{ asset('js/calendar.js') }}"></script>
 </head>
 

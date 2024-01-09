@@ -10,9 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sources.css') }}">
-
-    <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script src="{{ asset('js/cart.js') }}"></script>
 </head>
 
 <body>
