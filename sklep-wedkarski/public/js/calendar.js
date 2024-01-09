@@ -27,7 +27,7 @@ $(document).ready(function () {
 });
 
 async function getEventsAndInit() {
-    events = await fetch("/fishing_events")
+    events = await fetch("/get_fishing_events")
         .then((response) => response.json())
         .then((data) => {
             return data;
