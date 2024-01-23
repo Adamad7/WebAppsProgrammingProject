@@ -21,7 +21,7 @@ class NewsletterController extends Controller
             'frequency' => 'required|string|in:codziennie,2_na_tydzien,1_na_tydzien,1_na_dwa_tygodnie,1_na_miesiac',
             'subjects' => 'required|array',
             'subjects.*' => 'string|in:relacje,promocje,poradniki,wydarzenia,wiadomosci',
-            'fav_fishing_type' => 'required|string|in:splawik,grunt,spinning',
+            'fav_fishing_type' => 'required|string|in:splawik,spinning,gruntowe',
             'comments' => 'nullable|string',
             'rodo' => 'required|accepted',
         ]);
